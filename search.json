@@ -1,0 +1,191 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Memoria de Cálculo MBHT",
+    "section": "",
+    "text": "Prefacio\nLibro de memoria de cálculo de la Matriz de Bienestar Humano Territorial (MBHT)\nTest imagen"
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introducción",
+    "section": "",
+    "text": "Desafíos del bienestar en el territorio.\nNecesidad de toma de decisiones basada en evidencia. \nProblema de modificación de área (MAUP).\nMencionar literatura relacionada a indicadores compuestos.\nEsquema del documento."
+  },
+  {
+    "objectID": "socioeconomico.html#resumen",
+    "href": "socioeconomico.html#resumen",
+    "title": "2  Dimensión Socioeconómica",
+    "section": "2.1 Resumen",
+    "text": "2.1 Resumen\nListado de Indicadores: Empleo, Estudios, Hogar, Vivienda.\nReferencia de literatura relacionada a los indicadores."
+  },
+  {
+    "objectID": "socioeconomico.html#proceso",
+    "href": "socioeconomico.html#proceso",
+    "title": "2  Dimensión Socioeconómica",
+    "section": "2.2 Proceso",
+    "text": "2.2 Proceso\nDiagramas"
+  },
+  {
+    "objectID": "socioeconomico.html#insumos",
+    "href": "socioeconomico.html#insumos",
+    "title": "2  Dimensión Socioeconómica",
+    "section": "2.3 Insumos",
+    "text": "2.3 Insumos\nTipo de dato polígono. Manzanas.\nInformación censal. Censo 2017."
+  },
+  {
+    "objectID": "socioeconomico.html#aplicación",
+    "href": "socioeconomico.html#aplicación",
+    "title": "2  Dimensión Socioeconómica",
+    "section": "2.4 Aplicación",
+    "text": "2.4 Aplicación\nCálculo de indicadores como proporciones.\nInvertir indicador."
+  },
+  {
+    "objectID": "socioeconomico.html#interpretación",
+    "href": "socioeconomico.html#interpretación",
+    "title": "2  Dimensión Socioeconómica",
+    "section": "2.5 Interpretación",
+    "text": "2.5 Interpretación"
+  },
+  {
+    "objectID": "ambiental.html#resumen",
+    "href": "ambiental.html#resumen",
+    "title": "3  Dimensión Ambiental",
+    "section": "3.1 Resumen",
+    "text": "3.1 Resumen\nConfort ambiental\nServicios ecosistémicos\nImágenes satelitales"
+  },
+  {
+    "objectID": "ambiental.html#proceso",
+    "href": "ambiental.html#proceso",
+    "title": "3  Dimensión Ambiental",
+    "section": "3.2 Proceso",
+    "text": "3.2 Proceso\nDiagramas\nProcesos de Corrección de Imágenes.\nÍndices normalizados.\nRaster a polígonos."
+  },
+  {
+    "objectID": "ambiental.html#insumos",
+    "href": "ambiental.html#insumos",
+    "title": "3  Dimensión Ambiental",
+    "section": "3.3 Insumos",
+    "text": "3.3 Insumos\nTipo de dato raster.\nInsumos de datos satelitales."
+  },
+  {
+    "objectID": "ambiental.html#aplicación",
+    "href": "ambiental.html#aplicación",
+    "title": "3  Dimensión Ambiental",
+    "section": "3.4 Aplicación",
+    "text": "3.4 Aplicación\narea de estudio"
+  },
+  {
+    "objectID": "ambiental.html#interpretación",
+    "href": "ambiental.html#interpretación",
+    "title": "3  Dimensión Ambiental",
+    "section": "3.5 Interpretación",
+    "text": "3.5 Interpretación"
+  },
+  {
+    "objectID": "seguridad.html#resumen",
+    "href": "seguridad.html#resumen",
+    "title": "4  Dimensión Seguridad",
+    "section": "4.1 Resumen",
+    "text": "4.1 Resumen\nSeguridad, delitos, victimización\nReferencias a redes sociales\nPobreza multidimensional"
+  },
+  {
+    "objectID": "seguridad.html#proceso",
+    "href": "seguridad.html#proceso",
+    "title": "4  Dimensión Seguridad",
+    "section": "4.2 Proceso",
+    "text": "4.2 Proceso\nDiagrama\nProceso de Kernel de densidad, puntos a raster.\nRaster a polígonos.\nNormalización e Invertir."
+  },
+  {
+    "objectID": "seguridad.html#insumos",
+    "href": "seguridad.html#insumos",
+    "title": "4  Dimensión Seguridad",
+    "section": "4.3 Insumos",
+    "text": "4.3 Insumos\nTipo de dato de puntos.\nOcurrencia de delitos, fuente de información anonimizada.\nDiccionario de delitos, clasificación por gravedad y objeto."
+  },
+  {
+    "objectID": "seguridad.html#aplicación",
+    "href": "seguridad.html#aplicación",
+    "title": "4  Dimensión Seguridad",
+    "section": "4.4 Aplicación",
+    "text": "4.4 Aplicación\nEjemplo de area de estudio"
+  },
+  {
+    "objectID": "seguridad.html#interpretación",
+    "href": "seguridad.html#interpretación",
+    "title": "4  Dimensión Seguridad",
+    "section": "4.5 Interpretación",
+    "text": "4.5 Interpretación"
+  },
+  {
+    "objectID": "accesibilidad.html#resumen",
+    "href": "accesibilidad.html#resumen",
+    "title": "5  Dimensión Accesbilidad",
+    "section": "5.1 Resumen",
+    "text": "5.1 Resumen\nLiteratura sobre accesibilidad, otras métricas (ciudad de 15 minutos).\nListado de indicadores de accesibilidad"
+  },
+  {
+    "objectID": "accesibilidad.html#proceso",
+    "href": "accesibilidad.html#proceso",
+    "title": "5  Dimensión Accesbilidad",
+    "section": "5.2 Proceso",
+    "text": "5.2 Proceso\nFórmula.\ndiagrama\nProceso General."
+  },
+  {
+    "objectID": "accesibilidad.html#insumos",
+    "href": "accesibilidad.html#insumos",
+    "title": "5  Dimensión Accesbilidad",
+    "section": "5.3 Insumos",
+    "text": "5.3 Insumos\nTipos de datos de línea: calles.\nTipo de dato: Grafos, rutas. Mejor ruta, asociado a un costo.\nFuentes externas: encuesta origen y destino, impedancias.\nInsumos: equipamientos (levantamiento), calles (limpieza), manzanas."
+  },
+  {
+    "objectID": "accesibilidad.html#aplicación",
+    "href": "accesibilidad.html#aplicación",
+    "title": "5  Dimensión Accesbilidad",
+    "section": "5.4 Aplicación",
+    "text": "5.4 Aplicación\nCaso de Equipamiento de Áreas Verdes."
+  },
+  {
+    "objectID": "accesibilidad.html#interpretacion",
+    "href": "accesibilidad.html#interpretacion",
+    "title": "5  Dimensión Accesbilidad",
+    "section": "5.5 Interpretacion",
+    "text": "5.5 Interpretacion\nResultados e interpretación."
+  },
+  {
+    "objectID": "consolidacion.html#resumen",
+    "href": "consolidacion.html#resumen",
+    "title": "6  Consolidación de Dimensiones",
+    "section": "6.1 Resumen",
+    "text": "6.1 Resumen"
+  },
+  {
+    "objectID": "consolidacion.html#proceso",
+    "href": "consolidacion.html#proceso",
+    "title": "6  Consolidación de Dimensiones",
+    "section": "6.2 Proceso",
+    "text": "6.2 Proceso\ndiagrama"
+  },
+  {
+    "objectID": "consolidacion.html#insumos",
+    "href": "consolidacion.html#insumos",
+    "title": "6  Consolidación de Dimensiones",
+    "section": "6.3 Insumos",
+    "text": "6.3 Insumos"
+  },
+  {
+    "objectID": "consolidacion.html#aplicación",
+    "href": "consolidacion.html#aplicación",
+    "title": "6  Consolidación de Dimensiones",
+    "section": "6.4 Aplicación",
+    "text": "6.4 Aplicación"
+  },
+  {
+    "objectID": "consolidacion.html#interpretacion",
+    "href": "consolidacion.html#interpretacion",
+    "title": "6  Consolidación de Dimensiones",
+    "section": "6.5 Interpretacion",
+    "text": "6.5 Interpretacion\nAnálisis Multivariado. Estadística espacial: distancia y relaciones de vecindad. Imputaciones de datos faltantes por interpolación espacial. Agregación de indicadores: objetivos comunicacionales, disminuir complejidad. MPI y Promedio Ponderado: lógica, relaciones compensatorias, alternativas. Zonas de Oportunidad (análisis de cluster geográfico)."
+  }
+]
