@@ -1,0 +1,31 @@
+{
+    "id": "CEDBD569",
+    "path": "~/memoria_bht_book/intro.qmd",
+    "project_path": "intro.qmd",
+    "type": "quarto_markdown",
+    "hash": "664342449",
+    "contents": "",
+    "dirty": false,
+    "created": 1683832502755.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "rmdVisualMode": "false",
+        "rmdVisualWrapConfigured": "true",
+        "source_window_id": "",
+        "Source": "Source2u2a24f7lwdu",
+        "docOutlineVisible": "0",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "246:0",
+        "cursorPosition": "12,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1683833270,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1683833270695,
+    "read_only": false,
+    "read_only_alternatives": []
+}

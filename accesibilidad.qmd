@@ -1,0 +1,35 @@
+# Dimensión Accesbilidad
+
+## Resumen
+
+Literatura sobre accesibilidad, otras métricas (ciudad de 15 minutos).
+
+Listado de indicadores de accesibilidad
+
+## Proceso
+
+Fórmula.
+
+diagrama
+
+Proceso General.
+
+## Insumos
+
+Tipos de datos de línea: calles.
+
+Tipo de dato: Grafos, rutas. Mejor ruta, asociado a un costo.
+
+Fuentes externas: encuesta origen y destino, impedancias.
+
+Insumos: equipamientos (levantamiento), calles (limpieza), manzanas.
+
+## Aplicación
+
+Caso de Equipamiento de Áreas Verdes.
+
+## Interpretacion
+
+Resultados e interpretación. 
+
+

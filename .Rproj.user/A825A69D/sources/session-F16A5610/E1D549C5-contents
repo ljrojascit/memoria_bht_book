@@ -1,0 +1,28 @@
+project:
+  type: book
+
+book:
+  title: "Memoria de Cálculo MBHT"
+  subtitle: "Centro de Inteligencia Territorial - CIT"
+  author: "Equipo Investigación"
+  date: "11-05-2023"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - socioeconomico.qmd
+    - ambiental.qmd
+    - seguridad.qmd
+    - accesibilidad.qmd
+    - consolidacion.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+
