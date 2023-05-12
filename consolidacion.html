@@ -20,7 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -186,6 +205,8 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="resumen" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="resumen"><span class="header-section-number">6.1</span> Resumen</h2>
+<p>Un indicador compuesto es una combinación matemática (o agregación) de un conjunto de indicadores individuales (o variables) que representan distintos componentes de un fenómeno multidimensional. Comúnmente los análisis de indicadores compuestos operan sobre promedios de unidades administrativas o nacionales. Sin embargo, rara vez los fenómenos sociales, económicos y ambientales siguen una distribución uniforme dentro de estas unidades. Por lo tanto, incorporar la dimensión espacial de las variables permite enriquecer los modelos y el poder análitico de los indicadores compuestos <span class="citation" data-cites="troguSpatialCompositeIndicators2018">(<a href="references.html#ref-troguSpatialCompositeIndicators2018" role="doc-biblioref">Trogu and Campagna 2018</a>)</span>.</p>
+<p>Al incorporar la locación en el análisis es posible relevar las relaciones de vecindad entre observaciones. Estas ponen de relieve relaciones de dependencia espacial y heterogeneidad espacial, las cuales invalidan la hipótesis de independencia espacial entre las variables, por lo que es necesario incorporar técnicas de estadística espacial al análisis <span class="citation" data-cites="anselinWhatSpecialSpatial1989">(<a href="references.html#ref-anselinWhatSpecialSpatial1989" role="doc-biblioref">Anselin 1989</a>)</span>. Estas buscan profundizar en los patrones espaciales de las variables, detectando clusters y regiones de contagio <span class="citation" data-cites="getis1999spatial">(<a href="references.html#ref-getis1999spatial" role="doc-biblioref">Getis 1999</a>)</span>.</p>
 </section>
 <section id="proceso" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="proceso"><span class="header-section-number">6.2</span> Proceso</h2>
@@ -202,6 +223,17 @@ ul.task-list li input[type="checkbox"] {
 <p>Análisis Multivariado. Estadística espacial: distancia y relaciones de vecindad. Imputaciones de datos faltantes por interpolación espacial. Agregación de indicadores: objetivos comunicacionales, disminuir complejidad. MPI y Promedio Ponderado: lógica, relaciones compensatorias, alternativas. Zonas de Oportunidad (análisis de cluster geográfico).</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-anselinWhatSpecialSpatial1989" class="csl-entry" role="listitem">
+Anselin, Luc. 1989. <span>“What Is <span>Special About Spatial Data</span>? <span>Alternative Perspectives</span> on <span>Spatial Data Analysis</span> (89-4),”</span> April. <a href="https://escholarship.org/uc/item/3ph5k0d4">https://escholarship.org/uc/item/3ph5k0d4</a>.
+</div>
+<div id="ref-getis1999spatial" class="csl-entry" role="listitem">
+Getis, Arthur. 1999. <span>“Spatial Statistics.”</span> <em>Geographical Information Systems</em> 1: 239–51.
+</div>
+<div id="ref-troguSpatialCompositeIndicators2018" class="csl-entry" role="listitem">
+Trogu, Daniele, and Michele Campagna. 2018. <span>“Towards <span>Spatial Composite Indicators</span>: <span>A Case Study</span> on <span>Sardinian Landscape</span>.”</span> <em>Sustainability</em> 10 (5, 5): 1369. <a href="https://doi.org/10.3390/su10051369">https://doi.org/10.3390/su10051369</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
