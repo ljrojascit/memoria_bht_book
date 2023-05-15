@@ -240,11 +240,6 @@ div.csl-indent {
 
 </header>
 
-<p><em>Pendiente</em>:</p>
-<ul>
-<li><p><em>Definir Aplicación</em></p></li>
-<li><p><em>Redactar Interpretación</em></p></li>
-</ul>
 <p>Las ciudades de Chile presentan altos índices de segregación <span class="citation" data-cites="sabatiniSegregacionResidencialPrincipales2001">(<a href="references.html#ref-sabatiniSegregacionResidencialPrincipales2001" role="doc-biblioref">Sabatini, C’aceres, and Cerda 2001</a>)</span>, que reflejan la separación espacial de distintos grupos sociales <span class="citation" data-cites="ruiz-tagleEstudioSegregacionResidencial2014">(<a href="references.html#ref-ruiz-tagleEstudioSegregacionResidencial2014" role="doc-biblioref">Ruiz-Tagle and L’opez M 2014</a>)</span>. La intensidad de este fenómeno hace imperativo el considerar la condición social como una dimensión estructurante en la evaluación de Políticas Públicas.</p>
 <p><img src="img/socioeconomico.png" class="img-fluid"></p>
 <section id="resumen" class="level2" data-number="2.1">
@@ -355,7 +350,7 @@ $ geometry   &lt;POLYGON [m]&gt; POLYGON ((292811 6685815, 2..., POLYGON ((29305
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizacion de polígonos</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(la_serena_urb) <span class="sc">+</span> <span class="fu">tm_borders</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="socioeconomico_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="socioeconomico_files/figure-html/soc-manz-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <section id="indicador-de-escolaridad-del-jefe-de-hogar-iej" class="level4" data-number="2.4.1.1">
@@ -374,7 +369,7 @@ $ geometry   &lt;POLYGON [m]&gt; POLYGON ((292811 6685815, 2..., POLYGON ((29305
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Viz</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(la_serena_urb) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"IEJ"</span>, <span class="at">style =</span> <span class="st">"jenks"</span>, <span class="at">palette =</span> <span class="st">"YlGnBu"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="socioeconomico_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="socioeconomico_files/figure-html/soc-iej-viz-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -399,7 +394,7 @@ $ geometry   &lt;POLYGON [m]&gt; POLYGON ((292811 6685815, 2..., POLYGON ((29305
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Viz</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(la_serena_urb) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"IEM"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette=</span><span class="st">"PuBu"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="socioeconomico_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="socioeconomico_files/figure-html/soc-iem-viz-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -426,7 +421,7 @@ $ geometry   &lt;POLYGON [m]&gt; POLYGON ((292811 6685815, 2..., POLYGON ((29305
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Viz</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(la_serena_urb) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"IPJ"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette =</span> <span class="st">"Purples"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="socioeconomico_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="socioeconomico_files/figure-html/soc-ipj-viz-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -453,35 +448,101 @@ $ geometry   &lt;POLYGON [m]&gt; POLYGON ((292811 6685815, 2..., POLYGON ((29305
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Viz</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(la_serena_urb) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"IPJ"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette =</span> <span class="st">"PuRd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="socioeconomico_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<p><img src="socioeconomico_files/figure-html/soc-irh-viz-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 <section id="indicador-de-calidad-de-la-vivienda-ivi" class="level4" data-number="2.4.1.5">
 <h4 data-number="2.4.1.5" class="anchored" data-anchor-id="indicador-de-calidad-de-la-vivienda-ivi"><span class="header-section-number">2.4.1.5</span> Indicador de Calidad de la Vivienda (IVI)</h4>
+<p>El indicador de calidad de vivienda es una variable sintética de todas las materialidades de la vivienda. Inicialmente, se construyó como un indicador de mala calidad, tomando un valor más alto cuando la calidad de la vivienda es peor y es más bajo cuando es mejor. Fue elaborado como un promedio lineal del 3 sub-indicadores de paredes, suelo y techo. Cada uno de estos sub-indicadores registra el porcentaje de viviendas de la manzana que tienen paredes, suelo o techo considerado insuficiente. Las construcciones consideradas insuficientes son las siguientes:</p>
+<p><strong>Paredes</strong>: Material de los muros exteriores</p>
+<ul>
+<li><p><strong>P03A_4</strong>: Tabique sin forro interior (madera u otro)</p></li>
+<li><p><strong>P03A_5</strong>: Adobe, barro, quincha, pirca u otro artesanal tradicional</p></li>
+<li><p><strong>P03A_6</strong>: Materiales precarios (lata, cartón, plástico, etc.)</p></li>
+</ul>
+<p><strong>Techo</strong>: Material en la cubierta del techo</p>
+<ul>
+<li><p><strong>P03B_4</strong>: Fonolita o plancha de fieltro embreado</p></li>
+<li><p><strong>P03B_6</strong>: Materiales precarios (lata, cartón, plásticos, etc.)</p></li>
+<li><p><strong>P03B_7</strong>: Sin cubierta sólida de techo</p></li>
+</ul>
+<p><strong>Suelo</strong>: Material de construcción del piso</p>
+<ul>
+<li><p><strong>P03C_4</strong>: Capa de cemento sobre tierra</p></li>
+<li><p><strong>P03C_5</strong>: Tierra</p></li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>censo <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">paredes =</span> (P03A_4 <span class="sc">+</span> P03A_5 <span class="sc">+</span> P03A_6)<span class="sc">/</span>TOTAL_V,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">techo =</span> (P03B_4 <span class="sc">+</span> P03B_6 <span class="sc">+</span> P03B_7)<span class="sc">/</span>TOTAL_V,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">suelo =</span> (P03C_4 <span class="sc">+</span>  P03C_5)<span class="sc">/</span>TOTAL_V)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># eliminar valores infinitos de la división anterior</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>censo <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">paredes =</span> <span class="fu">ifelse</span>(paredes <span class="sc">&gt;</span> <span class="dv">1</span>, <span class="dv">1</span>, paredes), </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">techo =</span> <span class="fu">ifelse</span>(techo <span class="sc">&gt;</span> <span class="dv">1</span>, <span class="dv">1</span>, techo), </span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">suelo =</span> <span class="fu">ifelse</span>(suelo <span class="sc">&gt;</span> <span class="dv">1</span>, <span class="dv">1</span>, suelo))</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>censo <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span>  <span class="fu">mutate</span>(<span class="at">IVI =</span> (paredes<span class="sc">+</span> suelo<span class="sc">+</span> techo)<span class="sc">/</span><span class="dv">3</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>censo <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span>  <span class="fu">mutate</span>(<span class="at">IVI =</span>  <span class="dv">1</span> <span class="sc">-</span> IVI) <span class="co"># invertir sentido</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Viz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filtro comunal y urbano</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>la_serena_urb <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> <span class="fu">filter</span>(COD_COM <span class="sc">==</span> <span class="dv">4101</span> <span class="sc">&amp;</span> MANZ_EN <span class="sc">==</span> <span class="st">"URBANO"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Viz</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(la_serena_urb) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"IVI"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette =</span> <span class="st">"YlOrRd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="socioeconomico_files/figure-html/soc-ivi-viz-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 </section>
 <section id="indicador-de-de-suficiencia-de-la-vivienda-isv" class="level4" data-number="2.4.1.6">
 <h4 data-number="2.4.1.6" class="anchored" data-anchor-id="indicador-de-de-suficiencia-de-la-vivienda-isv"><span class="header-section-number">2.4.1.6</span> Indicador de de Suficiencia de la Vivienda (ISV)</h4>
+<p>El indicador de Suficiencia de Viviendas se construyó inicialmente como un indicador de hacinamiento. Se realizó a partir de 2 variables que indican el número de viviendas que se encuentran en situación de hacinamiento y el número de viviendas que se encuentran en situación de hacinamiento severo. El indicador corresponde a la suma de 2 veces las viviendas en situación de hacinamiento severo con las viviendas en situación de hacinamiento normal, dividido por el total de viviendas.</p>
+<p>Luego, el indicador se normalizó con su inverso aditivo, para asegurar que el valor máximo, sea lo más deseable y el 0 lo menos deseable. Con esto se obtuvo el indicador de suficiencia de viviendas.</p>
+<p>El calculo de este indicar implica diferenciar las viviendas en situación de hacinamiento y hacinamiento severo, lo que se operacionaliza en las siguientes variables:</p>
+<ul>
+<li><p><strong>NIV_HAC2</strong>: &gt;= 2.5 personas por habitación</p></li>
+<li><p><strong>NIV_HAC3</strong>: &gt;= 5 personas por habitación</p></li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>censo <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ISV =</span> NIV_HAC2 <span class="sc">+</span> (<span class="dv">2</span> <span class="sc">*</span> NIV_HAC3))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># función de normalización</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>minmax <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> (x <span class="sc">-</span> <span class="fu">min</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">/</span> </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">max</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>censo <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ISV =</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">minmax</span>(ISV))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Viz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filtro comunal y urbano</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>la_serena_urb <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> <span class="fu">filter</span>(COD_COM <span class="sc">==</span> <span class="dv">4101</span> <span class="sc">&amp;</span> MANZ_EN <span class="sc">==</span> <span class="st">"URBANO"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Viz</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(la_serena_urb) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"ISV"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette =</span> <span class="st">"YlOrRd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="socioeconomico_files/figure-html/soc-isv-viz-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 </section>
 <section id="consolidación-de-la-dimensión-socioeconómica" class="level4" data-number="2.4.1.7">
 <h4 data-number="2.4.1.7" class="anchored" data-anchor-id="consolidación-de-la-dimensión-socioeconómica"><span class="header-section-number">2.4.1.7</span> Consolidación de la Dimensión Socioeconómica</h4>
+<p>Finalmente, se seleccionan los indicadores calculados además de variables de identificación de las variables</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seleccion de las variables</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>soc <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(ID_MANZ<span class="sc">:</span>PERSONAS, IEJ, IEM, IPJ, IRH, IVI, ISV)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Se puede visualizar esto de manera conjunta:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Viz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#comuna &lt;- soc %&gt;% filter(COD_COM == 4101 &amp; MANZ_EN == "URBANO")</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mapview(comuna, zcol = "IEJ") + mapview(comuna, zcol = "IEM")+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#mapview(comuna, zcol = "IPJ") + mapview(comuna, zcol = "IRH")+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#mapview(comuna, zcol = "IVI") + mapview(comuna, zcol = "ISV")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
