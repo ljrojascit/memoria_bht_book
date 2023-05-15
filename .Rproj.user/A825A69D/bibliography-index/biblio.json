@@ -27,6 +27,208 @@
             "title": "Literate programming",
             "type": "article-journal",
             "volume": "27"
+        },
+        {
+            "author": [
+                {
+                    "family": "Stiglitz",
+                    "given": "Joseph E."
+                },
+                {
+                    "family": "Sen",
+                    "given": "Amartya"
+                },
+                {
+                    "family": "Fitoussi",
+                    "given": "Jean-Paul"
+                }
+            ],
+            "id": "stiglitzReportCommissionMeasurement2009",
+            "issued": {
+                "date-parts": [
+                    [
+                        2009
+                    ]
+                ]
+            },
+            "publisher": "Commission on the measurement of economic performance and social progress Paris",
+            "title": "Report by the commission on the measurement of economic performance and social progress",
+            "type": ""
+        },
+        {
+            "DOI": "10.1016/S0305-750X(01)00109-7",
+            "ISSN": "0305-750X",
+            "URL": "https://www.sciencedirect.com/science/article/pii/S0305750X01001097",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        12
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Alkire",
+                    "given": "Sabina"
+                }
+            ],
+            "container-title": "World Development",
+            "container-title-short": "World Development",
+            "id": "alkireDimensionsHumanDevelopment2002",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2002,
+                        2,
+                        1
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "page": "181-205",
+            "title": "Dimensions of Human Development",
+            "type": "article-journal",
+            "volume": "30"
+        },
+        {
+            "DOI": "10.1057/s41301-017-0113-x",
+            "ISSN": "1461-7072",
+            "URL": "https://doi.org/10.1057/s41301-017-0113-x",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        12
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Barrington-Leigh",
+                    "given": "Christopher"
+                }
+            ],
+            "container-title": "Development",
+            "container-title-short": "Development",
+            "id": "barrington-leighSustainabilityWellBeingHappy2016",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016,
+                        12,
+                        1
+                    ]
+                ]
+            },
+            "keyword": "Growth,Happiness,Inclusiveness,Income,Life satisfaction,Sustainability,Transformation,Well-being",
+            "language": "en-US",
+            "page": "292-298",
+            "title": "Sustainability and Well-Being: A Happy Synergy",
+            "title-short": "Sustainability and Well-Being",
+            "type": "article-journal",
+            "volume": "59"
+        },
+        {
+            "DOI": "10.3390/su10051369",
+            "ISSN": "2071-1050",
+            "URL": "https://www.mdpi.com/2071-1050/10/5/1369",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        12
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Trogu",
+                    "given": "Daniele"
+                },
+                {
+                    "family": "Campagna",
+                    "given": "Michele"
+                }
+            ],
+            "container-title": "Sustainability",
+            "id": "troguSpatialCompositeIndicators2018",
+            "issue": "5, 5",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018,
+                        5
+                    ]
+                ]
+            },
+            "keyword": "geographically weighted principal component analysis,landscape planning,Spatial Composite Indicators,spatial data infrastructures",
+            "language": "en-US",
+            "page": "1369",
+            "publisher": "Multidisciplinary Digital Publishing Institute",
+            "title": "Towards Spatial Composite Indicators: A Case Study on Sardinian Landscape",
+            "title-short": "Towards Spatial Composite Indicators",
+            "type": "article-journal",
+            "volume": "10"
+        },
+        {
+            "URL": "https://escholarship.org/uc/item/3ph5k0d4",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        5,
+                        12
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Anselin",
+                    "given": "Luc"
+                }
+            ],
+            "id": "anselinWhatSpecialSpatial1989",
+            "issued": {
+                "date-parts": [
+                    [
+                        1989,
+                        4,
+                        1
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "title": "What is Special About Spatial Data? Alternative Perspectives on Spatial Data Analysis (89-4)",
+            "title-short": "What is Special About Spatial Data?",
+            "type": "article-journal"
+        },
+        {
+            "author": [
+                {
+                    "family": "Getis",
+                    "given": "Arthur"
+                }
+            ],
+            "container-title": "Geographical information systems",
+            "id": "getis1999spatial",
+            "issued": {
+                "date-parts": [
+                    [
+                        1999
+                    ]
+                ]
+            },
+            "page": "239-251",
+            "publisher": "Citeseer",
+            "title": "Spatial statistics",
+            "type": "article-journal",
+            "volume": "1"
         }
     ],
     "project_biblios": [

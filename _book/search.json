@@ -11,84 +11,7 @@
     "href": "intro.html",
     "title": "1  Introducción",
     "section": "",
-    "text": "Desafíos del bienestar en el territorio.\nNecesidad de toma de decisiones basada en evidencia. \nProblema de modificación de área (MAUP).\nMencionar literatura relacionada a indicadores compuestos.\nEsquema del documento."
-  },
-  {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "2  Summary",
-    "section": "",
-    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "references.html",
-    "href": "references.html",
-    "title": "References",
-    "section": "",
-    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
-  },
-  {
-    "objectID": "socioeconomico.html",
-    "href": "socioeconomico.html",
-    "title": "2  Dimensión Socioeconómica",
-    "section": "",
-    "text": "Resumen, Insumos, Proceso (diagrama), Interpretación.\nTipo de dato polígono. Manzanas. Información censal. Censo 2017. Listado de Indicadores: Empleo, Estudios, Hogar, Vivienda. Referencia de literatura relacionada a los indicadores. Cálculo de indicadores como proporciones. Invertir indicador."
-  },
-  {
-    "objectID": "ambiental.html",
-    "href": "ambiental.html",
-    "title": "3  Dimensión Ambiental",
-    "section": "",
-    "text": "Resumen, Insumos, Proceso (diagrama), Interpretación.\nTipo de dato raster. Insumos de datos satelitales. Procesos de Corrección de Imágenes. Índices normalizados. Raster a polígonos."
-  },
-  {
-    "objectID": "seguridad.html",
-    "href": "seguridad.html",
-    "title": "4  Dimensión Seguridad",
-    "section": "",
-    "text": "Resumen, Insumos, Proceso (diagrama), Interpretación.\nTipo de dato de puntos. Ocurrencia de delitos, fuente de información anonimizada. Diccionario de delitos, clasificación por gravedad y objeto. Proceso de Kernel de densidad, puntos a raster. Raster a polígonos. Normalización e Invertir."
-  },
-  {
-    "objectID": "accesibilidad.html",
-    "href": "accesibilidad.html",
-    "title": "5  Dimensión Accesbilidad",
-    "section": "",
-    "text": "Resumen, Insumos, Proceso (diagrama), Interpretación.\nTipos de datos de línea: calles. Tipo de dato: Grafos, rutas. Mejor ruta, asociado a un costo. Fuentes externas: encuesta origen y destino, impedancias. Literatura sobre accesibilidad, otras métricas (ciudad de 15 minutos). Insumos: equipamientos (levantamiento), calles (limpieza), manzanas. Proceso General. Fórmula. Resultados e interpretación. Caso de Equipamiento de Áreas Verdes."
-  },
-  {
-    "objectID": "consolidacion.html",
-    "href": "consolidacion.html",
-    "title": "6  Consolidación de Dimensiones",
-    "section": "",
-    "text": "Resumen, Insumos, Proceso (diagrama), Interpretación.\nAnálisis Multivariado. Estadística espacial: distancia y relaciones de vecindad. Imputaciones de datos faltantes por interpolación espacial. Agregación de indicadores: objetivos comunicacionales, disminuir complejidad. MPI y Promedio Ponderado: lógica, relaciones compensatorias, alternativas. Zonas de Oportunidad (análisis de cluster geográfico)."
-  },
-  {
-    "objectID": "ambiental.html#resumen",
-    "href": "ambiental.html#resumen",
-    "title": "3  Dimensión Ambiental",
-    "section": "3.1 Resumen",
-    "text": "3.1 Resumen\nConfort ambiental\nServicios ecosistémicos\nImágenes satelitales"
-  },
-  {
-    "objectID": "ambiental.html#proceso",
-    "href": "ambiental.html#proceso",
-    "title": "3  Dimensión Ambiental",
-    "section": "3.2 Proceso",
-    "text": "3.2 Proceso\nDiagramas\nProcesos de Corrección de Imágenes.\nÍndices normalizados.\nRaster a polígonos."
-  },
-  {
-    "objectID": "ambiental.html#insumos",
-    "href": "ambiental.html#insumos",
-    "title": "3  Dimensión Ambiental",
-    "section": "3.3 Insumos",
-    "text": "3.3 Insumos\nTipo de dato raster.\nInsumos de datos satelitales."
-  },
-  {
-    "objectID": "ambiental.html#interpretación",
-    "href": "ambiental.html#interpretación",
-    "title": "3  Dimensión Ambiental",
-    "section": "3.5 Interpretación",
-    "text": "3.5 Interpretación"
+    "text": "La medición del bienestar y del progreso de la sociedad tiene una creciente importancia tanto en las ciencias sociales como para los gobiernos locales y nacionales. Para evaluar estos conceptos se requiere el monitoreo de múltiples indicadores debido a su naturaleza compleja y multidimensional.\nEn general estas mediciones operan sobre promedios de unidades administrativas o nacionales y rara vez los fenómenos sociales, económicos y ambientales siguen una distribución uniforme dentro de estas unidades. Por lo tanto es necesario contar con mediciones e indicadores con mayor detalle espacial.\nLa Matriz de Bienestar Humano Territorial es un indicador compuesto que comprende multiples dimensiones con indicadores asociados. Las dimensiones que considera son socioeconómica, ambiental, seguridad y accesibilidad. El presente documento explica el cálculo de cada dimensión y finaliza explicando cómo se combinan sus dimensiones."
   },
   {
     "objectID": "socioeconomico.html#resumen",
@@ -112,11 +35,53 @@
     "text": "2.3 Insumos\nTipo de dato polígono. Manzanas.\nInformación censal. Censo 2017."
   },
   {
+    "objectID": "socioeconomico.html#aplicación",
+    "href": "socioeconomico.html#aplicación",
+    "title": "2  Dimensión Socioeconómica",
+    "section": "2.4 Aplicación",
+    "text": "2.4 Aplicación\nCálculo de indicadores como proporciones.\nInvertir indicador."
+  },
+  {
     "objectID": "socioeconomico.html#interpretación",
     "href": "socioeconomico.html#interpretación",
     "title": "2  Dimensión Socioeconómica",
     "section": "2.5 Interpretación",
     "text": "2.5 Interpretación"
+  },
+  {
+    "objectID": "ambiental.html#resumen",
+    "href": "ambiental.html#resumen",
+    "title": "3  Dimensión Ambiental",
+    "section": "3.1 Resumen",
+    "text": "3.1 Resumen\nConfort ambiental\nServicios ecosistémicos\nImágenes satelitales"
+  },
+  {
+    "objectID": "ambiental.html#proceso",
+    "href": "ambiental.html#proceso",
+    "title": "3  Dimensión Ambiental",
+    "section": "3.2 Proceso",
+    "text": "3.2 Proceso\nDiagramas\nProcesos de Corrección de Imágenes.\nÍndices normalizados.\nRaster a polígonos."
+  },
+  {
+    "objectID": "ambiental.html#insumos",
+    "href": "ambiental.html#insumos",
+    "title": "3  Dimensión Ambiental",
+    "section": "3.3 Insumos",
+    "text": "3.3 Insumos\nTipo de dato raster.\nInsumos de datos satelitales."
+  },
+  {
+    "objectID": "ambiental.html#aplicación",
+    "href": "ambiental.html#aplicación",
+    "title": "3  Dimensión Ambiental",
+    "section": "3.4 Aplicación",
+    "text": "3.4 Aplicación\narea de estudio"
+  },
+  {
+    "objectID": "ambiental.html#interpretación",
+    "href": "ambiental.html#interpretación",
+    "title": "3  Dimensión Ambiental",
+    "section": "3.5 Interpretación",
+    "text": "3.5 Interpretación"
   },
   {
     "objectID": "seguridad.html#resumen",
@@ -140,62 +105,6 @@
     "text": "4.3 Insumos\nTipo de dato de puntos.\nOcurrencia de delitos, fuente de información anonimizada.\nDiccionario de delitos, clasificación por gravedad y objeto."
   },
   {
-    "objectID": "seguridad.html#interpretación",
-    "href": "seguridad.html#interpretación",
-    "title": "4  Dimensión Seguridad",
-    "section": "4.5 Interpretación",
-    "text": "4.5 Interpretación"
-  },
-  {
-    "objectID": "consolidacion.html#resumen",
-    "href": "consolidacion.html#resumen",
-    "title": "6  Consolidación de Dimensiones",
-    "section": "6.1 Resumen",
-    "text": "6.1 Resumen"
-  },
-  {
-    "objectID": "consolidacion.html#proceso",
-    "href": "consolidacion.html#proceso",
-    "title": "6  Consolidación de Dimensiones",
-    "section": "6.2 Proceso",
-    "text": "6.2 Proceso\ndiagrama"
-  },
-  {
-    "objectID": "consolidacion.html#insumos",
-    "href": "consolidacion.html#insumos",
-    "title": "6  Consolidación de Dimensiones",
-    "section": "6.3 Insumos",
-    "text": "6.3 Insumos"
-  },
-  {
-    "objectID": "consolidacion.html#interpretación",
-    "href": "consolidacion.html#interpretación",
-    "title": "6  Consolidación de Dimensiones",
-    "section": "6.4 Interpretación",
-    "text": "6.4 Interpretación\nAnálisis Multivariado. Estadística espacial: distancia y relaciones de vecindad. Imputaciones de datos faltantes por interpolación espacial. Agregación de indicadores: objetivos comunicacionales, disminuir complejidad. MPI y Promedio Ponderado: lógica, relaciones compensatorias, alternativas. Zonas de Oportunidad (análisis de cluster geográfico)."
-  },
-  {
-    "objectID": "socioeconomico.html#ejemplo",
-    "href": "socioeconomico.html#ejemplo",
-    "title": "2  Dimensión Socioeconómica",
-    "section": "2.4 Ejemplo",
-    "text": "2.4 Ejemplo\nCálculo de indicadores como proporciones.\nInvertir indicador."
-  },
-  {
-    "objectID": "socioeconomico.html#aplicación",
-    "href": "socioeconomico.html#aplicación",
-    "title": "2  Dimensión Socioeconómica",
-    "section": "2.4 Aplicación",
-    "text": "2.4 Aplicación\nCálculo de indicadores como proporciones.\nInvertir indicador."
-  },
-  {
-    "objectID": "ambiental.html#aplicación",
-    "href": "ambiental.html#aplicación",
-    "title": "3  Dimensión Ambiental",
-    "section": "3.4 Aplicación",
-    "text": "3.4 Aplicación\narea de estudio"
-  },
-  {
     "objectID": "seguridad.html#aplicación",
     "href": "seguridad.html#aplicación",
     "title": "4  Dimensión Seguridad",
@@ -203,18 +112,11 @@
     "text": "4.4 Aplicación\nEjemplo de area de estudio"
   },
   {
-    "objectID": "consolidacion.html#aplicación",
-    "href": "consolidacion.html#aplicación",
-    "title": "6  Consolidación de Dimensiones",
-    "section": "6.4 Aplicación",
-    "text": "6.4 Aplicación"
-  },
-  {
-    "objectID": "consolidacion.html#interpretacion",
-    "href": "consolidacion.html#interpretacion",
-    "title": "6  Consolidación de Dimensiones",
-    "section": "6.5 Interpretacion",
-    "text": "6.5 Interpretacion\nAnálisis Multivariado. Estadística espacial: distancia y relaciones de vecindad. Imputaciones de datos faltantes por interpolación espacial. Agregación de indicadores: objetivos comunicacionales, disminuir complejidad. MPI y Promedio Ponderado: lógica, relaciones compensatorias, alternativas. Zonas de Oportunidad (análisis de cluster geográfico)."
+    "objectID": "seguridad.html#interpretación",
+    "href": "seguridad.html#interpretación",
+    "title": "4  Dimensión Seguridad",
+    "section": "4.5 Interpretación",
+    "text": "4.5 Interpretación"
   },
   {
     "objectID": "accesibilidad.html#resumen",
@@ -250,5 +152,47 @@
     "title": "5  Dimensión Accesbilidad",
     "section": "5.5 Interpretacion",
     "text": "5.5 Interpretacion\nResultados e interpretación."
+  },
+  {
+    "objectID": "consolidacion.html#resumen",
+    "href": "consolidacion.html#resumen",
+    "title": "6  Consolidación de Dimensiones",
+    "section": "6.1 Resumen",
+    "text": "6.1 Resumen\nUn indicador compuesto es una combinación matemática (o agregación) de un conjunto de indicadores individuales (o variables) que representan distintos componentes de un fenómeno multidimensional. Comúnmente los análisis de indicadores compuestos operan sobre promedios de unidades administrativas o nacionales. Sin embargo, rara vez los fenómenos sociales, económicos y ambientales siguen una distribución uniforme dentro de estas unidades. Por lo tanto, incorporar la dimensión espacial de las variables permite enriquecer los modelos y el poder análitico de los indicadores compuestos (Trogu and Campagna 2018).\nAl incorporar la locación en el análisis es posible relevar las relaciones de vecindad entre observaciones. Estas ponen de relieve relaciones de dependencia espacial y heterogeneidad espacial, las cuales invalidan la hipótesis de independencia espacial entre las variables, por lo que es necesario incorporar técnicas de estadística espacial al análisis (Anselin 1989). Estas buscan profundizar en los patrones espaciales de las variables, detectando clusters y regiones de contagio (Getis 1999)."
+  },
+  {
+    "objectID": "consolidacion.html#proceso",
+    "href": "consolidacion.html#proceso",
+    "title": "6  Consolidación de Dimensiones",
+    "section": "6.2 Proceso",
+    "text": "6.2 Proceso\ndiagrama"
+  },
+  {
+    "objectID": "consolidacion.html#insumos",
+    "href": "consolidacion.html#insumos",
+    "title": "6  Consolidación de Dimensiones",
+    "section": "6.3 Insumos",
+    "text": "6.3 Insumos"
+  },
+  {
+    "objectID": "consolidacion.html#aplicación",
+    "href": "consolidacion.html#aplicación",
+    "title": "6  Consolidación de Dimensiones",
+    "section": "6.4 Aplicación",
+    "text": "6.4 Aplicación"
+  },
+  {
+    "objectID": "consolidacion.html#interpretacion",
+    "href": "consolidacion.html#interpretacion",
+    "title": "6  Consolidación de Dimensiones",
+    "section": "6.5 Interpretacion",
+    "text": "6.5 Interpretacion\nAnálisis Multivariado. Estadística espacial: distancia y relaciones de vecindad. Imputaciones de datos faltantes por interpolación espacial. Agregación de indicadores: objetivos comunicacionales, disminuir complejidad. MPI y Promedio Ponderado: lógica, relaciones compensatorias, alternativas. Zonas de Oportunidad (análisis de cluster geográfico).\n\n\n\n\nAnselin, Luc. 1989. “What Is Special About Spatial Data? Alternative Perspectives on Spatial Data Analysis (89-4),” April. https://escholarship.org/uc/item/3ph5k0d4.\n\n\nGetis, Arthur. 1999. “Spatial Statistics.” Geographical Information Systems 1: 239–51.\n\n\nTrogu, Daniele, and Michele Campagna. 2018. “Towards Spatial Composite Indicators: A Case Study on Sardinian Landscape.” Sustainability 10 (5, 5): 1369. https://doi.org/10.3390/su10051369."
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Anselin, Luc. 1989. “What Is Special About Spatial\nData? Alternative Perspectives on Spatial Data\nAnalysis (89-4),” April. https://escholarship.org/uc/item/3ph5k0d4.\n\n\nGetis, Arthur. 1999. “Spatial Statistics.” Geographical\nInformation Systems 1: 239–51.\n\n\nTrogu, Daniele, and Michele Campagna. 2018. “Towards Spatial\nComposite Indicators: A Case Study on\nSardinian Landscape.” Sustainability 10 (5,\n5): 1369. https://doi.org/10.3390/su10051369."
   }
 ]

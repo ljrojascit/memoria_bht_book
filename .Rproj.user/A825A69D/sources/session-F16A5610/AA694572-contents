@@ -2,6 +2,9 @@
 
 ## Resumen
 
+Un indicador compuesto es una combinación matemática (o agregación) de un conjunto de indicadores individuales (o variables) que representan distintos componentes de un fenómeno multidimensional. Comúnmente los análisis de indicadores compuestos operan sobre promedios de unidades administrativas o nacionales. Sin embargo, rara vez los fenómenos sociales, económicos y ambientales siguen una distribución uniforme dentro de estas unidades. Por lo tanto, incorporar la dimensión espacial de las variables permite enriquecer los modelos y el poder análitico de los indicadores compuestos [@troguSpatialCompositeIndicators2018]. 
+
+Al incorporar la locación en el análisis es posible relevar las relaciones de vecindad entre observaciones. Estas ponen de relieve relaciones de dependencia espacial y heterogeneidad espacial, las cuales invalidan la hipótesis de independencia espacial entre las variables, por lo que es necesario incorporar técnicas de estadística espacial al análisis [@anselinWhatSpecialSpatial1989]. Estas buscan profundizar en los patrones espaciales de las variables, detectando clusters y regiones de contagio [@getis1999spatial]. 
 
 ## Proceso
 
