@@ -20,7 +20,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -157,9 +210,12 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#resumen" id="toc-resumen" class="nav-link active" data-scroll-target="#resumen"><span class="header-section-number">2.1</span> Resumen</a></li>
-  <li><a href="#proceso" id="toc-proceso" class="nav-link" data-scroll-target="#proceso"><span class="header-section-number">2.2</span> Proceso</a></li>
-  <li><a href="#insumos" id="toc-insumos" class="nav-link" data-scroll-target="#insumos"><span class="header-section-number">2.3</span> Insumos</a></li>
-  <li><a href="#aplicación" id="toc-aplicación" class="nav-link" data-scroll-target="#aplicación"><span class="header-section-number">2.4</span> Aplicación</a></li>
+  <li><a href="#insumos" id="toc-insumos" class="nav-link" data-scroll-target="#insumos"><span class="header-section-number">2.2</span> Insumos</a></li>
+  <li><a href="#proceso" id="toc-proceso" class="nav-link" data-scroll-target="#proceso"><span class="header-section-number">2.3</span> Proceso</a></li>
+  <li><a href="#aplicación" id="toc-aplicación" class="nav-link" data-scroll-target="#aplicación"><span class="header-section-number">2.4</span> Aplicación</a>
+  <ul class="collapse">
+  <li><a href="#definir-entorno-de-trabajo" id="toc-definir-entorno-de-trabajo" class="nav-link" data-scroll-target="#definir-entorno-de-trabajo"><span class="header-section-number">2.4.1</span> Definir entorno de trabajo</a></li>
+  </ul></li>
   <li><a href="#interpretación" id="toc-interpretación" class="nav-link" data-scroll-target="#interpretación"><span class="header-section-number">2.5</span> Interpretación</a></li>
   </ul>
 </nav>
@@ -184,29 +240,279 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p><em>Pendiente</em>:</p>
+<ul>
+<li><p><em>Definir Aplicación</em></p></li>
+<li><p><em>Redactar Interpretación</em></p></li>
+</ul>
+<p>Las ciudades de Chile presentan altos índices de segregación <span class="citation" data-cites="sabatiniSegregacionResidencialPrincipales2001">(<a href="references.html#ref-sabatiniSegregacionResidencialPrincipales2001" role="doc-biblioref">Sabatini, C’aceres, and Cerda 2001</a>)</span>, que reflejan la separación espacial de distintos grupos sociales <span class="citation" data-cites="ruiz-tagleEstudioSegregacionResidencial2014">(<a href="references.html#ref-ruiz-tagleEstudioSegregacionResidencial2014" role="doc-biblioref">Ruiz-Tagle and L’opez M 2014</a>)</span>. La intensidad de este fenómeno hace imperativo el considerar la condición social como una dimensión estructurante en la evaluación de Políticas Públicas.</p>
+<p><img src="img/socioeconomico.png" class="img-fluid"></p>
 <section id="resumen" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="resumen"><span class="header-section-number">2.1</span> Resumen</h2>
-<p>Listado de Indicadores: Empleo, Estudios, Hogar, Vivienda.</p>
-<p>Referencia de literatura relacionada a los indicadores.</p>
+<p>Para representar el nivel de recursos con los que cuentan las personas en los territorios, los cuales afectan las oportunidades de bienestar que pueden alcanzar, se consideran indicadores que representan el nivel de educación que tienen los jefes de hogares, y la participación laboral de las personas y jóvenes. Además se busca representar la estructura de los hogares, y las condiciones materiales de la vivienda, respecto de hacinamiento y calidad material.</p>
+<p>El listado de indicadores considerado en esta dimensión comprende:</p>
+<ul>
+<li><p>IEM: Índice de Empleo</p></li>
+<li><p>IEJ: Índice de Escolaridad del Jefe de Hogar</p></li>
+<li><p>IPJ: Índice de Participación Juvenil</p></li>
+<li><p>IRH: Índice de Resilencia de los Hogares</p></li>
+<li><p>ISV: Índice de Suficiencia de la Vivienda.</p></li>
+<li><p>IVI: Índice de Calidad de la Vivienda.</p></li>
+</ul>
 </section>
-<section id="proceso" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="proceso"><span class="header-section-number">2.2</span> Proceso</h2>
-<p>Diagramas</p>
+<section id="insumos" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="insumos"><span class="header-section-number">2.2</span> Insumos</h2>
+<p>El proceso de cálculo de estos indicadores considera como insumo los datos del último censo disponible, en este caso el <strong>Censo de 2017</strong> realizado por el Instituto Nacional de Estadísticas (INE).</p>
+<p>Este levantamiento exhaustivo de los hogares, viviendas y personas residentes en el país entrega información en tablas llamadas <strong>Microdatos</strong> como en agregaciones espaciales, resumidas en polígonos censales en una estructura anidada de acuerdo a la división político administrativa del país.</p>
 </section>
-<section id="insumos" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="insumos"><span class="header-section-number">2.3</span> Insumos</h2>
-<p>Tipo de dato polígono. Manzanas.</p>
-<p>Información censal. Censo 2017.</p>
+<section id="proceso" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="proceso"><span class="header-section-number">2.3</span> Proceso</h2>
+<p>El proceso de cálculo de estos indicadores considera el trabajo con las tablas de microdatos buscando identificar personas, hogares, o viviendas que cumplan con ciertas características de interés, y luego agregarlas a la menor escala territorial disponible para calcular una proporción relevante de acuerdo al indice en cuestión. Este proceso se puede resumir en el siguiente diagrama:</p>
+<p><img src="img/diagrama-socioeconomico.PNG" class="img-fluid"></p>
 </section>
 <section id="aplicación" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="aplicación"><span class="header-section-number">2.4</span> Aplicación</h2>
-<p>Cálculo de indicadores como proporciones.</p>
-<p>Invertir indicador.</p>
+<p>A continuación se ilustra el cálculo de estos indicadores usando el lenguaje de programación <code>R</code>:</p>
+<section id="definir-entorno-de-trabajo" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="definir-entorno-de-trabajo"><span class="header-section-number">2.4.1</span> Definir entorno de trabajo</h3>
+<p>Para trabajar el cálculo de los indicadores es necesario definir las librerías que contienen las funcionalidades que permiten un mejor manejo del proceso de datos y de la presentación cartográfica de los indicadores:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carga de librerías</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapview)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'kableExtra' was built under R version 4.2.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(knitr)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tmap' was built under R version 4.2.3</code></pre>
+</div>
+</div>
+<p>A partir de esto se cargan datos de ejemplo, en este caso corresponden a la información censal a nivel de manzanas para la región de Coquimbo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carga de insumos</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>censo <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/R04_INSUMO_SOCIOECONOMICO.shp"</span>, <span class="at">quiet =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Podmos acceder al listado de variables que se encuentran en esta base e datos. Esta comprende variables de identificación, códigos de manzana, pertenencia a regiones o comunas, o territorio rural o urbano. Además tiene un resumen de conteo de respuestas a preguntas del censo, codificadas con una <code>P</code> al comienzo, además de conteo de hogares o personas bajo cierta condición:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizacion de tabla de datos</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(censo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 12,251
+Columns: 36
+$ ID_MANZ    &lt;chr&gt; "4101071001900", "4101071001900", "4102101001900", "4102101…
+$ MANZ_EN    &lt;chr&gt; "URBANO", "URBANO", "URBANO", "URBANO", "URBANO", "URBANO",…
+$ NOM_COM    &lt;chr&gt; "LA SERENA", "LA SERENA", "COQUIMBO", "COQUIMBO", "COQUIMBO…
+$ COD_COM    &lt;dbl&gt; 4101, 4101, 4102, 4102, 4102, 4106, 4106, 4106, 4101, 4101,…
+$ NOM_REG    &lt;chr&gt; "REGIÓN DE COQUIMBO", "REGIÓN DE COQUIMBO", "REGIÓN DE COQU…
+$ COD_REG    &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,…
+$ NOM_PROV   &lt;chr&gt; "ELQUI", "ELQUI", "ELQUI", "ELQUI", "ELQUI", "ELQUI", "ELQU…
+$ COD_PROV   &lt;dbl&gt; 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41,…
+$ ZONA       &lt;chr&gt; "4101071001", "4101071001", "4102101001", "4102101001", "41…
+$ ID_MANZCIT &lt;chr&gt; "4101071001900001", "4101071001900002", "4102101001900001",…
+$ AREA       &lt;dbl&gt; 2873.376, 1256.480, 1230.344, 3877.142, 34392.873, 4033.107…
+$ TOTAL_V    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 27, 15, 35, 27, 25, 32, 31, 26, 31,…
+$ HOG_N      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 25, 15, 34, 24, 26, 29, 31, 27, 29,…
+$ PERSONAS   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 72, 57, 132, 82, 85, 96, 106, 92, 1…
+$ E4A18      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 9, 11, 26, 19, 11, 12, 19, 16, 19, …
+$ E15A24     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 9, 6, 17, 10, 18, 16, 14, 20, 13, 5…
+$ ESCOLAR    &lt;dbl&gt; 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9.1, 9.6, 9.1, 9.4,…
+$ P03A_4     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 3, 1, 0, 8, 0, 0, 2,…
+$ P03A_5     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0,…
+$ P03A_6     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,…
+$ P03B_4     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ P03B_6     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1,…
+$ P03B_7     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ P03C_4     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 2, 4, 0, 0, 0,…
+$ P03C_5     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,…
+$ NIV_HAC2   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5, 2, 1, 4, 1, 1, 2, 1, 0, 2,…
+$ NIV_HAC3   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,…
+$ HOMBRES    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 36, 29, 70, 39, 39, 46, 52, 39, 53,…
+$ MUJERES    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 36, 28, 62, 43, 46, 50, 54, 53, 48,…
+$ MONOPAR    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 8, 2, 2, 2, 4, 2, 5, 1, 1, 3,…
+$ P17_ACT    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 32, 20, 56, 34, 35, 42, 45, 42, 37,…
+$ P17_4      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 6, 0, 6, 5, 6, 7, 7, 1, 7, 9,…
+$ J_NINI     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 1, 5, 2, 2, 3, 2, 1, 0, 5,…
+$ JH_HASTA_P &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 13, 5, 13, 8, 9, 12, 14, 9, 12, 2, …
+$ JH_HASTA_S &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 10, 8, 16, 14, 11, 14, 14, 18, 13, …
+$ geometry   &lt;POLYGON [m]&gt; POLYGON ((292811 6685815, 2..., POLYGON ((293056 66…</code></pre>
+</div>
+</div>
+<p>La información geográfica está también en esta base de datos en la columna <code>geometry</code>, la cual a modo de demostración, podemos representar la comuna de La Serena:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filtro comuna y area urbana</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>la_serena_urb <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> <span class="fu">filter</span>(COD_COM <span class="sc">==</span> <span class="dv">4101</span> <span class="sc">&amp;</span> MANZ_EN <span class="sc">==</span> <span class="st">"URBANO"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizacion de polígonos</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(la_serena_urb) <span class="sc">+</span> <span class="fu">tm_borders</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="socioeconomico_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="indicador-de-escolaridad-del-jefe-de-hogar-iej" class="level4" data-number="2.4.1.1">
+<h4 data-number="2.4.1.1" class="anchored" data-anchor-id="indicador-de-escolaridad-del-jefe-de-hogar-iej"><span class="header-section-number">2.4.1.1</span> Indicador de Escolaridad del Jefe de Hogar (IEJ)</h4>
+<p>Para la construcción de este indicador se utilizó el promedio de años de estudio de jefes de hogar (EJH), que es una variable censal numérica (“ESCOLARIDAD”, en tabla de personas del censo 2017) que registra el nivel del curso más alto aprobado, medida en años sucesivos desde la enseñanza básica hasta estudios de postgrado.</p>
+<p>Se calcula el promedio de esta variable para todos los jefes de hogar en cada manzana. Esta variable es representativa del capital cultural de cada hogar y está altamente correlacionada con el nivel de ingresos en Chile <span class="citation" data-cites="agostiniSegregacionResidencialIngresos2016">(<a href="references.html#ref-agostiniSegregacionResidencialIngresos2016" role="doc-biblioref">Agostini et al. 2016</a>)</span>.</p>
+<p>En este caso el indicador ya venía calculado desde las tablas de microdatos a nivel de agregación de manzana. Por lo que el proceso implica “limpiar”, asegurandose de que cuando la población de la manzana es cero, el indicador se indefine.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>censo <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> <span class="fu">mutate</span>( <span class="at">IEJ =</span> <span class="fu">ifelse</span>(PERSONAS <span class="sc">==</span><span class="dv">0</span>, <span class="cn">NA</span>, ESCOLAR))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para visualizar se filtra la comuna de la Serena en su área urbana.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filstro comunal y urbano</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>la_serena_urb <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> <span class="fu">filter</span>(COD_COM <span class="sc">==</span> <span class="dv">4101</span> <span class="sc">&amp;</span> MANZ_EN <span class="sc">==</span> <span class="st">"URBANO"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Viz</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(la_serena_urb) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"IEJ"</span>, <span class="at">style =</span> <span class="st">"jenks"</span>, <span class="at">palette =</span> <span class="st">"YlGnBu"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="socioeconomico_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="indicador-de-empleo-iem" class="level4" data-number="2.4.1.2">
+<h4 data-number="2.4.1.2" class="anchored" data-anchor-id="indicador-de-empleo-iem"><span class="header-section-number">2.4.1.2</span> Indicador de Empleo (IEM)</h4>
+<p>Para este indicador se usó la proporción de población activa sin empleo que es la fracción de las personas que no tienen empleo y están buscando uno, respecto al total de personas en condiciones y con deseo de trabajar en cada manzana.</p>
+<p>Esta variable es similar al cálculo de desempleo, pero calculada a escala de manzanas y en un tiempo específico, por lo que representa las brechas potenciales que existen para acceder al empleo en barrios específicos.</p>
+<p>Para calcular este indicador se usan las siguientes variables:</p>
+<ul>
+<li><p><strong>P17_4</strong>: Trabajo la semana pasada, opción 4: “Se encontraba buscando empleo”</p></li>
+<li><p><strong>P17_ACT</strong>: Total de Actividades Remuneradas (no es pregunta del Censo)</p></li>
+</ul>
+<p>Además, se invierte el indicador para que los valores más bajos que representan mayor integración laboral se asocien a valores mayores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>censo <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> <span class="fu">mutate</span>( <span class="at">CESA_DENS =</span> P17_4 <span class="sc">/</span> P17_ACT)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>censo <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> <span class="fu">mutate</span>( <span class="at">IEM =</span> <span class="dv">1</span> <span class="sc">-</span> CESA_DENS )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filtro urbano</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>la_serena_urb <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> <span class="fu">filter</span>(COD_COM <span class="sc">==</span> <span class="dv">4101</span> <span class="sc">&amp;</span> MANZ_EN <span class="sc">==</span> <span class="st">"URBANO"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Viz</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(la_serena_urb) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"IEM"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette=</span><span class="st">"PuBu"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="socioeconomico_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="indicador-de-participación-juvenil-en-empleo-y-estudio-ipj" class="level4" data-number="2.4.1.3">
+<h4 data-number="2.4.1.3" class="anchored" data-anchor-id="indicador-de-participación-juvenil-en-empleo-y-estudio-ipj"><span class="header-section-number">2.4.1.3</span> Indicador de Participación Juvenil en Empleo y Estudio (IPJ)</h4>
+<p>Para la construcción de este indicador se utilizó la proporción de jóvenes entre 14 y 24 años que no trabajan ni estudian: es la fracción de jóvenes en este rango edad que no trabajan ni estudian, respecto al total de este segmento etario en cada manzana.</p>
+<p>Esta variable representa un riesgo de exclusión socioeconómica en el período de transición entre el ambiente educativo y el laboral, siendo característico de trayectorias de deserción escolar que conducen al desempleo y que podrían incrementar el riesgo de adopción de comportamientos delictivos <span class="citation" data-cites="ministeriodedesarrollosocialInformeDesarrolloSocial2019">(<a href="references.html#ref-ministeriodedesarrollosocialInformeDesarrolloSocial2019" role="doc-biblioref">de Desarrollo Social 2019</a>)</span>.</p>
+<p>Luego, el indicador se normalizó con su inverso aditivo, para asegurar que el valor máximo, sea lo más deseable y el 0 lo menos deseable, convirtiéndose así en un indicador de empleo.</p>
+<p>Para el cálculo de este indicador se usan las siguientes variables:</p>
+<ul>
+<li><p><strong>J_NINI</strong>: Jóvenes que no trabajan ni estudian</p></li>
+<li><p><strong>E15A24</strong>: Jóvenes entre 15 y 24 años de edad</p></li>
+</ul>
+<p>Nuevamente estas variables ya están procesadas a partir de la tabla de microdatos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>censo <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> <span class="fu">mutate</span>( <span class="at">NINI_DENS =</span> J_NINI <span class="sc">/</span> E15A24)  </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>censo <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> <span class="fu">mutate</span>( <span class="at">NINI_DENS =</span> <span class="fu">ifelse</span>(NINI_DENS <span class="sc">&gt;</span> <span class="dv">1</span>, <span class="dv">1</span>, NINI_DENS))  </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>censo <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> <span class="fu">mutate</span>( <span class="at">IPJ =</span> <span class="dv">1</span> <span class="sc">-</span> NINI_DENS )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filtro comunal y urbano</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>la_serena_urb <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> <span class="fu">filter</span>(COD_COM <span class="sc">==</span> <span class="dv">4101</span> <span class="sc">&amp;</span> MANZ_EN <span class="sc">==</span> <span class="st">"URBANO"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Viz</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(la_serena_urb) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"IPJ"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette =</span> <span class="st">"Purples"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="socioeconomico_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="indicador-de-resilencia-de-los-hogares-irh" class="level4" data-number="2.4.1.4">
+<h4 data-number="2.4.1.4" class="anchored" data-anchor-id="indicador-de-resilencia-de-los-hogares-irh"><span class="header-section-number">2.4.1.4</span> Indicador de Resilencia de los Hogares (IRH)</h4>
+<p>En particular, la monoparentalidad es ampliamente reconocida en la literatura internacional como una situación familiar frágil, que puede afectar las trayectorias de vida de los hijos, en términos de un mayor riesgo de mortalidad <span class="citation" data-cites="amatoSingleparentHouseholdsMortality2017">(<a href="references.html#ref-amatoSingleparentHouseholdsMortality2017" role="doc-biblioref">Amato and Patterson 2017</a>)</span>, inestabilidad psicológica <span class="citation" data-cites="theodoritsi2018mental">(<a href="references.html#ref-theodoritsi2018mental" role="doc-biblioref">Theodoritsi and Daliana 2018</a>)</span>, problemas de salud <span class="citation" data-cites="duriancikChildrenSingleparentHouseholds2019">(<a href="references.html#ref-duriancikChildrenSingleparentHouseholds2019" role="doc-biblioref">Duriancik and Goff 2019</a>)</span> y otros.</p>
+<p>En suma, el Indicador de Resiliencia de Hogares (en base a la monoparentalidad), en complemento a otras variables, es conceptualmente relevante para evaluar riesgos no monetarios de condiciones sociales.</p>
+<p>Este indicador es el inverso aditivo de la proporción de hogares monoparentales dentro de una manzana. Los hogares monoparentales son aquellos con hijos que viven con un solo progenitor, lo que se asocia en diversas formas a la condición social, que abarcan desde un menor ingreso, problemas de salud y delincuencia, entre otros <span class="citation" data-cites="ministeriodedesarrollosocialInformeDesarrolloSocial2019">(<a href="references.html#ref-ministeriodedesarrollosocialInformeDesarrolloSocial2019" role="doc-biblioref">de Desarrollo Social 2019</a>)</span>.</p>
+<p>Al contrario, los hogares biparentales permiten el apoyo entre progenitores y los hogares sin hijos tienen menores exigencias de gasto y tiempo relacionadas con la paternidad, por lo que se considera que en general son más resilientes.</p>
+<p>Para calcular este indicador se usan las siguientes variables:</p>
+<ul>
+<li><p><strong>MONOPAR</strong>: Suma de Hogares Monoparentales</p></li>
+<li><p><strong>HOG_N</strong>: Suma de Hogares</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>censo <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> <span class="fu">mutate</span>( <span class="at">MONO_DENS =</span> MONOPAR <span class="sc">/</span> HOG_N)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>censo <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> <span class="fu">mutate</span>( <span class="at">MONO_DENS =</span> <span class="fu">ifelse</span>(MONO_DENS <span class="sc">&gt;</span> <span class="dv">1</span>, <span class="dv">1</span>, MONO_DENS))  </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>censo <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> <span class="fu">mutate</span>( <span class="at">IRH =</span> <span class="dv">1</span> <span class="sc">-</span> MONO_DENS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filtro comunal y urbano</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>la_serena_urb <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> <span class="fu">filter</span>(COD_COM <span class="sc">==</span> <span class="dv">4101</span> <span class="sc">&amp;</span> MANZ_EN <span class="sc">==</span> <span class="st">"URBANO"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Viz</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(la_serena_urb) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"IPJ"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette =</span> <span class="st">"PuRd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="socioeconomico_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="indicador-de-calidad-de-la-vivienda-ivi" class="level4" data-number="2.4.1.5">
+<h4 data-number="2.4.1.5" class="anchored" data-anchor-id="indicador-de-calidad-de-la-vivienda-ivi"><span class="header-section-number">2.4.1.5</span> Indicador de Calidad de la Vivienda (IVI)</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Viz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="indicador-de-de-suficiencia-de-la-vivienda-isv" class="level4" data-number="2.4.1.6">
+<h4 data-number="2.4.1.6" class="anchored" data-anchor-id="indicador-de-de-suficiencia-de-la-vivienda-isv"><span class="header-section-number">2.4.1.6</span> Indicador de de Suficiencia de la Vivienda (ISV)</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Viz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="consolidación-de-la-dimensión-socioeconómica" class="level4" data-number="2.4.1.7">
+<h4 data-number="2.4.1.7" class="anchored" data-anchor-id="consolidación-de-la-dimensión-socioeconómica"><span class="header-section-number">2.4.1.7</span> Consolidación de la Dimensión Socioeconómica</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Viz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
 </section>
 <section id="interpretación" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="interpretación"><span class="header-section-number">2.5</span> Interpretación</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-agostiniSegregacionResidencialIngresos2016" class="csl-entry" role="listitem">
+Agostini, Claudio A., Daniel Hojman, Alonso Rom’an, and Luis Valenzuela. 2016. <span>“Segregación Residencial de Ingresos En El <span>Gran Santiago</span>, 1992-2002: Una Estimación Robusta.”</span> <em>EURE (Santiago)</em> 42 (127): 159–84. <a href="https://doi.org/10.4067/S0250-71612016000300007">https://doi.org/10.4067/S0250-71612016000300007</a>.
+</div>
+<div id="ref-amatoSingleparentHouseholdsMortality2017" class="csl-entry" role="listitem">
+Amato, Paul R., and Sarah E. Patterson. 2017. <span>“Single-Parent Households and Mortality Among Children and Youth.”</span> <em>Social Science Research</em> 63 (March): 253–62. <a href="https://doi.org/10.1016/j.ssresearch.2016.09.017">https://doi.org/10.1016/j.ssresearch.2016.09.017</a>.
+</div>
+<div id="ref-ministeriodedesarrollosocialInformeDesarrolloSocial2019" class="csl-entry" role="listitem">
+de Desarrollo Social, Ministerio. 2019. <span>“Informe <span>Desarrollo Social</span> 2019.”</span> <span>Miniestario de Desarrollo Social</span>. <a href="https://www.desarrollosocialyfamilia.gob.cl/storage/docs/Informe_de_Desarrollo_Social_2019.pdf">https://www.desarrollosocialyfamilia.gob.cl/storage/docs/Informe_de_Desarrollo_Social_2019.pdf</a>.
+</div>
+<div id="ref-duriancikChildrenSingleparentHouseholds2019" class="csl-entry" role="listitem">
+Duriancik, David M, and Courtney R Goff. 2019. <span>“Children of Single-Parent Households Are at a Higher Risk of Obesity: <span>A</span> Systematic Review.”</span> <em>Journal of Child Health Care</em> 23 (3): 358–69. <a href="https://doi.org/10.1177/1367493519852463">https://doi.org/10.1177/1367493519852463</a>.
+</div>
+<div id="ref-ruiz-tagleEstudioSegregacionResidencial2014" class="csl-entry" role="listitem">
+Ruiz-Tagle, Javier, and Ernesto L’opez M. 2014. <span>“El Estudio de La Segregación Residencial En <span>Santiago</span> de <span>Chile</span>: Revisión Crítica de Algunos Problemas Metodológicos y Conceptuales.”</span> <em>EURE (Santiago)</em> 40 (119): 25–48. <a href="https://doi.org/10.4067/S0250-71612014000100002">https://doi.org/10.4067/S0250-71612014000100002</a>.
+</div>
+<div id="ref-sabatiniSegregacionResidencialPrincipales2001" class="csl-entry" role="listitem">
+Sabatini, Francisco, Gonzalo C’aceres, and Jorge Cerda. 2001. <span>“Segregación Residencial En Las Principales Ciudades Chilenas: <span>Tendencias</span> de Las Tres Últimas Décadas y Posibles Cursos de Acción.”</span> <em>EURE (Santiago)</em> 27 (82): 21–42. <a href="https://doi.org/10.4067/S0250-71612001008200002">https://doi.org/10.4067/S0250-71612001008200002</a>.
+</div>
+<div id="ref-theodoritsi2018mental" class="csl-entry" role="listitem">
+Theodoritsi, L, and N Daliana. 2018. <span>“The Mental Health of Single-Parent Families in Relation to Psychological, Societal and Financial Parameters.”</span> <em>Single-Parenting in the 21st Century: Perceptions, Issues and Implications. Family Issues in the 21st Century. Hauppauge, NY: Nova Science Publishers</em>, 77–101.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
