@@ -1,7 +1,5 @@
 # Prefacio {.unnumbered}
 
-Libro de memoria de cálculo de la Matriz de Bienestar Humano Territorial (MBHT)
+El presente documento presenta el Libro de Memoria de Cálculo de la Matriz de Bienestar Humano Territorial (MBHT) calculado por el Centro de Inteligencia Territorial de la Universidad Adolfo Ibáñez (CIT-UAI).
 
-Test imagen
-
-![](img/img_tarea.jpg)
+![](img/Logo_CIT_UAI_Negro.png)
