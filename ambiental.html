@@ -20,7 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -61,6 +80,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -157,11 +178,22 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#resumen" id="toc-resumen" class="nav-link active" data-scroll-target="#resumen"><span class="header-section-number">3.1</span> Resumen</a></li>
-  <li><a href="#formulas" id="toc-formulas" class="nav-link" data-scroll-target="#formulas"><span class="header-section-number">3.2</span> Formulas</a></li>
-  <li><a href="#proceso" id="toc-proceso" class="nav-link" data-scroll-target="#proceso"><span class="header-section-number">3.3</span> Proceso</a></li>
-  <li><a href="#insumos" id="toc-insumos" class="nav-link" data-scroll-target="#insumos"><span class="header-section-number">3.4</span> Insumos</a></li>
-  <li><a href="#aplicación" id="toc-aplicación" class="nav-link" data-scroll-target="#aplicación"><span class="header-section-number">3.5</span> Aplicación</a></li>
-  <li><a href="#interpretación" id="toc-interpretación" class="nav-link" data-scroll-target="#interpretación"><span class="header-section-number">3.6</span> Interpretación</a></li>
+  <li><a href="#insumos" id="toc-insumos" class="nav-link" data-scroll-target="#insumos"><span class="header-section-number">3.2</span> Insumos</a>
+  <ul class="collapse">
+  <li><a href="#landsat-8" id="toc-landsat-8" class="nav-link" data-scroll-target="#landsat-8"><span class="header-section-number">3.2.1</span> Landsat 8</a></li>
+  <li><a href="#dem" id="toc-dem" class="nav-link" data-scroll-target="#dem"><span class="header-section-number">3.2.2</span> DEM</a></li>
+  <li><a href="#vapor-de-agua" id="toc-vapor-de-agua" class="nav-link" data-scroll-target="#vapor-de-agua"><span class="header-section-number">3.2.3</span> Vapor de Agua</a></li>
+  <li><a href="#area-de-estudio" id="toc-area-de-estudio" class="nav-link" data-scroll-target="#area-de-estudio"><span class="header-section-number">3.2.4</span> Area de Estudio</a></li>
+  </ul></li>
+  <li><a href="#proceso" id="toc-proceso" class="nav-link" data-scroll-target="#proceso"><span class="header-section-number">3.3</span> Proceso</a>
+  <ul class="collapse">
+  <li><a href="#diagramas" id="toc-diagramas" class="nav-link" data-scroll-target="#diagramas"><span class="header-section-number">3.3.1</span> Diagramas</a></li>
+  <li><a href="#preproceso" id="toc-preproceso" class="nav-link" data-scroll-target="#preproceso"><span class="header-section-number">3.3.2</span> Preproceso</a></li>
+  <li><a href="#cálculo-de-indices" id="toc-cálculo-de-indices" class="nav-link" data-scroll-target="#cálculo-de-indices"><span class="header-section-number">3.3.3</span> Cálculo de Indices</a></li>
+  <li><a href="#cálculo-de-indicadores" id="toc-cálculo-de-indicadores" class="nav-link" data-scroll-target="#cálculo-de-indicadores"><span class="header-section-number">3.3.4</span> Cálculo de Indicadores</a></li>
+  </ul></li>
+  <li><a href="#aplicación" id="toc-aplicación" class="nav-link" data-scroll-target="#aplicación"><span class="header-section-number">3.4</span> Aplicación</a></li>
+  <li><a href="#interpretación" id="toc-interpretación" class="nav-link" data-scroll-target="#interpretación"><span class="header-section-number">3.5</span> Interpretación</a></li>
   </ul>
 </nav>
     </div>
@@ -185,42 +217,214 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p><img src="img/02_ambiental.png" class="img-fluid"></p>
 <section id="resumen" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="resumen"><span class="header-section-number">3.1</span> Resumen</h2>
-<p>Confort ambiental</p>
-<p>Servicios ecosistémicos</p>
-<p>Imágenes satelitales</p>
-</section>
-<section id="formulas" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="formulas"><span class="header-section-number">3.2</span> Formulas</h2>
+<p>La Dimensión Ambiental tiene por objetivo medir el confort ambiental en un determinado entorno, para lo cual se considera la amplitud térmica y cobertura vegetal de cada manzana urbana y rural. Los datos utilizados para su construcción son imágenes satelitales obtenidas a partir de las plataformas Landsat, Aqua y Terra.</p>
+<p>Los indicadores que lo componen son:</p>
 <ul>
-<li><p>Reflectancia</p></li>
-<li><p>Correccion topografica</p></li>
-<li><p>NDVI</p></li>
-<li><p>TST</p></li>
-<li><p>ATA</p></li>
+<li><p><em>ICV</em> : Índice de Cobertura Vegetal.</p></li>
+<li><p><em>IATA</em> : Índice de Amplitud Térmica.</p></li>
 </ul>
+<p>Con esto se busca representar el hecho de que existen territorios cuyo confort ambiental es más adecuado para la población, con mayor cobertura de áreas verdes y vegetación más frondoza. Además de diferencias de temperaturas entre invierno y verano menos pronunciadas, facilitando el disfrute de la población.</p>
+</section>
+<section id="insumos" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="insumos"><span class="header-section-number">3.2</span> Insumos</h2>
+<p>Para calcular los indicadores que componen esta dimensión es necesario el uso de imágenes satelitales. Estas se encuentran disponibles en plataformas de acceso público pero requieren de ciertos preprocesos de corrección antes de ser usadas para calcular índices, los cuales se explicarán en el próximo apartado.</p>
+<p>El proceso de datos satelitales se realiza mediante el uso del tipo de dato <strong>raster</strong>, el cual representa información en el territorio mediante celdas de tamaño uniforme de resolución fija, cada cual tiene asociado un vector de información particular. Este tipo de dato es complementario al dato de tipo polígono, siendo el dato raster una cuadradilla sobre la cual pueden representarse distintas divisiones administrativas mediante polígonos.</p>
+<p><img src="img/tst-ñuble.jpg" class="img-fluid"></p>
+<p>Como se mencionó, estos indicadores usan datos satelitales, los cuales se relacionan con la disciplina de <strong>percepción remota</strong> la cual entrega un amplio conjunto de conocimientos y tecnologías utilizadas para observación, análisis, la interpretación de fenómenos en el territorio. La percepción remota nos permite efectuar observaciones y mediciones de la superficie terrestre mediante dispositivos remotos instalados sobre plataformas como satélites, aviones y actualmente hasta en drones. Los sensores instalados en estas plataformas miden una gran variedad de datos como radiaciones electromagnéticas, espectro electromagnético, perturbaciones atmosféricas, firmas espectrales y captura de imágenes, entre otros.</p>
+<p><img src="img/satelites.jpg" class="img-fluid"></p>
+<p>Es así que los satélites llevan instrumentos o sensores que miden la radiación electromagnética proveniente del sistema tierra - atmósfera. La intensidad de la radiación reflejada y emitida al espacio es influenciada por las condiciones en la superficie y la atmósfera.</p>
+<p>Estas mediciones se expresan en el espectro electromagnético, el cual es un conjunto de frecuencias o longitudes de onda en los que se organiza la radiación electromagnética. Abarca las radiaciones entre los rayos gamma y las ondas de radio.</p>
+<p>En nuestro caso usaremos datos de satélites específicos, y bandas particulares, las cuales representan un rango del espectro electromagnético. Con esta información se construyen índices normalizados los cuales se asocian empíricamente a distintos elementos, como vegetación, suelo construido o presencia de cuerpos de agua.</p>
+<p><img src="img/espectro_sat.png" class="img-fluid"></p>
+<p>Los distintos insumos para el cálculo son:</p>
+<ul>
+<li><p>Imágenes de Landsat 8</p></li>
+<li><p>DEM: Modelo de Elevación Digital</p></li>
+<li><p>Vapor de Agua</p></li>
+<li><p>Área de Estudio</p></li>
+</ul>
+<section id="landsat-8" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="landsat-8"><span class="header-section-number">3.2.1</span> Landsat 8</h3>
+<p>El insumo principal para estos indicadores es la imaginería satelital de los sensores <strong>OLI</strong> y <strong>TIRS</strong> de la plataforma satelital Landsat 8 del United States Geological Survey (USGS).</p>
+<p>Este satélite posee una cobertura global de imágenes satelitales a una resolución de 30 metros, y revisita un mismo punto sobre la superficie de la tierra cada 16 días. Cada escena satelital cubre una superficie terrestre de 180 km por 190 km aproximadamente.</p>
+<p>Como ejemplo, se muestra el proceso de la región de Ñuble. Debido a la extensión de esta, fueron necesarias 3 escenas satelitales para cubrirla por completo, tal como se aprecia en la imagen.</p>
+<p><img src="img/lansdsat-ñuble.jpg" class="img-fluid"></p>
+</section>
+<section id="dem" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="dem"><span class="header-section-number">3.2.2</span> DEM</h3>
+<p>Junto con las imágenes satelitales, se necesita una cobertura que permita realizar las correcciones topográficas de las imágenes satelitales. El Modelo Digital de Elevación, o DEM en sus siglas en inglés, permite el cálculo de las coberturas de pendientes y orientación de laderas, necesarias para el proceso de corrección topográfica.</p>
+<p>El DEM utilizado en ese caso corresponde al generado por la plataforma ASTER GDEM del sensor MODIS, con una resolución de 30 metros, el cual tiene una cobertura global. En ese caso, se utiliza un DEM que cubre la totalidad de la región de Ñuble.</p>
+<p><img src="img/demñuble.jpg" class="img-fluid"><br>
+</p>
+</section>
+<section id="vapor-de-agua" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="vapor-de-agua"><span class="header-section-number">3.2.3</span> Vapor de Agua</h3>
+<p>Para el cálculo de la temperatura superficial, es necesario también el producto de vapor de agua atmosférico del sensor MODIS, el cual se descarga desde la plataforma web LAADS DAAC de la NASA. Este insumo se descarga para la misma fecha de las imágenes satelitales, y deben coincidir espacialmente entre sí. A continuación se aprecia una de las imágenes de vapor de agua.</p>
+<p><img src="img/water-ñuble.jpg" class="img-fluid"></p>
+<p>El Vapor de Agua de MODIS posee una resolución espectral de 1 kilómetro, y revisita un mismo punto de la superficie terrestre entre 3 a 4 veces por día.</p>
+</section>
+<section id="area-de-estudio" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="area-de-estudio"><span class="header-section-number">3.2.4</span> Area de Estudio</h3>
+<p>El área de estudio se define a partir de la unidad administrativa del área de interés, en este caso los límites de la Región de Ñuble. Luego, se generan polígonos de áreas de estudio independientes para cada escena satelital, identificadas por sus coordenadas Path y Row.</p>
+<p>Estos polígonos deben coincidir con la extensión de todos los insumos satelitales, para evitar la contaminación de valores nulos o NoData. Las áreas de estudio consideradas para la región del Ñuble son las que se aprecian en la imagen.</p>
+<p><img src="img/area-estudio-ñuble.jpg" class="img-fluid"></p>
+<p>Este paso corresponde al inicio del trabajo con las imágenes satelitales. Son seleccionadas las bandas espectrales que se utilizarán y luego son integradas en un Brick. Posteriormente, este Brick es recortado mediante un Crop con el archivo de área de estudio correspondiente a la escena satelital. Este proceso se repite para cada una de las imágenes satelitales multiespectrales</p>
+</section>
 </section>
 <section id="proceso" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="proceso"><span class="header-section-number">3.3</span> Proceso</h2>
-<p>Diagramas</p>
-<p>Procesos de Corrección de Imágenes.</p>
-<p>Índices normalizados.</p>
-<p>Raster a polígonos.</p>
+<section id="diagramas" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="diagramas"><span class="header-section-number">3.3.1</span> Diagramas</h3>
+<p>El proceso general comprende la carga de los insumos de entrada, luego la aplicación de preprocesos de corrección de imagenes, los cuales comprenden la corrección topográfica, y de reflectancia. Luego de esto se calculan índices en el la etapa de procesamiento, los cuales son usadas para calcular los indicadores de salida.</p>
+<p><img src="img/diagrama-ambiental.PNG" class="img-fluid"></p>
 </section>
-<section id="insumos" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="insumos"><span class="header-section-number">3.4</span> Insumos</h2>
-<p>Tipo de dato raster.</p>
-<p>Insumos de datos satelitales.</p>
+<section id="preproceso" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="preproceso"><span class="header-section-number">3.3.2</span> Preproceso</h3>
+<section id="extraccion-por-area-de-estudio" class="level4" data-number="3.3.2.1">
+<h4 data-number="3.3.2.1" class="anchored" data-anchor-id="extraccion-por-area-de-estudio"><span class="header-section-number">3.3.2.1</span> Extraccion por area de estudio</h4>
+<p>Este paso corresponde al inicio del trabajo con las imágenes satelitales. Son seleccionadas las bandas espectrales que se utilizarán y luego son integradas en un Brick. Posteriormente, este Brick es recortado mediante un Crop con el archivo de área de estudio correspondiente a la escena satelital. Este proceso se repite para cada una de las imágenes satelitales multiespectrales.</p>
 </section>
-<section id="aplicación" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="aplicación"><span class="header-section-number">3.5</span> Aplicación</h2>
-<p>area de estudio</p>
+<section id="reflectancia" class="level4" data-number="3.3.2.2">
+<h4 data-number="3.3.2.2" class="anchored" data-anchor-id="reflectancia"><span class="header-section-number">3.3.2.2</span> Reflectancia</h4>
+<p>A partir de los datos satelitales descargados se busca obtener la reflectancia usando correcciones a los valores disponibles usando factores numéricos disponibles en la metadata de la serie de datos del satélite en cuestión. Estos se aplican para los datos del satélite Landsat y OLI.</p>
+<p>La expresión utilizada para transformar a radiancia los valores digitales (DN) de las bandas térmicas de Landsat 8 fue:</p>
+<p><span class="math display">\[
+L_\lambda = M_L \times Q_{cal} + A_L
+\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(L_\lambda\)</span> es la Radiancia espectral resultante (TOA)</p></li>
+<li><p><span class="math inline">\(M_L\)</span> es un factor de rescalamiento multiplicativo de radiancia (metadata)</p></li>
+<li><p><span class="math inline">\(A_L\)</span> es un factor de rescalamiento aditivido de radiancia (metadata)</p></li>
+<li><p><span class="math inline">\(Q_{cal}\)</span> Valor calibrado del pixel (DN, o numero digital)</p></li>
+</ul>
+<p>Por otro lado, los valores espectrales de las bandas del sensor OLI, pueden transformarse a reflectancia usando la expresión:</p>
+<p><span class="math display">\[
+\rho _{\lambda} = \frac{M_\rho Q_{cal} + A_\rho}{sin(\theta_e)}
+\]</span> Donde:</p>
+<ul>
+<li><p><span class="math inline">\(\rho _{\lambda}\)</span> es la reflectancia resultante (TOA)</p></li>
+<li><p><span class="math inline">\(M_\rho\)</span> : es un factor de rescalamiento multiplicativo de radiancia (metadata)</p></li>
+<li><p><span class="math inline">\(A_\rho\)</span>: es el factor de reescalamiento Aditivo (metadata)</p></li>
+<li><p><span class="math inline">\(\theta_e\)</span> : ángulo de elevación solar (en grados) (metadata)</p></li>
+</ul>
 </section>
-<section id="interpretación" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="interpretación"><span class="header-section-number">3.6</span> Interpretación</h2>
+<section id="corrección-topográfica" class="level4" data-number="3.3.2.3">
+<h4 data-number="3.3.2.3" class="anchored" data-anchor-id="corrección-topográfica"><span class="header-section-number">3.3.2.3</span> Corrección Topográfica</h4>
+<p>Consiste en encontrar el ángulo de incidencia de los rayos solares en la superficie. Esta corrección se obtiene a través de un modelo de iluminación presente en <span class="citation" data-cites="colby1991topographic">(<a href="references.html#ref-colby1991topographic" role="doc-biblioref">Colby 1991</a>)</span>. Se utilizan los valores del azimut y la elevación solar, junto con los valores de la pendiente del terreno y su orientación, ambos obtenidos a través del procesamiento del MDE ASTER.</p>
+<p><span class="math display">\[
+cos(i) = cos(\theta_s)\cdot cos(\theta_n)+sin(\theta_s)\cdot sin(\theta_n)\cdot cos(\phi_s - \phi_n)
+\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(cos(i)\)</span>: coseno ángulo de incidencia</p></li>
+<li><p><span class="math inline">\(\theta_s\)</span>: ángulo cenital solar</p></li>
+<li><p><span class="math inline">\(\theta_n\)</span>: Pendiente de la superficie</p></li>
+<li><p><span class="math inline">\(\phi_s\)</span>: azimut solar</p></li>
+<li><p><span class="math inline">\(\phi_n\)</span>: orientación de la superficie</p></li>
+</ul>
+<p>Considerando en la expresión anterior que la pendiente de la superficie es nula (superficie de referencia), entonces es posible aplicar el algoritmo de corrección topográfica <span class="math inline">\(C\)</span>, propuesto por <span class="citation" data-cites="teilletSlopeAspectCorrectionMultispectral1982">(<a href="references.html#ref-teilletSlopeAspectCorrectionMultispectral1982" role="doc-biblioref">Teillet, Guindon, and Goodenough 1982</a>)</span> a través de la expresión:</p>
+<p><span class="math display">\[
+L_{\lambda Corr} = L_\lambda \left[\frac{Cos(v)+C}{Cos(i)+C}\right]
+\]</span></p>
+<p>Con:</p>
+<ul>
+<li><p><span class="math inline">\(L_{\lambda corr}\)</span>: Reflectancia Corregida</p></li>
+<li><p><span class="math inline">\(Cos(v)\)</span>: Coseno para una superficie horizontal</p></li>
+<li><p><span class="math inline">\(C=\frac{b}{m}\)</span> obetenido de la regresión <span class="math inline">\(L_\lambda=b+m\cdot cos(i)\)</span> usado minimos cuadrados entre la reflectancia de cada banda espectral y el modelo de iluminación.</p></li>
+</ul>
+</section>
+</section>
+<section id="cálculo-de-indices" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="cálculo-de-indices"><span class="header-section-number">3.3.3</span> Cálculo de Indices</h3>
+<section id="ndvi" class="level4" data-number="3.3.3.1">
+<h4 data-number="3.3.3.1" class="anchored" data-anchor-id="ndvi"><span class="header-section-number">3.3.3.1</span> NDVI</h4>
+<p>El NDVI (Normalized Difference Vegetation Index), índice espectral que permite identificar áreas vegetadas a partir de la definición de un valor umbral mínimo según <span class="citation" data-cites="myneni1995interpretation">(<a href="references.html#ref-myneni1995interpretation" role="doc-biblioref">Myneni et al. 1995</a>)</span>. El NDVI trabaja con las bandas del infrarrojo y del rojo, dado que son las bandas donde más y menos reflejan la vegetación, respectivamente. Este fue obtenido mediante la expresión:</p>
+<p><span class="math display">\[
+NDVI = \frac{NIR-RED}{NIR-RED}
+\]</span></p>
+<p>Los valores de este índice se encuentran en el rango de -1 a 1, y usualmente se considera que los valores mayores o iguales a 0,2 corresponden a vegetación. Para determinar un valor umbral mínimo de vegetación tanto para invierno como para verano, se van testeando valores umbrales desde 0,2 hacia arriba, sumando cada vez 0,05 al umbral inicial, hasta llegar a visualizar una cobertura vegetal que corresponda con la vegetación visible en un basemap de alta resolución y a la composición de bandas en color verdadero de la imagen satelital que dio origen al NDVI. A partir de estos valores umbrales se obtienen dos coberturas de vegetación, una de invierno y otra de verano, las cuales se integran en una sola cobertura anual de vegetación, sumando espacialmente los píxeles considerados como vegetación. Esta cobertura vegetal posteriormente será integrada a las coberturas vectoriales para calcular el Indicador de Cobertura Vegetal (ICV).</p>
+</section>
+<section id="tst" class="level4" data-number="3.3.3.2">
+<h4 data-number="3.3.3.2" class="anchored" data-anchor-id="tst"><span class="header-section-number">3.3.3.2</span> TST</h4>
+<p>La Temperatura Superficial Terrestre (TST) corresponde a una variable física que permite obtener datos de temperatura en grados Celsius a partir del procesamiento de las imágenes satelitales. En este caso, se utilizaron las imágenes satelitales mencionadas anteriormente para determinar las TST en las temporadas frías y cálidas del año (invierno y verano), las cuales luego son integradas para calcular la Amplitud Térmica Anual (ATA).</p>
+<p>Para estimar la temperatura superficial terrestre (TST) se utilizó el algoritmo monocanal o single channel (SC), propuesto por <span class="citation" data-cites="jimenez-munozGeneralizedSinglechannelMethod2003">(<a href="references.html#ref-jimenez-munozGeneralizedSinglechannelMethod2003" role="doc-biblioref">Jim’enez-Muñoz and Sobrino 2003</a>)</span>. Este método fue escogido debido a su flexibilidad en términos de las diversas condiciones atmosféricas y a su adaptabilidad a distintos tipos de sensores con bandas espectrales en la ventana atmosférica que se encuentra entre las longitudes de onda de 10 – 12 mm. Para la estimación de la TST se necesitó de cinco magnitudes fundamentales:</p>
+<ul>
+<li><p>La radiancia de la banda termal</p></li>
+<li><p>La temperatura de brillo en el sensor</p></li>
+<li><p>La emisividad de la superficie</p></li>
+<li><p>El contenido de vapor de agua en la atmósfera</p></li>
+<li><p>Los centros de los rangos espectrales asociados a las longitudes de onda de las bandas térmicas consideradas</p></li>
+</ul>
+<p>Cuatro de estas magnitudes se obtuvieron a través del procesamiento directo de las bandas espectrales de cada imagen Landsat, mientras que el vapor de agua provino del sensor MODIS. La radiancia espectral de las bandas termales se obtuvo en la etapa de corrección de los insumos espaciales. Por su parte, los parámetros y el algoritmo para obtener la temperatura de brillo en el sensor (T_B) se obtuvieron del Programa Landsat (2002) y el sitio web de la USGS.</p>
+<p>A su vez, la emisividad de la superficie (<span class="math inline">\(\epsilon_{sc}\)</span>) utilizada en el método monocanal, se estimó considerando el conocimiento a priori de la emisividad de algunas superficies y su relación estadística con algunos valores umbrales del logaritmo natural del NDVI. Para calcular la emisividad se usaron los valores umbrales del índice vegetacional, rangos propuestos por <span class="citation" data-cites="vandegriendRelationshipThermalEmissivity1993">(<a href="references.html#ref-vandegriendRelationshipThermalEmissivity1993" role="doc-biblioref">VAN DE GRIEND and OWE 1993</a>)</span>.</p>
+<p>La TST se obtuvo directamente en grados Celsius, utilizando el método monocanal de Jiménez (2003 y 2014). Las funciones de transferencia atmosférica <span class="math inline">\(\psi_1\)</span>, <span class="math inline">\(\psi_2\)</span>, <span class="math inline">\(\psi_3\)</span> , fueron obtenidas como función del vapor de agua atmosférico (w), según las expresiones y parámetros considerados para la banda 11:</p>
+<p>$$ _1 = 0.04019w^2 - 0.02916w + 1.01523 \ _2 = -0.38333w^2 - 1.50294w + 0.20324 \ _3 = 0.00918w^2 - 1.36072w - 0.27514</p>
+<p>$$</p>
+<p>Para estimar la TST se integraron todos los parámetros generados en el algoritmo monocanal (SC) generalizado de <span class="citation" data-cites="jimenez-munozGeneralizedSinglechannelMethod2003">(<a href="references.html#ref-jimenez-munozGeneralizedSinglechannelMethod2003" role="doc-biblioref">Jim’enez-Muñoz and Sobrino 2003</a>)</span>:</p>
+<p><span class="math display">\[
+TST_{sc}=\gamma\left[ \epsilon^{-1} \left( \psi_1L_{\lambda corr
+} + \psi_2\right) + \psi_3 \right] + \delta - 273,15
+\]</span></p>
+<p>Con las siguienest aproximaciones de los parámetros gamma (<span class="math inline">\(\gamma\)</span>) y delta (<span class="math inline">\(\delta\)</span>):</p>
+<p><span class="math display">\[
+\gamma = \left\{ \frac{c_2L{\lambda corr}}{T^2_{B10}} \left[ \frac{\lambda^4}{c_1} L_{\lambda corr} +\lambda^{-1}\right] \right\}^{-1}
+\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(L_{\lambda corr}\)</span> es la Radiancia espectral corregida topográficamente de la banda 11.</p></li>
+<li><p><span class="math inline">\(T_{B10}\)</span> es la temperatura de brillo banda 11 (°K)</p></li>
+<li><p><span class="math inline">\(\lambda\)</span> es el centro del rango de longitud de onda de la banda 11.</p></li>
+</ul>
+<p>Tanto las TST de verano como las de invierno se obtienen en formato raster con resolución de 30 por 30 metros. Luego se procedió a obtener un compuesto para verano y otro para invierno. Finalmente, ambos compuestos se integran en uno solo que considera la diferencia entre la TST de verano y de invierno, el que se denomina Amplitud Térmica Anual (ATA).</p>
+</section>
+<section id="ata" class="level4" data-number="3.3.3.3">
+<h4 data-number="3.3.3.3" class="anchored" data-anchor-id="ata"><span class="header-section-number">3.3.3.3</span> ATA</h4>
+<p>La Amplitud Térmica Anual (ATA) corresponde a una imagen raster que contiene los valores producto de la diferencia entre las temperaturas superficiales de verano y de invierno. Representa las diferencias de temperatura entre ambas temporadas, y es el insumo principal para el cálculo del Indicador de Amplitud Térmica Anual (IATA). Mientras los valores de ATA sean más altos, representan una mayor diferencia entre las temperaturas de invierno y verano en una misma área. Por el contrario, si los valores de ATA son bajos, significa que la diferencia entre los valores de temperatura de invierno y verano es menor en una misma área, o que los valores son muy similares entre sí.</p>
+</section>
+</section>
+<section id="cálculo-de-indicadores" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="cálculo-de-indicadores"><span class="header-section-number">3.3.4</span> Cálculo de Indicadores</h3>
+<section id="icv" class="level4" data-number="3.3.4.1">
+<h4 data-number="3.3.4.1" class="anchored" data-anchor-id="icv"><span class="header-section-number">3.3.4.1</span> ICV</h4>
+<p>Para espacializar estos resultados, fueron considerados los polígonos de las manzanas para las áreas urbanas y los de las entidades rurales para las áreas rurales. El procedimiento para atributar de valores cada uno de los polígonos que componen las coberturas consistió en calcular la superficie cubierta por vegetación en cada polígono, y luego comparando esa superficie con respecto a la superficie total del polígono. Por esto, el resultado del indicador se expresa en valores de 0 a 100, lo que representa el porcentaje de superficie cubierto de vegetación de cada polígono. Este indicador permite que cada polígono cuente con una expresión porcentual de su superficie cubierta con vegetación. Mientras mayor sea este valor, representa que un mayor porcentaje de la superficie se encuentra cubierta por vegetación, incluso considerando la totalidad del polígono (100%). Por el contrario, es posible que algunos polígonos tengan valores 0, correspondientes a aquellas áreas que no poseen cobertura vegetal. A continuación una cartografía con el resultado del indicador en la provincia de Choapa</p>
+</section>
+<section id="iata" class="level4" data-number="3.3.4.2">
+<h4 data-number="3.3.4.2" class="anchored" data-anchor-id="iata"><span class="header-section-number">3.3.4.2</span> IATA</h4>
+<p>El Indicador de Amplitud Térmica Anual (IATA) se refiere a la diferencia entre la Temperatura Superficial Terrestre (TST) máxima y mínima dentro de un año. La TST máxima corresponde a la época de verano, mientras que la TST mínima corresponde al invierno, y se calcula tal como se aprecia en la siguiente fórmula.</p>
+<p><span class="math display">\[
+IATA = TST_{ver} - TST_{inv}
+\]</span> La ATA sale procesada en formato raster, con la misma resolución de las TST. La información del formato raster se traspasa finalmente a los polígonos de manzanas en el caso de las áreas urbanas y las entidades en el caso de las áreas rurales. Este indicador permite que cada polígono cuente con una temperatura expresada en grados Celsius, el que representa la amplitud térmica entre el invierno y el verano. Mientras mayor sea este valor, representa que la diferencia de temperaturas entre el verano y el invierno es significativa. Mientras que, si el valor es menor, implica una diferencia térmica marginal entre el verano y el invierno. Puntualmente, puede ocurrir que algunos polígonos obtengan una amplitud térmica negativa, lo que implica que, en ese sector las temperaturas de invierno fueron localmente mayores a las obtenidas en verano.</p>
+</section>
+</section>
+</section>
+<section id="aplicación" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="aplicación"><span class="header-section-number">3.4</span> Aplicación</h2>
+</section>
+<section id="interpretación" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="interpretación"><span class="header-section-number">3.5</span> Interpretación</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-colby1991topographic" class="csl-entry" role="listitem">
+Colby, Jeffrey D. 1991. <span>“Topographic Normalization in Rugged Terrain.”</span> <em>Photogrammetric Engineering and Remote Sensing</em> 57 (5): 531–37.
+</div>
+<div id="ref-jimenez-munozGeneralizedSinglechannelMethod2003" class="csl-entry" role="listitem">
+Jim’enez-Muñoz, Juan C., and Jos’e A. Sobrino. 2003. <span>“A Generalized Single-Channel Method for Retrieving Land Surface Temperature from Remote Sensing Data.”</span> <em>Journal of Geophysical Research: Atmospheres</em> 108 (D22). <a href="https://doi.org/10.1029/2003JD003480">https://doi.org/10.1029/2003JD003480</a>.
+</div>
+<div id="ref-myneni1995interpretation" class="csl-entry" role="listitem">
+Myneni, Ranga B, Forrest G Hall, Piers J Sellers, and Alexander L Marshak. 1995. <span>“The Interpretation of Spectral Vegetation Indexes.”</span> <em>IEEE Transactions on Geoscience and Remote Sensing</em> 33 (2): 481–86.
+</div>
+<div id="ref-teilletSlopeAspectCorrectionMultispectral1982" class="csl-entry" role="listitem">
+Teillet, P. M., B. Guindon, and D. G. Goodenough. 1982. <span>“On the <span>Slope-Aspect Correction</span> of <span>Multispectral Scanner Data</span>.”</span> <em>Canadian Journal of Remote Sensing</em> 8 (2): 84–106. <a href="https://doi.org/10.1080/07038992.1982.10855028">https://doi.org/10.1080/07038992.1982.10855028</a>.
+</div>
+<div id="ref-vandegriendRelationshipThermalEmissivity1993" class="csl-entry" role="listitem">
+VAN DE GRIEND, A. A., and M. OWE. 1993. <span>“On the Relationship Between Thermal Emissivity and the Normalized Difference Vegetation Index for Natural Surfaces.”</span> <em>International Journal of Remote Sensing</em> 14 (6): 1119–31. <a href="https://doi.org/10.1080/01431169308904400">https://doi.org/10.1080/01431169308904400</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
