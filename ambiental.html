@@ -363,13 +363,13 @@ NDVI = \frac{NIR-RED}{NIR-RED}
 <p>A su vez, la emisividad de la superficie (<span class="math inline">\(\epsilon_{sc}\)</span>) utilizada en el método monocanal, se estimó considerando el conocimiento a priori de la emisividad de algunas superficies y su relación estadística con algunos valores umbrales del logaritmo natural del NDVI. Para calcular la emisividad se usaron los valores umbrales del índice vegetacional, rangos propuestos por <span class="citation" data-cites="vandegriendRelationshipThermalEmissivity1993">(<a href="references.html#ref-vandegriendRelationshipThermalEmissivity1993" role="doc-biblioref">VAN DE GRIEND and OWE 1993</a>)</span>.</p>
 <p>La TST se obtuvo directamente en grados Celsius, utilizando el método monocanal de Jiménez (2003 y 2014). Las funciones de transferencia atmosférica <span class="math inline">\(\psi_1\)</span>, <span class="math inline">\(\psi_2\)</span>, <span class="math inline">\(\psi_3\)</span> , fueron obtenidas como función del vapor de agua atmosférico (w), según las expresiones y parámetros considerados para la banda 11:</p>
 <p><span class="math display">\[
-\psi\_1 = 0.04019w^2 - 0.02916w + 1.01523
+\psi_1 = 0.04019w^2 - 0.02916w + 1.01523
 \]</span></p>
 <p><span class="math display">\[
-\psi\_2 = -0.38333w^2 - 1.50294w + 0.20324
+\psi_2 = -0.38333w^2 - 1.50294w + 0.20324
 \]</span></p>
 <p><span class="math display">\[
-\psi\_3 = 0.00918w^2 - 1.36072w - 0.27514
+\psi_3 = 0.00918w^2 - 1.36072w - 0.27514
 \]</span></p>
 <p>Para estimar la TST se integraron todos los parámetros generados en el algoritmo monocanal (SC) generalizado de <span class="citation" data-cites="jimenez-munozGeneralizedSinglechannelMethod2003">(<a href="references.html#ref-jimenez-munozGeneralizedSinglechannelMethod2003" role="doc-biblioref">Jim’enez-Muñoz and Sobrino 2003</a>)</span>:</p>
 <p><span class="math display">\[
