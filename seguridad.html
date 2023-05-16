@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -157,8 +191,13 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#resumen" id="toc-resumen" class="nav-link active" data-scroll-target="#resumen"><span class="header-section-number">4.1</span> Resumen</a></li>
-  <li><a href="#proceso" id="toc-proceso" class="nav-link" data-scroll-target="#proceso"><span class="header-section-number">4.2</span> Proceso</a></li>
-  <li><a href="#insumos" id="toc-insumos" class="nav-link" data-scroll-target="#insumos"><span class="header-section-number">4.3</span> Insumos</a></li>
+  <li><a href="#insumos" id="toc-insumos" class="nav-link" data-scroll-target="#insumos"><span class="header-section-number">4.2</span> Insumos</a></li>
+  <li><a href="#proceso" id="toc-proceso" class="nav-link" data-scroll-target="#proceso"><span class="header-section-number">4.3</span> Proceso</a>
+  <ul class="collapse">
+  <li><a href="#proceso-de-kernel-de-densidad-puntos-a-raster." id="toc-proceso-de-kernel-de-densidad-puntos-a-raster." class="nav-link" data-scroll-target="#proceso-de-kernel-de-densidad-puntos-a-raster."><span class="header-section-number">4.3.1</span> Proceso de Kernel de densidad, puntos a raster.</a></li>
+  <li><a href="#asignación-a-manzanas" id="toc-asignación-a-manzanas" class="nav-link" data-scroll-target="#asignación-a-manzanas"><span class="header-section-number">4.3.2</span> Asignación a Manzanas</a></li>
+  <li><a href="#normalización-e-invertir." id="toc-normalización-e-invertir." class="nav-link" data-scroll-target="#normalización-e-invertir."><span class="header-section-number">4.3.3</span> Normalización e Invertir.</a></li>
+  </ul></li>
   <li><a href="#aplicación" id="toc-aplicación" class="nav-link" data-scroll-target="#aplicación"><span class="header-section-number">4.4</span> Aplicación</a></li>
   <li><a href="#interpretación" id="toc-interpretación" class="nav-link" data-scroll-target="#interpretación"><span class="header-section-number">4.5</span> Interpretación</a></li>
   </ul>
@@ -184,29 +223,165 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Resumen, Insumos, Proceso (diagrama), Interpretación.</p>
+<p><img src="img/ibtseguridad.jpg" class="img-fluid"></p>
 <section id="resumen" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="resumen"><span class="header-section-number">4.1</span> Resumen</h2>
-<p>Seguridad, delitos, victimización</p>
-<p>Referencias a redes sociales</p>
-<p>Pobreza multidimensional</p>
+<p>El indicador de seguridad (ISEG) es un índice normalizado que busca mostrar el nivel de seguridad de cada manzana, representando con 1 las manzanas que cuentan con el mayor nivel de seguridad y con 0 las de menor nivel de seguridad.</p>
+<p>Este indicador se construye a partir de la densidad kernel de los delitos por cada región, lo que significa que para cada región se estima una función de densidad de probabilidad de los delitos. Una vez calculada la densidad, se pasa la información a raster y se le asigna a cada manzana el valor del raster que está en el centroide.</p>
+<p>Seguridad, delitos, victimización. Pobreza multidimensional</p>
+<p>El indicador de seguridad se calcula para 4 categorías de delitos: <strong>Leves personas</strong>, <strong>Graves personas</strong>, <strong>Leves propiedad</strong> y <strong>Graves propiedad</strong>.</p>
 </section>
-<section id="proceso" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="proceso"><span class="header-section-number">4.2</span> Proceso</h2>
-<p>Diagrama</p>
-<p>Proceso de Kernel de densidad, puntos a raster.</p>
-<p>Raster a polígonos.</p>
-<p>Normalización e Invertir.</p>
+<section id="insumos" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="insumos"><span class="header-section-number">4.2</span> Insumos</h2>
+<p>El trabajo de estos indicadores usa el tipo de dato punto, el cual representa la ocurrencia y ubicación de un elemento o hecho. Es así que el principal insumo es la ocurrencia de delitos en el territorio, lo que se representa por puntos. Estos deben ser anonimizados, lo que implica agrupar puntos en una grilla regular de 100 metros.</p>
+<p>Por otro lado, es necesario categorizar los delitos, lo que se consigue mediante el uso de un diccionario que asocia la categoría del delito con una clasificación que diferencia entre el objeto de delito (personas o propiedad) y el nivel de gravedad de este (leve o grave).</p>
 </section>
-<section id="insumos" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="insumos"><span class="header-section-number">4.3</span> Insumos</h2>
-<p>Tipo de dato de puntos.</p>
-<p>Ocurrencia de delitos, fuente de información anonimizada.</p>
-<p>Diccionario de delitos, clasificación por gravedad y objeto.</p>
+<section id="proceso" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="proceso"><span class="header-section-number">4.3</span> Proceso</h2>
+<p>El proceso en general considera un proceso de entrada donde se toma la ocurrencia de delitos y se le asigna la categoria a partir del diccionario mencionado.</p>
+<p><img src="img/diagrama-seguridad.PNG" class="img-fluid"></p>
+<p>Luego, estos puntos se analizan mediante un proceso de kernel de densidad, que genera <em>hotspots</em> de agrupación de delitos en formato raster.</p>
+<p>Luego este resultado debe ser asignado a las manzanas censales, mediante el promedio de valores de la grilla de densidad dentro de cada manzana.</p>
+<p>Finalmente el resultado a nivel de manzana se normaliza para que se exprese entre los valores de 0 a 1, y se invierte para que el mas alto valor implique la ausencia de ocurrencia de delitos.</p>
+<section id="proceso-de-kernel-de-densidad-puntos-a-raster." class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="proceso-de-kernel-de-densidad-puntos-a-raster."><span class="header-section-number">4.3.1</span> Proceso de Kernel de densidad, puntos a raster.</h3>
+<p>Para calcular el la densidad de kernel se crea un objeto de clase <code>ppp</code> que represneta un patron de puntos en un plano de dos dimensiones.</p>
+<p>Para crear este objeto, necesitamos una ventana de trabajo que contará con las dimensiones del límite urbano más un margen de 500 metros. Además, el límite urbano se pasa a raster con un buffer también de 500 metros.</p>
+<p>Una vez hecho lo anterior, se calcula la densidad kernel con la función <code>density</code> del paquete <code>stats</code>. Conceptualmente, lo que hace esta función es calcular la densidad de puntos (delitos) por unidad de área.</p>
+<p>Se ajusta una superficie curva uniforme sobre cada punto, y en el centro, donde está el punto, el valor del raster es más alto, y a medida que nos alejamos del centro el valor del raster disminuye.</p>
+<p>Luego, la densidad kernel que fue calculada en la ventana de trabajo se pasa a raster con la proyección UTM 19 sur WGS84.</p>
+<p>Finalmente, cada raster posee un valor que corresponde a la densidad de delitos que hay en esa celda.</p>
+</section>
+<section id="asignación-a-manzanas" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="asignación-a-manzanas"><span class="header-section-number">4.3.2</span> Asignación a Manzanas</h3>
+<p>Para imputar los valores de los raster a las manzanas, se considera el valor que contiene el raster que está al centro de la mannzana (centroide).</p>
+<p>Una cosa importante a notar es que la densidad de kernel asigna un valor más alto cuando estamos en presencia de la máxima candidad de delitos por área.</p>
+</section>
+<section id="normalización-e-invertir." class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="normalización-e-invertir."><span class="header-section-number">4.3.3</span> Normalización e Invertir.</h3>
+<p>Al revés, el indicador ISEG asigna un mayor valor a las manzanas con mayor seguridad (menor cantidad de delitos) y un menor valor a las manzanas con menor seguridad (mayor cantidad de delitos).</p>
+<p>Por lo que, una vez imputado el valor del centroide a cada manzana, se invierten los valores de la densidad kernel para lograr obtener la lectura del indicador ISEG, el cual al ser un índice normalizado contiene valores entre 0 y 1, donde 1 significa la mayor seguridad dentro de la muestra.</p>
+</section>
 </section>
 <section id="aplicación" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="aplicación"><span class="header-section-number">4.4</span> Aplicación</h2>
-<p>Ejemplo de area de estudio</p>
+<p>A continuación se demuestra el flujo de trabajo mencionado para la comuna de Las Condes. Comenzamos por configurar el entorno de trabajo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgdal)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgeos)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatstat)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spdep)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(exactextractr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Luego cargamos los datos de entrada: las manzanas y la ubicación de delitos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>violencia <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/casos_violencia.rds"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mzs       <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/manzanas_lc.rds"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>lu_reg    <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(mzs) <span class="sc">%&gt;%</span> <span class="fu">st_buffer</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">st_union</span>() <span class="sc">%&gt;%</span> <span class="fu">st_buffer</span>(<span class="sc">-</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">as_Spatial</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A continuación se presentan las manzanas de la comuna:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mzs) <span class="sc">+</span> <span class="fu">tm_borders</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="seguridad_files/figure-html/seg-poly-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>En esta demostración los puntos se refieren a hechos de violencia y ya se encuentran anonimizados. El flujo busca mostrar como se tratan estos datos en los distintos indicadores de la dimensión. A continuación se demuestra la ubicación de estos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Definir proyeccion</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>crs_utm <span class="ot">&lt;-</span> <span class="st">"+proj=utm +zone=19 +south +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>crs_ll <span class="ot">&lt;-</span> <span class="st">"+proj=longlat +datum=WGS84 +no_defs"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Generar puntos espaciales</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>violencia <span class="ot">=</span> <span class="fu">SpatialPointsDataFrame</span>(<span class="at">coords=</span>violencia[,<span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"y"</span>)], <span class="at">data =</span> violencia, <span class="at">proj4string =</span> <span class="fu">CRS</span>(crs_utm))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Visualizar</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(violencia, <span class="at">main =</span> <span class="st">"Delitos violentos en la comuna de Las Condes"</span>, <span class="at">col =</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="seguridad_files/figure-html/seg-pts-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>A partir de esto generamos el kernel de densidad:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>grid_spacing <span class="ot">=</span> <span class="dv">100</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ext <span class="ot">&lt;-</span> <span class="fu">extent</span>(violencia)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x_min <span class="ot">&lt;-</span> ext[<span class="dv">1</span>] <span class="sc">-</span> grid_spacing</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>x_max <span class="ot">&lt;-</span> ext[<span class="dv">2</span>] <span class="sc">+</span> grid_spacing</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>y_min <span class="ot">&lt;-</span> ext[<span class="dv">3</span>] <span class="sc">-</span> grid_spacing</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>y_max <span class="ot">&lt;-</span> ext[<span class="dv">4</span>] <span class="sc">+</span> grid_spacing</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">as.owin</span>(<span class="fu">c</span>(x_min,x_max, y_min, y_max)) <span class="co"># ventana que define espacio de trabajo</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> fasterize<span class="sc">::</span><span class="fu">raster</span>(lu_reg,<span class="at">res=</span>grid_spacing)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># base de puntos</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>pts <span class="ot">&lt;-</span> <span class="fu">coordinates</span>(violencia)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ppp</span>(pts[,<span class="dv">1</span>], pts[,<span class="dv">2</span>], <span class="at">window =</span> w)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo de Hotspots con radios mas y menos extensos de agregacion (adjust*bandwidth)</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>del_hotspots_1 <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">density</span>(p, <span class="at">adjust=</span>.<span class="dv">25</span>) <span class="co"># parametro de radio de kernel</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(del_hotspots_1, <span class="at">main=</span><span class="st">'Densidad de Delitos Violentos 0.25'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="seguridad_files/figure-html/seg-density-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformar a Raster ----------------------------------------------------</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>kde_del <span class="ot">&lt;-</span> <span class="fu">raster</span>(del_hotspots_1)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">proj4string</span>(kde_del)<span class="ot">=</span><span class="fu">proj4string</span>(violencia) <span class="co"># Asignar CRS # corregido</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>kde_del <span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">mask</span>(kde_del, lu_reg) <span class="co"># Cortar por contorno URBANO</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># kde_del &lt;- kde_del * factor_mult</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>kde_del[kde_del <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Reasamplear ------------------------------------------------</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>kde_del <span class="ot">&lt;-</span>  <span class="fu">resample</span>(kde_del, r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(kde_del)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="seguridad_files/figure-html/seg-plot-mask-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imputar Valor Raster a Manzana </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># - https://tmieno2.github.io/R-as-GIS-for-Economists/extracting-values-from-raster-layers-for-vector-data.html</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  centroid</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: exactextract: </span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># values_mz &lt;- raster_values(kde_del, mzs, by_centroid = T)</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>values_mz <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">extract</span>(kde_del, <span class="fu">st_centroid</span>(<span class="fu">st_as_sf</span>(mzs)))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>normalize_minmax <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  (x <span class="sc">-</span> <span class="fu">min</span>(x, <span class="at">na.rm =</span> T)) <span class="sc">/</span> (<span class="fu">max</span>(x, <span class="at">na.rm =</span> T)<span class="sc">-</span><span class="fu">min</span>(x, <span class="at">na.rm =</span> T))</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: normalize_minmax</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>mzs_res <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(mzs) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">indicador =</span> values_mz) <span class="sc">%&gt;%</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">indicador =</span> <span class="dv">1</span><span class="sc">-</span><span class="fu">round</span>(<span class="fu">normalize_minmax</span>(indicador),<span class="dv">4</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>        )<span class="co">#%&gt;%</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>      <span class="co">#dplyr::rename(!! name_categoria := indicador)</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">#base &lt;-  janitor::clean_names(base)</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agregar a Shape Original ------------------------------------------------</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co">#  mz_base &lt;- mz_base %&gt;%</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a> <span class="co">#   left_join(base, by = c("ID_MANZCIT"= "id_manzcit"))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mzs_res <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>() <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(<span class="st">"indicador"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette=</span><span class="st">"RdYlGn"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="seguridad_files/figure-html/seg-viz-ind-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
 <section id="interpretación" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="interpretación"><span class="header-section-number">4.5</span> Interpretación</h2>
