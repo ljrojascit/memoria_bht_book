@@ -223,8 +223,8 @@ div.csl-indent {
 <p>La Dimensión Ambiental tiene por objetivo medir el confort ambiental en un determinado entorno, para lo cual se considera la amplitud térmica y cobertura vegetal de cada manzana urbana y rural. Los datos utilizados para su construcción son imágenes satelitales obtenidas a partir de las plataformas Landsat, Aqua y Terra.</p>
 <p>Los indicadores que lo componen son:</p>
 <ul>
-<li><p><em>ICV</em> : Índice de Cobertura Vegetal.</p></li>
-<li><p><em>IATA</em> : Índice de Amplitud Térmica.</p></li>
+<li><p><strong>ICV</strong> : Índice de Cobertura Vegetal.</p></li>
+<li><p><strong>IATA</strong>: Índice de Amplitud Térmica.</p></li>
 </ul>
 <p>Con esto se busca representar el hecho de que existen territorios cuyo confort ambiental es más adecuado para la población, con mayor cobertura de áreas verdes y vegetación más frondoza. Además de diferencias de temperaturas entre invierno y verano menos pronunciadas, facilitando el disfrute de la población.</p>
 </section>
@@ -362,8 +362,9 @@ NDVI = \frac{NIR-RED}{NIR-RED}
 <p>Cuatro de estas magnitudes se obtuvieron a través del procesamiento directo de las bandas espectrales de cada imagen Landsat, mientras que el vapor de agua provino del sensor MODIS. La radiancia espectral de las bandas termales se obtuvo en la etapa de corrección de los insumos espaciales. Por su parte, los parámetros y el algoritmo para obtener la temperatura de brillo en el sensor (T_B) se obtuvieron del Programa Landsat (2002) y el sitio web de la USGS.</p>
 <p>A su vez, la emisividad de la superficie (<span class="math inline">\(\epsilon_{sc}\)</span>) utilizada en el método monocanal, se estimó considerando el conocimiento a priori de la emisividad de algunas superficies y su relación estadística con algunos valores umbrales del logaritmo natural del NDVI. Para calcular la emisividad se usaron los valores umbrales del índice vegetacional, rangos propuestos por <span class="citation" data-cites="vandegriendRelationshipThermalEmissivity1993">(<a href="references.html#ref-vandegriendRelationshipThermalEmissivity1993" role="doc-biblioref">VAN DE GRIEND and OWE 1993</a>)</span>.</p>
 <p>La TST se obtuvo directamente en grados Celsius, utilizando el método monocanal de Jiménez (2003 y 2014). Las funciones de transferencia atmosférica <span class="math inline">\(\psi_1\)</span>, <span class="math inline">\(\psi_2\)</span>, <span class="math inline">\(\psi_3\)</span> , fueron obtenidas como función del vapor de agua atmosférico (w), según las expresiones y parámetros considerados para la banda 11:</p>
-<p>$$ _1 = 0.04019w^2 - 0.02916w + 1.01523 \ _2 = -0.38333w^2 - 1.50294w + 0.20324 \ _3 = 0.00918w^2 - 1.36072w - 0.27514</p>
-<p>$$</p>
+<p><span class="math display">\[
+\psi\_1 = 0.04019w^2 - 0.02916w + 1.01523 \\ \psi\_2 = -0.38333w^2 - 1.50294w + 0.20324 \\ \psi\_3 = 0.00918w^2 - 1.36072w - 0.27514
+\]</span></p>
 <p>Para estimar la TST se integraron todos los parámetros generados en el algoritmo monocanal (SC) generalizado de <span class="citation" data-cites="jimenez-munozGeneralizedSinglechannelMethod2003">(<a href="references.html#ref-jimenez-munozGeneralizedSinglechannelMethod2003" role="doc-biblioref">Jim’enez-Muñoz and Sobrino 2003</a>)</span>:</p>
 <p><span class="math display">\[
 TST_{sc}=\gamma\left[ \epsilon^{-1} \left( \psi_1L_{\lambda corr
