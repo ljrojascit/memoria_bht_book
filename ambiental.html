@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -340,16 +374,8 @@ L_{\lambda Corr} = L_\lambda \left[\frac{Cos(v)+C}{Cos(i)+C}\right]
 </section>
 <section id="cálculo-de-indices" class="level3" data-number="3.3.3">
 <h3 data-number="3.3.3" class="anchored" data-anchor-id="cálculo-de-indices"><span class="header-section-number">3.3.3</span> Cálculo de Indices</h3>
-<section id="ndvi" class="level4" data-number="3.3.3.1">
-<h4 data-number="3.3.3.1" class="anchored" data-anchor-id="ndvi"><span class="header-section-number">3.3.3.1</span> NDVI</h4>
-<p>El NDVI (Normalized Difference Vegetation Index), índice espectral que permite identificar áreas vegetadas a partir de la definición de un valor umbral mínimo según <span class="citation" data-cites="myneni1995interpretation">(<a href="references.html#ref-myneni1995interpretation" role="doc-biblioref">Myneni et al. 1995</a>)</span>. El NDVI trabaja con las bandas del infrarrojo y del rojo, dado que son las bandas donde más y menos reflejan la vegetación, respectivamente. Este fue obtenido mediante la expresión:</p>
-<p><span class="math display">\[
-NDVI = \frac{NIR-RED}{NIR-RED}
-\]</span></p>
-<p>Los valores de este índice se encuentran en el rango de -1 a 1, y usualmente se considera que los valores mayores o iguales a 0,2 corresponden a vegetación. Para determinar un valor umbral mínimo de vegetación tanto para invierno como para verano, se van testeando valores umbrales desde 0,2 hacia arriba, sumando cada vez 0,05 al umbral inicial, hasta llegar a visualizar una cobertura vegetal que corresponda con la vegetación visible en un basemap de alta resolución y a la composición de bandas en color verdadero de la imagen satelital que dio origen al NDVI. A partir de estos valores umbrales se obtienen dos coberturas de vegetación, una de invierno y otra de verano, las cuales se integran en una sola cobertura anual de vegetación, sumando espacialmente los píxeles considerados como vegetación. Esta cobertura vegetal posteriormente será integrada a las coberturas vectoriales para calcular el Indicador de Cobertura Vegetal (ICV).</p>
-</section>
-<section id="tst" class="level4" data-number="3.3.3.2">
-<h4 data-number="3.3.3.2" class="anchored" data-anchor-id="tst"><span class="header-section-number">3.3.3.2</span> TST</h4>
+<section id="tst" class="level4" data-number="3.3.3.1">
+<h4 data-number="3.3.3.1" class="anchored" data-anchor-id="tst"><span class="header-section-number">3.3.3.1</span> TST</h4>
 <p>La Temperatura Superficial Terrestre (TST) corresponde a una variable física que permite obtener datos de temperatura en grados Celsius a partir del procesamiento de las imágenes satelitales. En este caso, se utilizaron las imágenes satelitales mencionadas anteriormente para determinar las TST en las temporadas frías y cálidas del año (invierno y verano), las cuales luego son integradas para calcular la Amplitud Térmica Anual (ATA).</p>
 <p>Para estimar la temperatura superficial terrestre (TST) se utilizó el algoritmo monocanal o single channel (SC), propuesto por <span class="citation" data-cites="jimenez-munozGeneralizedSinglechannelMethod2003">(<a href="references.html#ref-jimenez-munozGeneralizedSinglechannelMethod2003" role="doc-biblioref">Jim’enez-Muñoz and Sobrino 2003</a>)</span>. Este método fue escogido debido a su flexibilidad en términos de las diversas condiciones atmosféricas y a su adaptabilidad a distintos tipos de sensores con bandas espectrales en la ventana atmosférica que se encuentra entre las longitudes de onda de 10 – 12 mm. Para la estimación de la TST se necesitó de cinco magnitudes fundamentales:</p>
 <ul>
@@ -388,28 +414,167 @@ TST_{sc}=\gamma\left[ \epsilon^{-1} \left( \psi_1L_{\lambda corr
 </ul>
 <p>Tanto las TST de verano como las de invierno se obtienen en formato raster con resolución de 30 por 30 metros. Luego se procedió a obtener un compuesto para verano y otro para invierno. Finalmente, ambos compuestos se integran en uno solo que considera la diferencia entre la TST de verano y de invierno, el que se denomina Amplitud Térmica Anual (ATA).</p>
 </section>
-<section id="ata" class="level4" data-number="3.3.3.3">
-<h4 data-number="3.3.3.3" class="anchored" data-anchor-id="ata"><span class="header-section-number">3.3.3.3</span> ATA</h4>
+<section id="ata" class="level4" data-number="3.3.3.2">
+<h4 data-number="3.3.3.2" class="anchored" data-anchor-id="ata"><span class="header-section-number">3.3.3.2</span> ATA</h4>
 <p>La Amplitud Térmica Anual (ATA) corresponde a una imagen raster que contiene los valores producto de la diferencia entre las temperaturas superficiales de verano y de invierno. Representa las diferencias de temperatura entre ambas temporadas, y es el insumo principal para el cálculo del Indicador de Amplitud Térmica Anual (IATA). Mientras los valores de ATA sean más altos, representan una mayor diferencia entre las temperaturas de invierno y verano en una misma área. Por el contrario, si los valores de ATA son bajos, significa que la diferencia entre los valores de temperatura de invierno y verano es menor en una misma área, o que los valores son muy similares entre sí.</p>
+</section>
+<section id="ndvi" class="level4" data-number="3.3.3.3">
+<h4 data-number="3.3.3.3" class="anchored" data-anchor-id="ndvi"><span class="header-section-number">3.3.3.3</span> NDVI</h4>
+<p>El NDVI (Normalized Difference Vegetation Index), índice espectral que permite identificar áreas vegetadas a partir de la definición de un valor umbral mínimo según <span class="citation" data-cites="myneni1995interpretation">(<a href="references.html#ref-myneni1995interpretation" role="doc-biblioref">Myneni et al. 1995</a>)</span>. El NDVI trabaja con las bandas del infrarrojo y del rojo, dado que son las bandas donde más y menos reflejan la vegetación, respectivamente. Este fue obtenido mediante la expresión:</p>
+<p><span class="math display">\[
+NDVI = \frac{NIR-RED}{NIR-RED}
+\]</span></p>
+<p>Los valores de este índice se encuentran en el rango de -1 a 1, y usualmente se considera que los valores mayores o iguales a 0,2 corresponden a vegetación. Para determinar un valor umbral mínimo de vegetación tanto para invierno como para verano, se van testeando valores umbrales desde 0,2 hacia arriba, sumando cada vez 0,05 al umbral inicial, hasta llegar a visualizar una cobertura vegetal que corresponda con la vegetación visible en un basemap de alta resolución y a la composición de bandas en color verdadero de la imagen satelital que dio origen al NDVI. A partir de estos valores umbrales se obtienen dos coberturas de vegetación, una de invierno y otra de verano, las cuales se integran en una sola cobertura anual de vegetación, sumando espacialmente los píxeles considerados como vegetación. Esta cobertura vegetal posteriormente será integrada a las coberturas vectoriales para calcular el Indicador de Cobertura Vegetal (ICV).</p>
 </section>
 </section>
 <section id="cálculo-de-indicadores" class="level3" data-number="3.3.4">
 <h3 data-number="3.3.4" class="anchored" data-anchor-id="cálculo-de-indicadores"><span class="header-section-number">3.3.4</span> Cálculo de Indicadores</h3>
 <section id="icv" class="level4" data-number="3.3.4.1">
 <h4 data-number="3.3.4.1" class="anchored" data-anchor-id="icv"><span class="header-section-number">3.3.4.1</span> ICV</h4>
-<p>Para espacializar estos resultados, fueron considerados los polígonos de las manzanas para las áreas urbanas y los de las entidades rurales para las áreas rurales. El procedimiento para atributar de valores cada uno de los polígonos que componen las coberturas consistió en calcular la superficie cubierta por vegetación en cada polígono, y luego comparando esa superficie con respecto a la superficie total del polígono. Por esto, el resultado del indicador se expresa en valores de 0 a 100, lo que representa el porcentaje de superficie cubierto de vegetación de cada polígono. Este indicador permite que cada polígono cuente con una expresión porcentual de su superficie cubierta con vegetación. Mientras mayor sea este valor, representa que un mayor porcentaje de la superficie se encuentra cubierta por vegetación, incluso considerando la totalidad del polígono (100%). Por el contrario, es posible que algunos polígonos tengan valores 0, correspondientes a aquellas áreas que no poseen cobertura vegetal. A continuación una cartografía con el resultado del indicador en la provincia de Choapa</p>
+<p><img src="img/diagrama-ambiental-icv.PNG" class="img-fluid"></p>
+<p>Para espacializar estos resultados, fueron considerados los polígonos de las manzanas para las áreas urbanas y los de las entidades rurales para las áreas rurales. El procedimiento para atributar de valores cada uno de los polígonos que componen las coberturas consistió en calcular la superficie cubierta por vegetación en cada polígono, y luego comparando esa superficie con respecto a la superficie total del polígono. Por esto, el resultado del indicador se expresa en valores de 0 a 100, lo que representa el porcentaje de superficie cubierto de vegetación de cada polígono. Este indicador permite que cada polígono cuente con una expresión porcentual de su superficie cubierta con vegetación. Mientras mayor sea este valor, representa que un mayor porcentaje de la superficie se encuentra cubierta por vegetación, incluso considerando la totalidad del polígono (100%). Por el contrario, es posible que algunos polígonos tengan valores 0, correspondientes a aquellas áreas que no poseen cobertura vegetal.</p>
 </section>
 <section id="iata" class="level4" data-number="3.3.4.2">
 <h4 data-number="3.3.4.2" class="anchored" data-anchor-id="iata"><span class="header-section-number">3.3.4.2</span> IATA</h4>
+<p><img src="img/diagrama-ambiental-iata.PNG" class="img-fluid"></p>
 <p>El Indicador de Amplitud Térmica Anual (IATA) se refiere a la diferencia entre la Temperatura Superficial Terrestre (TST) máxima y mínima dentro de un año. La TST máxima corresponde a la época de verano, mientras que la TST mínima corresponde al invierno, y se calcula tal como se aprecia en la siguiente fórmula.</p>
 <p><span class="math display">\[
 IATA = TST_{ver} - TST_{inv}
-\]</span> La ATA sale procesada en formato raster, con la misma resolución de las TST. La información del formato raster se traspasa finalmente a los polígonos de manzanas en el caso de las áreas urbanas y las entidades en el caso de las áreas rurales. Este indicador permite que cada polígono cuente con una temperatura expresada en grados Celsius, el que representa la amplitud térmica entre el invierno y el verano. Mientras mayor sea este valor, representa que la diferencia de temperaturas entre el verano y el invierno es significativa. Mientras que, si el valor es menor, implica una diferencia térmica marginal entre el verano y el invierno. Puntualmente, puede ocurrir que algunos polígonos obtengan una amplitud térmica negativa, lo que implica que, en ese sector las temperaturas de invierno fueron localmente mayores a las obtenidas en verano.</p>
+\]</span></p>
+<p>La ATA sale procesada en formato raster, con la misma resolución de las TST. La información del formato raster se traspasa finalmente a los polígonos de manzanas en el caso de las áreas urbanas y las entidades en el caso de las áreas rurales. Este indicador permite que cada polígono cuente con una temperatura expresada en grados Celsius, el que representa la amplitud térmica entre el invierno y el verano. Mientras mayor sea este valor, representa que la diferencia de temperaturas entre el verano y el invierno es significativa. Mientras que, si el valor es menor, implica una diferencia térmica marginal entre el verano y el invierno. Puntualmente, puede ocurrir que algunos polígonos obtengan una amplitud térmica negativa, lo que implica que, en ese sector las temperaturas de invierno fueron localmente mayores a las obtenidas en verano.</p>
 </section>
 </section>
 </section>
 <section id="aplicación" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="aplicación"><span class="header-section-number">3.4</span> Aplicación</h2>
+<p>Para ilustrar estos procesos se calcularán los indicadores ambientales para la comuna de Las Condes. Para esto comenzamos por configurar el entorno de trabajo cargando las librerías necesarias para el proceso y definiendo ciertos parámetros claves como los sistemas de proyección de coordenadas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(exactextractr)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>crs_latlon <span class="ot">&lt;-</span> <span class="st">"+proj=longlat +datum=WGS84 +no_defs"</span><span class="co"># geográficas o elipsoidales</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>crs_utm <span class="ot">&lt;-</span> <span class="st">"+proj=utm +zone=19 +south +datum=WGS84 +units=m +no_defs"</span> <span class="co"># UTM o cartográficas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Con esto cargamos los datos necesarios para el proceso, la información satelital contenida en un archivo <code>.tif</code> y las manzanas de la comuna de las Condes:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>OLI <span class="ot">&lt;-</span> <span class="fu">brick</span>(<span class="st">"data/corte_rm_m.tif"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mzs <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/manzanas_lc.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Realizamos un preproceso inicial, rescatando el contorno de la comuna, asignando información de nombres al archivo de información satelital y generando un recorte del area de estudio comunal.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># nombre bandas</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(OLI) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"aerosol"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"red"</span>, <span class="st">"nir"</span>, <span class="st">"swir1"</span>, <span class="st">"swir2"</span>, <span class="st">"thermal"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># contorno comunal</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>comuna <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(mzs) <span class="sc">%&gt;%</span> <span class="fu">st_buffer</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">st_union</span>() <span class="sc">%&gt;%</span> <span class="fu">st_buffer</span>(<span class="sc">-</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">as_Spatial</span>()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># recorte</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>comuna_img <span class="ot">&lt;-</span> <span class="fu">mask</span>(<span class="fu">crop</span>(OLI, <span class="fu">extent</span>(comuna), <span class="at">snap=</span><span class="st">"out"</span>), comuna)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># latlon a utm</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>comuna_img <span class="ot">&lt;-</span> <span class="fu">projectRaster</span>(comuna_img, <span class="at">crs =</span> crs_utm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Con esto podemos visualizar la información satelital de la comuna:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(comuna_img, <span class="at">r =</span> <span class="dv">4</span>, <span class="at">g =</span> <span class="dv">3</span>, <span class="at">b =</span> <span class="dv">2</span>, <span class="at">stretch =</span> <span class="st">"lin"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="ambiental_files/figure-html/amb-viz-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>A partir de esto podemos calcular los índices que son la base de los indicadores: NDVI</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>NDVI <span class="ot">&lt;-</span> <span class="cf">function</span>(img, i, k) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>   bi <span class="ot">&lt;-</span> img[[i]]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>   bk <span class="ot">&lt;-</span> img[[k]]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>   vi <span class="ot">&lt;-</span> (bk <span class="sc">-</span> bi) <span class="sc">/</span> (bk <span class="sc">+</span> bi)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">return</span>(vi)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>NDVI_com <span class="ot">&lt;-</span> <span class="fu">NDVI</span>(comuna_img, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>NDVI_com_df <span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">as.data.frame</span>(NDVI_com, <span class="at">xy =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Este resultado puede visualizarse para revisar su pertinencia:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pal_ndvi<span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"gray20"</span>, <span class="st">"yellow"</span>, <span class="st">"green"</span>,<span class="st">"springgreen4"</span>))( <span class="dv">200</span> )</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> NDVI_com_df , </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">fill =</span> layer)) <span class="sc">+</span> </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name =</span> <span class="st">"NDVI"</span>, <span class="at">colors =</span> pal_ndvi)<span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()<span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">paste0</span>(<span class="st">"NDVI DE LAS CONDES"</span>) ) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"gray80"</span>), </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"gray80"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="ambiental_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Ahora es necesario definir un umbral a partir del cual se considera un pixel como cubierto de vegetación. Para esto examinamos la distribución empírica de los valores del índice normalizado:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(NDVI_com, <span class="at">col=</span><span class="st">"springgreen4"</span>, <span class="at">main=</span><span class="st">"Histograma NDVI"</span>, <span class="at">ylab=</span><span class="st">"Número de Pixeles"</span>, <span class="at">xlab=</span><span class="st">"valor NDVI"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="ambiental_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Con esto podemos definir el umbral de corte en 0.3, lo que permite descartar vegetación no frondoza en el territorio.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#función para definir umbral</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>corte_eq_may <span class="ot">&lt;-</span> <span class="cf">function</span>(value) {</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(x) {</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(x <span class="sc">&gt;=</span> value, <span class="dv">1</span>, <span class="cn">NA</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>vegetacion <span class="ot">&lt;-</span> <span class="fu">calc</span>(NDVI_com, <span class="at">fun =</span> <span class="fu">corte_eq_may</span>(<span class="at">value =</span> <span class="fl">0.30</span>))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>vegetacion_df <span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">as.data.frame</span>(vegetacion, <span class="at">xy =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>El resultado de este corte puede revisarse gráficamente:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(comuna), <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span><span class="st">"orange"</span>, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">alpha=</span><span class="fl">0.8</span>,  <span class="at">size=</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> vegetacion_df , </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">fill =</span> layer)) <span class="sc">+</span> </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name =</span> <span class="st">"Veg"</span>, <span class="at">colors =</span> <span class="st">"springgreen4"</span>)<span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">paste0</span>(<span class="st">"VEGETACIÓN DE LAS CONDES"</span>) ) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"gray80"</span>), </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"gray80"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Raster pixels are placed at uneven horizontal intervals and will be
+shifted. Consider using geom_tile() instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Raster pixels are placed at uneven vertical intervals and will be
+shifted. Consider using geom_tile() instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="ambiental_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>A partir de esto es posible contar los pixeles dentro de cada manzana que están cubiertos por vegetación, y así calcular el indicador de Cobertura Vegetal (ICV):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mz_comuna  <span class="ot">&lt;-</span> mzs <span class="sc">%&gt;%</span> <span class="fu">st_as_sf</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">AREA=</span> <span class="fu">as.numeric</span>(<span class="fu">st_area</span>(.))) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pix_veg =</span> <span class="fu">exact_extract</span>(vegetacion,<span class="at">y =</span> ., <span class="st">'sum'</span>, <span class="at">progress =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">area_veg =</span> pix_veg <span class="sc">*</span> <span class="dv">30</span> <span class="sc">*</span> <span class="dv">30</span>) <span class="sc">%&gt;%</span> <span class="co"># resolución espacial landsat (30*30)</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ICV =</span> <span class="fu">round</span>((area_veg <span class="sc">/</span>AREA)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Con esto podemos visualizar el resultado del indicador ICV:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> mz_comuna, <span class="fu">aes</span>(<span class="at">fill =</span> ICV), <span class="at">color =</span><span class="st">"gray70"</span>, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">alpha=</span><span class="fl">0.8</span>,  <span class="at">size=</span> <span class="fl">0.1</span>)<span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette=</span> <span class="st">"Greens"</span>, <span class="at">direction =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Indicador de Cobertura Vegetal (ICV) - Urbano"</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"gray80"</span>), </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"gray80"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="ambiental_files/figure-html/amb-viz-res-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
 <section id="interpretación" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="interpretación"><span class="header-section-number">3.5</span> Interpretación</h2>
