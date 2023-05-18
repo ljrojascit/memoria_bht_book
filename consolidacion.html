@@ -210,15 +210,13 @@ div.csl-indent {
    
   <ul>
   <li><a href="#resumen" id="toc-resumen" class="nav-link active" data-scroll-target="#resumen"><span class="header-section-number">6.1</span> Resumen</a></li>
-  <li><a href="#proceso" id="toc-proceso" class="nav-link" data-scroll-target="#proceso"><span class="header-section-number">6.2</span> Proceso</a>
+  <li><a href="#insumos" id="toc-insumos" class="nav-link" data-scroll-target="#insumos"><span class="header-section-number">6.2</span> Insumos</a></li>
+  <li><a href="#proceso" id="toc-proceso" class="nav-link" data-scroll-target="#proceso"><span class="header-section-number">6.3</span> Proceso</a>
   <ul class="collapse">
-  <li><a href="#imputación-de-valores-por-vecinos" id="toc-imputación-de-valores-por-vecinos" class="nav-link" data-scroll-target="#imputación-de-valores-por-vecinos"><span class="header-section-number">6.2.1</span> Imputación de valores por vecinos</a></li>
-  <li><a href="#consolidacion-de-dimensiones" id="toc-consolidacion-de-dimensiones" class="nav-link" data-scroll-target="#consolidacion-de-dimensiones"><span class="header-section-number">6.2.2</span> Consolidacion de Dimensiones</a></li>
-  <li><a href="#consolidación-de-indicador-compuesto" id="toc-consolidación-de-indicador-compuesto" class="nav-link" data-scroll-target="#consolidación-de-indicador-compuesto"><span class="header-section-number">6.2.3</span> Consolidación de Indicador Compuesto</a></li>
-  </ul></li>
-  <li><a href="#insumos" id="toc-insumos" class="nav-link" data-scroll-target="#insumos"><span class="header-section-number">6.3</span> Insumos</a>
-  <ul class="collapse">
-  <li><a href="#manzanas-con-indicadores-calculados" id="toc-manzanas-con-indicadores-calculados" class="nav-link" data-scroll-target="#manzanas-con-indicadores-calculados"><span class="header-section-number">6.3.1</span> Manzanas con indicadores Calculados</a></li>
+  <li><a href="#imputación-de-valores-por-vecinos" id="toc-imputación-de-valores-por-vecinos" class="nav-link" data-scroll-target="#imputación-de-valores-por-vecinos"><span class="header-section-number">6.3.1</span> Imputación de valores por vecinos</a></li>
+  <li><a href="#consolidacion-de-dimensiones" id="toc-consolidacion-de-dimensiones" class="nav-link" data-scroll-target="#consolidacion-de-dimensiones"><span class="header-section-number">6.3.2</span> Consolidacion de Dimensiones</a></li>
+  <li><a href="#consolidación-de-indicador-compuesto" id="toc-consolidación-de-indicador-compuesto" class="nav-link" data-scroll-target="#consolidación-de-indicador-compuesto"><span class="header-section-number">6.3.3</span> Consolidación de Indicador Compuesto</a></li>
+  <li><a href="#análisis-de-cluster" id="toc-análisis-de-cluster" class="nav-link" data-scroll-target="#análisis-de-cluster"><span class="header-section-number">6.3.4</span> Análisis de Cluster</a></li>
   </ul></li>
   <li><a href="#aplicación" id="toc-aplicación" class="nav-link" data-scroll-target="#aplicación"><span class="header-section-number">6.4</span> Aplicación</a></li>
   <li><a href="#interpretacion" id="toc-interpretacion" class="nav-link" data-scroll-target="#interpretacion"><span class="header-section-number">6.5</span> Interpretacion</a></li>
@@ -245,30 +243,56 @@ div.csl-indent {
 
 </header>
 
+<p><img src="images/logo-mbht.png" class="img-fluid"></p>
 <section id="resumen" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="resumen"><span class="header-section-number">6.1</span> Resumen</h2>
-<p>Un indicador compuesto es una combinación matemática (o agregación) de un conjunto de indicadores individuales (o variables) que representan distintos componentes de un fenómeno multidimensional. Comúnmente los análisis de indicadores compuestos operan sobre promedios de unidades administrativas o nacionales. Sin embargo, rara vez los fenómenos sociales, económicos y ambientales siguen una distribución uniforme dentro de estas unidades. Por lo tanto, incorporar la dimensión espacial de las variables permite enriquecer los modelos y el poder análitico de los indicadores compuestos <span class="citation" data-cites="troguSpatialCompositeIndicators2018">(<a href="references.html#ref-troguSpatialCompositeIndicators2018" role="doc-biblioref">Trogu and Campagna 2018</a>)</span>.</p>
+<p>En esta sección se muestran los pasos finales en la construcción del indicador de bienestar humano territorial. Este paso toma todos los indicadores ya calculados y los procesa para la construcción de un indicador compuesto que busca representar el bienestar humano en el territorio. Las principales caracterterísticas de este se ser un indicador que releva la locación de los fenómenos y las relaciones de vecindad que existen en el territorio.</p>
+<p>Un indicador compuesto se define como una combinación matemática de un conjunto de indicadores individuales que representan distintos componentes de un fenómeno multidimensional. Comúnmente los análisis de indicadores compuestos operan sobre promedios de unidades administrativas o nacionales. Sin embargo, rara vez los fenómenos sociales, económicos y ambientales siguen una distribución uniforme dentro de estas unidades. Por lo tanto, incorporar la dimensión espacial de las variables permite enriquecer los modelos y el poder análitico de los indicadores compuestos <span class="citation" data-cites="troguSpatialCompositeIndicators2018">(<a href="references.html#ref-troguSpatialCompositeIndicators2018" role="doc-biblioref">Trogu and Campagna 2018</a>)</span>.</p>
 <p>Al incorporar la locación en el análisis es posible relevar las relaciones de vecindad entre observaciones. Estas ponen de relieve relaciones de dependencia espacial y heterogeneidad espacial, las cuales invalidan la hipótesis de independencia espacial entre las variables, por lo que es necesario incorporar técnicas de estadística espacial al análisis <span class="citation" data-cites="anselinWhatSpecialSpatial1989">(<a href="references.html#ref-anselinWhatSpecialSpatial1989" role="doc-biblioref">Anselin 1989</a>)</span>. Estas buscan profundizar en los patrones espaciales de las variables, detectando clusters y regiones de contagio <span class="citation" data-cites="getis1999spatial">(<a href="references.html#ref-getis1999spatial" role="doc-biblioref">Getis 1999</a>)</span>.</p>
+<p>Existe numerosa literatura que busca resumir y recomendar los pasos en la construicción de indicadores compuestos [@joint2008handbook; @soto2009guia] los cuales hacen énfasis en los pasos de análisis de las variables y las unidades de análisis, buscando agrupaciones de variables o de observaciones que se comportan de forma similar. Estos pasos permiten extenderse y usar técnicas de estadística espacial en el contexto de indicadores en el territorio [@troguSpatialCompositeIndicators2018]. En esta literatura se encuentra también una discusión sobre los métodos de agregación y el trade off entre la complejidad de estos y la comunicabilidad de los resultados.</p>
 </section>
-<section id="proceso" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="proceso"><span class="header-section-number">6.2</span> Proceso</h2>
-<p>diagrama</p>
-<section id="imputación-de-valores-por-vecinos" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="imputación-de-valores-por-vecinos"><span class="header-section-number">6.2.1</span> Imputación de valores por vecinos</h3>
+<section id="insumos" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="insumos"><span class="header-section-number">6.2</span> Insumos</h2>
+<p>Los insumos para la consolidación de este proceso son los indicadores ya calculados de las dimensiones que componen la Matriz de Bienestar Humano Territorial (MBHT):</p>
+<ul>
+<li><p>Dimensión Socioeconómica</p></li>
+<li><p>Dimensión Ambiental</p></li>
+<li><p>Dimensión Seguridad</p></li>
+<li><p>Dimensión Accesibilidad</p></li>
+</ul>
 </section>
-<section id="consolidacion-de-dimensiones" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="consolidacion-de-dimensiones"><span class="header-section-number">6.2.2</span> Consolidacion de Dimensiones</h3>
-<p>MPI</p>
-<p>Promedio Simple</p>
+<section id="proceso" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="proceso"><span class="header-section-number">6.3</span> Proceso</h2>
+<p>El proceso de cálculo y consolidación toma como entrada los indicadores ya calculados y comienza por analizar los valores faltantes (indicadores que se indefinen porque no existe población relevante en la manzana) e imputar valores a partir de los vecinos de las manzanas. Luego, con el objetivo de consolidar las dimensiones, se normalizan los indicadores y se invierten cuando sea el caso, con el objetivo de expresarlos en una escala consistente.</p>
+<p><img src="images/diagrama-consolidacion-01.PNG" class="img-fluid"></p>
+<p>El indicador compuesto se construye a partir de las dimensiones ya consolidadas. Luego de esto se analiza el patrón espacial de bienestar, mediante un análisis de cluster geográfico que identifica zonas de alto y bajo bienestar.</p>
+<p>A continuación se explica en mayor detalle cada subproceso.</p>
+<section id="imputación-de-valores-por-vecinos" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="imputación-de-valores-por-vecinos"><span class="header-section-number">6.3.1</span> Imputación de valores por vecinos</h3>
+<p>Debido a que los indicadores hacen referencia a la población y que existen casos de manzanas en el territorio que no cuentan con información poblacional, es que en estos casos los indicadores que hacen referencia a esta población se indefinen. Es por esto y con el objetivo de no excluir territorios del análisis, que se asignan valores de indicadores a estas manzanas.</p>
+<p>El método usado es una interpolación por inverso de distancia, y consiste en identificar las manzanas vecinas con información del indicador en cuestión. A partir de lo cual se construye un promedio ponderado por el inverso de la distancia. Es decir que las manzanas más cercanas cuentan con mayor peso en el cálculo del valor que se imputa en la manzana.</p>
 </section>
-<section id="consolidación-de-indicador-compuesto" class="level3" data-number="6.2.3">
-<h3 data-number="6.2.3" class="anchored" data-anchor-id="consolidación-de-indicador-compuesto"><span class="header-section-number">6.2.3</span> Consolidación de Indicador Compuesto</h3>
+<section id="consolidacion-de-dimensiones" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="consolidacion-de-dimensiones"><span class="header-section-number">6.3.2</span> Consolidacion de Dimensiones</h3>
+<p>La consolidación de las dimensiones es un proceso que se realiza para los indicadores que componen cada dimensión. Esto implica normalizar la escala de análisis y en algunos casos aplicar transformaciones a la serie de datos originales.</p>
+<p>El objetivo de las transformaciones es evitar el impacto desmedido que puedan tener observaciones atípicas o outliers. Esto es particularmente relevante para los indicadores de accesibilidad, que debido a su naturaleza que involucra población y oportunidades, ocurren casos donde la densidad de población en el territorio es baja y las oportunidades son relativamente altas, lo que genera valores muy altos. El bienestar derivado de estas oportunidades es decreciente. Esto implica que una unidad adicional de oportunidades es más valiosa cuando el punto de partida es más bajo, que cuando se hay exceso de oportunidades. Estas razones llevan a aplicar una suavización por raiz cúbica a la serie de datos de accesibilidad antes de normalizarla.</p>
+<p>La normalización implica expresar los datos en una escala de valores entre 0 y 1 y se consigue al asociar el valor 0 y 1 a los valores mínimos y máximos de la serie.</p>
+<p>Una vez que los indicadores fueron suavizados y normalizados se procede a consolidarlos a nivel de dimensión. Este proceso se realiza mediante promedio simple, promedio ponderado o algoritmos de agregación específicos. A continuación se menciona y explica el método de agregación de cada dimensión.</p>
+<ul>
+<li><p>Dimensión Socioeconómica: Promedio simple</p></li>
+<li><p>Dimensión Ambiental: Índice de Mazziota Paretto (MPI)</p></li>
+<li><p>Dimensión Seguridad: ponderación por gravedad del hecho delitictivo.</p></li>
+<li><p>Dimensión de Accesibilidad: Promedio Simple.</p></li>
+</ul>
+<p>El método de agregación de Mazziota Paretto [@mazziottaGeneralizedNoncompensatoryComposite2016] es procedimiento no compensatorio y de simple cálculo. Este implica castigar la variabilidad de en las series de datos originales, y se expresa como un promedio castigado por varianza. Esto implica que valores más altos pueden ser castigados por que la serie subyacente de datos presenta alta variabilidad, o lo que es lo mismos, series con valores muy altos y muy bajos que se promedian en un valor medio. Este método castiga esta variabilidad, y con esto castiga la sustitución entre indicadores. En particular, en la dimensión ambiental, un mayor nivel de cobertura vegetal no compensa por tener inviernos muy fríos y veranos muy calurosos. y viceversa.</p>
+<p>La ponderación por gravedad del hecho delictivo implica que la inseguridad generada por delitos graves se pondera con el doble de importancia con la inseguridad de delitos leves.</p>
 </section>
+<section id="consolidación-de-indicador-compuesto" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="consolidación-de-indicador-compuesto"><span class="header-section-number">6.3.3</span> Consolidación de Indicador Compuesto</h3>
+<p>Finalmente, una vez que</p>
 </section>
-<section id="insumos" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="insumos"><span class="header-section-number">6.3</span> Insumos</h2>
-<section id="manzanas-con-indicadores-calculados" class="level3" data-number="6.3.1">
-<h3 data-number="6.3.1" class="anchored" data-anchor-id="manzanas-con-indicadores-calculados"><span class="header-section-number">6.3.1</span> Manzanas con indicadores Calculados</h3>
+<section id="análisis-de-cluster" class="level3" data-number="6.3.4">
+<h3 data-number="6.3.4" class="anchored" data-anchor-id="análisis-de-cluster"><span class="header-section-number">6.3.4</span> Análisis de Cluster</h3>
 </section>
 </section>
 <section id="aplicación" class="level2" data-number="6.4">
@@ -282,15 +306,7 @@ div.csl-indent {
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"R/helpers.R"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"R/idw.R"</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'R/01_imputacion.R'</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'R/02_dimensiones.R'</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'R/02_dimensiones_parcheMPI.R'</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'R/03_ibt.R'</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'R/04_zonas.R'</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'R/funciones_2.R'</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"R/ponderacion_mbht.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"R/conf_consolidate.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Adicionalmente a esto es necesario cargar ciertos parámetros que facilitan el flujo de trabajo, vinculando nombres de variables con sus indicadores y poblaciones relavantes.</p>
 <div class="cell">
@@ -329,23 +345,35 @@ div.csl-indent {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mz_c_dimensiones <span class="ot">&lt;-</span> <span class="fu">consolidarDimensiones</span>(<span class="at">manzanas_c_indicador =</span>  mz_imputado)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: soc</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: ambiental</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: seguridad</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: accesibilidad</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Con las dimensiones creadas es posible calcular el indicador MBHT, donde cada dimensión recibe una ponderacion proporcional al número de indicadores que contiene:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calcula MBHT y normaliza</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df_res <span class="ot">&lt;-</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    mz_c_dimensiones <span class="sc">%&gt;%</span> </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename_all</span>(stringr<span class="sc">::</span>str_to_upper) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mbht_pondera_num_dims</span>(vars) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">MBHT_P_BRUTO =</span> MBHT_P) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">MBHT_P =</span> <span class="fu">minmax</span>(MBHT_P_BRUTO))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calcula MBHT y normaliza</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_res <span class="ot">&lt;-</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    mz_c_dimensiones <span class="sc">%&gt;%</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename_all</span>(stringr<span class="sc">::</span>str_to_upper) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mbht_pondera_num_dims</span>(vars) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">MBHT_P_BRUTO =</span> MBHT_P) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">MBHT_P =</span> <span class="fu">minmax</span>(MBHT_P_BRUTO))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Ponderacion proporcional al numero de indicadores en cada dimension"</code></pre>
 </div>
 </div>
 <p>Con esto es posible calcular las zonas de oportunidad, donde se identifican clusters de valores altos y bajos del indicador de bienestar humano.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mz_zonas <span class="ot">&lt;-</span> <span class="fu">zonasIBT</span>(df_res, <span class="at">var_ibt =</span> <span class="st">"MBHT_P"</span>) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">TOB=</span>clusterM)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mz_zonas<span class="sc">$</span>TOB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mz_zonas <span class="ot">&lt;-</span> <span class="fu">zonasIBT</span>(df_res, <span class="at">var_ibt =</span> <span class="st">"MBHT_P"</span>) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">TOB=</span>clusterM)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mz_zonas<span class="sc">$</span>TOB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  Alto  Bajo Medio 
@@ -353,13 +381,13 @@ div.csl-indent {
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_zonas) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"MBHT_P"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette =</span><span class="st">"RdYlGn"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_zonas) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"MBHT_P"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette =</span><span class="st">"RdYlGn"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="consolidacion_files/figure-html/cons-viz-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_zonas) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"TOB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_zonas) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"TOB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="consolidacion_files/figure-html/cons-viz-zonas-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -367,7 +395,6 @@ div.csl-indent {
 </section>
 <section id="interpretacion" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="interpretacion"><span class="header-section-number">6.5</span> Interpretacion</h2>
-<p>Análisis Multivariado. Estadística espacial: distancia y relaciones de vecindad. Imputaciones de datos faltantes por interpolación espacial. Agregación de indicadores: objetivos comunicacionales, disminuir complejidad. MPI y Promedio Ponderado: lógica, relaciones compensatorias, alternativas. Zonas de Oportunidad (análisis de cluster geográfico).</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">

@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -95,6 +114,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -191,8 +212,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#resumen" id="toc-resumen" class="nav-link active" data-scroll-target="#resumen"><span class="header-section-number">5.1</span> Resumen</a></li>
-  <li><a href="#proceso" id="toc-proceso" class="nav-link" data-scroll-target="#proceso"><span class="header-section-number">5.2</span> Proceso</a></li>
-  <li><a href="#insumos" id="toc-insumos" class="nav-link" data-scroll-target="#insumos"><span class="header-section-number">5.3</span> Insumos</a></li>
+  <li><a href="#insumos" id="toc-insumos" class="nav-link" data-scroll-target="#insumos"><span class="header-section-number">5.2</span> Insumos</a>
+  <ul class="collapse">
+  <li><a href="#red-de-calles" id="toc-red-de-calles" class="nav-link" data-scroll-target="#red-de-calles"><span class="header-section-number">5.2.1</span> Red de Calles</a></li>
+  <li><a href="#manzanas-poblacionales" id="toc-manzanas-poblacionales" class="nav-link" data-scroll-target="#manzanas-poblacionales"><span class="header-section-number">5.2.2</span> Manzanas Poblacionales</a></li>
+  <li><a href="#equipamientos" id="toc-equipamientos" class="nav-link" data-scroll-target="#equipamientos"><span class="header-section-number">5.2.3</span> Equipamientos</a></li>
+  <li><a href="#información-encuesta-origen-y-destino" id="toc-información-encuesta-origen-y-destino" class="nav-link" data-scroll-target="#información-encuesta-origen-y-destino"><span class="header-section-number">5.2.4</span> Información Encuesta Origen y Destino</a></li>
+  </ul></li>
+  <li><a href="#proceso" id="toc-proceso" class="nav-link" data-scroll-target="#proceso"><span class="header-section-number">5.3</span> Proceso</a></li>
   <li><a href="#aplicación" id="toc-aplicación" class="nav-link" data-scroll-target="#aplicación"><span class="header-section-number">5.4</span> Aplicación</a></li>
   <li><a href="#interpretacion" id="toc-interpretacion" class="nav-link" data-scroll-target="#interpretacion"><span class="header-section-number">5.5</span> Interpretacion</a></li>
   </ul>
@@ -221,76 +248,100 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="img/01_accesibilidad.png" class="img-fluid"></p>
 <section id="resumen" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="resumen"><span class="header-section-number">5.1</span> Resumen</h2>
-<p>Literatura sobre accesibilidad, otras métricas (ciudad de 15 minutos).</p>
-<p>Listado de indicadores de accesibilidad</p>
+<p>Este indicador busca medir el grado de acceso de la población a las oportunidades presentes en el territorio, con sus diferentes equipamientos y servicios. La dimensión se compone por seis indicadores: accesibilidad a equipamientos culturales, equipamientos deportivos, equipamientos de salud y de áreas verdes, y a servicios públicos y de educación.</p>
+<p>Existe numerosa literatura sobre el acceso a oportunidades en el territorio y las distintas métricas que es posible construir. Destaca si el trabajo de <span class="citation" data-cites="geurs2004accessibility">(<a href="references.html#ref-geurs2004accessibility" role="doc-biblioref">Geurs and Van Wee 2004</a>)</span> que clasifica las métricas de acuerdo al tratmiento de cuatro componentes clave: la ubicación de las oportunidades y la población, las restricciones individuales, el sistema de transporte, y las restricciones temporales.</p>
+<p>En este sentido el indicador calculado cae bajo la categoría de indicadores basados en locación, y respeta la ubicación de personas y oportunidades, incorpora las restricciones individuales mediante un parámetro de sensibilidad al costo de desplazarse que se deriva de la Encuesta de Origen y Destino, además de incorporar modos de transporte a pie y en vehículo mediante las calles de la ciudad. Esto se puede apreciar en la siguiente expresión:</p>
+<p><span class="math display">\[
+A_i = \sum_{j=1}^m D_j e^{-\beta c_{ij}}
+\]</span></p>
+<p>Donde <span class="math inline">\(A_i\)</span> es el indicador de accesibilidad, <span class="math inline">\(D_j\)</span> indica las oportunidades en el territorio y <span class="math inline">\(c_{ij}\)</span> el costo de desplazamiento.</p>
+<p>El listado de indicadores de accesibilidad de la dimensión es el siguiente:</p>
+<ul>
+<li><p>IAV: Accesibilidad a Áreas Verdes.</p></li>
+<li><p>ICUL: Accesibilidad a Cultura.</p></li>
+<li><p>ISER: Accesibilidad a Servicios Públicos.</p></li>
+<li><p>ISE: Accesibilidad a Educación.</p></li>
+<li><p>IDEP: Accesibilidad a Áreas Deportivas.</p></li>
+<li><p>ISAL: Accesibilidad a Equipamientos de Salud.</p></li>
+</ul>
+<p>En particular los indicadores de accesibilidad a equipamientos (ICUL, IDEP, ISAL e IAV), representan en m2 /habitante, la relación de capacidad de cada equipamiento (superficie o matrículas escolares, por ejemplo), y la población que puede acceder a los mismos; en relación a la distancia y a la propensión de desplazamiento.</p>
+<p>Indicadores basados en locación</p>
+<p>Donde <span class="math inline">\(A_i\)</span> indica el indicador de accesibilidad en la locación <span class="math inline">\(i\)</span> (manzanas con población), siendo <span class="math inline">\(D_j\)</span> la oportunidad presente en el equipamiento <span class="math inline">\(j\)</span>, además <span class="math inline">\(c_{ij}\)</span> indica el costo de desplazamiento entre la locación <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span>, esta última ponderada exponencialmente por un parámetro <span class="math inline">\(\beta\)</span> que indica la dispocición de viaje o descuento por costo de desplazamiento en tiempo o distancia. La expresión muestra como el indicador de accesibilidad es la suma de oportunidades ponderadas por el costo de desplazamiento a estas.</p>
 </section>
-<section id="proceso" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="proceso"><span class="header-section-number">5.2</span> Proceso</h2>
-<p>Fórmula.</p>
-<p>diagrama</p>
-<p>Proceso General.</p>
-</section>
-<section id="insumos" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="insumos"><span class="header-section-number">5.3</span> Insumos</h2>
-<p>Tipos de datos de línea: calles.</p>
+<section id="insumos" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="insumos"><span class="header-section-number">5.2</span> Insumos</h2>
+<p>A continuación detallamos los insumos incluidos en el cálculo de estos indicadores. Estos comprenden:</p>
+<ul>
+<li><p>Red de Calles.</p></li>
+<li><p>Manzanas Poblacionales.</p></li>
+<li><p>Equipamientos.</p></li>
+<li><p>Información de Encuesta de Origen y Destino.</p></li>
+</ul>
+<section id="red-de-calles" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="red-de-calles"><span class="header-section-number">5.2.1</span> Red de Calles</h3>
+<p>La red de calles es un insumo que se expresa en formato geográfico como lineas conectadas. Estas requieren de procesos de limpieza que implican que en cada intersección exista un punto, y estos puntos estén correctamente conectados. Adicionalmente, en cada tramo debe existir información sobre el largo de este y además el tiempo de desplazamiento en este caminando, respetando la elevación que existe en cada tramo.</p>
+<p>A modo de ilustración se muestra la red de calles regional de la Región de Tarapacá. Se destaca la ubicación de la ciudad de Iquique dentro de la región.</p>
 <p><img src="img/red-01.png" class="img-fluid"></p>
-<p>Tipo de dato: Grafos, rutas. Mejor ruta, asociado a un costo.</p>
+<p>El proceso que se aplica a esta red de calles implica transformarla al tipo de dato grafo conectado, el cual permite la apliación de algoritmos de ruta que buscan optimizar los desplazamientos para encontrar las rutas más cortas. Un ejemplo de esta optimización se presenta en la siguiente imagen. Son estas rutas más cortas las que representarán los costos de desplazamiento entre la población y las oportunidades del territorio.</p>
 <p><img src="img/ej-ruta-iqq.jpeg" class="img-fluid"></p>
-<p>Fuentes externas: encuesta origen y destino, impedancias.</p>
-<p><img src="img/imp_caminata.png" class="img-fluid"></p>
-<p>Insumos: equipamientos (levantamiento), calles (limpieza), manzanas.</p>
+</section>
+<section id="manzanas-poblacionales" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="manzanas-poblacionales"><span class="header-section-number">5.2.2</span> Manzanas Poblacionales</h3>
+<p>Las manzanas poblacionales son los ya conocidos polígonos que cuentan con datos de habitantes, y habitantes por grupos de interés. Por ejemplo, el número de personas en edad de estudiar. Esto es importante para luego vincular estos grupos poblacionales con las oportunidades específicas que necesitan, como son matrículas en establecimientos educacionales.</p>
+</section>
+<section id="equipamientos" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="equipamientos"><span class="header-section-number">5.2.3</span> Equipamientos</h3>
+<p>Los equipamientos presentan las oportunidades en el territorio. Estos pueden expresar superficie, nivel de atención, matrículas, etc. Además, existen dos tipos de equipamientos: locales y metropolitanos. Los equipamientos locales son aquellos que sirven a la población en un tiempo más acotado; pudiendo llegar a estos caminando, y mantienen una importancia local en el territorio; y los de carácter metropolitano, aquellos que tienen una gran importancia para el territorio, por lo que, la población en su totalidad podría asistir.</p>
+<p>La imagen a continuación indica los equipamientos de Cultura en la ciudad de Iquique, y el tamaño del punto indica el nivel de oportunidades que representan.</p>
 <p><img src="images/ind_cul_l.png" class="img-fluid"></p>
+</section>
+<section id="información-encuesta-origen-y-destino" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="información-encuesta-origen-y-destino"><span class="header-section-number">5.2.4</span> Información Encuesta Origen y Destino</h3>
+<p>Finalmente, usando los datos de la Encuesta de Origen y Destino (EOD) se calcula el parámetro de sensibilidad al costo de desplazamiento <span class="math inline">\(\beta\)</span>, este indica el nivel de decaimiento exponencial en la probabilidad de hacer un viaje a medida que aumenta el costo de desplazamiento la probabilidad de realizar el viaje disminuye. La imagen a continuación indica como se comporta este parámetro, siendo el eje y el que indica la probabilidad de realizar el viaje (entre 0 y 1) y el eje x indicando el costo en tiempo. Se aprecia que existe un tramo de costo donde el viaje se realizar con probabilidad 1, en este caso en viajes de menos de 5 minutos. Luego, la probabilidad decae exponencialmente siguiendo el parámetro <span class="math inline">\(\beta\)</span>. Esta curva es una aproximación empírica de la consolidación de viajes registrados en la EOD, en modo caminata para un propósito libre.</p>
+<p><img src="img/imp_caminata.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="proceso" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="proceso"><span class="header-section-number">5.3</span> Proceso</h2>
+<p>El objetivo es calcular el indicador de oportunidades per cápita de la población, lo que puede expresarse siguiendo las siguientes fórmulas:</p>
+<p><span class="math display">\[ C_j = \sum_{i=1}^n P_i e^{-\beta c_{ij}} \]</span></p>
+<p><span class="math display">\[ A_i = \sum_{j=1}^m (D_j/C_j) e^{-\beta c_{ij}} \]</span></p>
+<p>Estas ilustran el proceso de cálculo, indicando que primero se calcula la población que realiza el viaje desde su residencia <span class="math inline">\(P_i\)</span> a la ubicación de las oportunidades, siendo sumadas en el destino <span class="math inline">\(C_j\)</span>. Este valor luego divide las oportunidades en el destino, para expresarlas en términos percápita <span class="math inline">\((D_j/C_j)\)</span> siendo este el valor repartido a los puntos de origen y expresado en <span class="math inline">\(A_i\)</span>.</p>
+<p>Para esto el proceso considera los distintos insumos de entrada para procesarlos con el objetivo de calcular el elemento <span class="math inline">\(e^{\beta c_{ij}}\)</span> que se representa como una matriz de probabilidad de viajes. Esta última es el insumo clave que pondera la población para calcular las cargas y luego las oportunidades per-cápita para calcular el indicador.</p>
+<p><img src="images/diagrama-accesibilidad.PNG" class="img-fluid"></p>
 </section>
 <section id="aplicación" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="aplicación"><span class="header-section-number">5.4</span> Aplicación</h2>
-<p>Caso de Equipamiento de Áreas Verdes.</p>
+<p>Demostramos el flujo de trabajo mediante el uso de una librería interna que empaqueta el proceso de cálculo, llamada `Accesibilidad`. Comenzamos por configurar el entorno de trabajo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Accesibilidad)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Linking to GEOS 3.9.1, GDAL 3.3.2, PROJ 7.2.1; sf_use_s2() is TRUE</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># configura entorno de trabajo</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Accesibilidad)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'dplyr' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'dplyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
-
-    filter, lag</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'tmap' was built under R version 4.2.3</code></pre>
-</div>
-</div>
+<p>A partir de esto podemos cargar la información de entrada: manzanas poblacionales, equipamientos y red de calles:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manzanas</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mz <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/mz_iqq.shp"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.))</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># equipamientos</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>equip <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/av_iqq.shp"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)<span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.))</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># red </span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>red <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/red.shp"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manzanas</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mz <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/mz_iqq.shp"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># equipamientos</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>equip <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/av_iqq.shp"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)<span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># red </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>red <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/red.shp"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>La información de la EOD ya se encuentra preprocesada y los parámetros <span class="math inline">\(\beta\)</span> ya se encuentran precalculados, por lo que cargamos esta información adicional:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>impedancias <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">'data/impedancias.txt'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">separate</span>(tipo, <span class="fu">c</span>(<span class="st">"modo"</span>,<span class="st">"proposito"</span>), <span class="st">"_"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>iterador <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"data/indice_accesibilidad.csv"</span>) <span class="sc">%&gt;%</span>  </span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(itera_accesibilidad <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># beta</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>impedancias <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">'data/impedancias.txt'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">separate</span>(tipo, <span class="fu">c</span>(<span class="st">"modo"</span>,<span class="st">"proposito"</span>), <span class="st">"_"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># clasifica indicador</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>iterador <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"data/indice_accesibilidad.csv"</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(itera_accesibilidad <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Con esto podemos calcular el indicador mediante la función empaquetada que toma los insumos que hemos cargado. Esta se preocupa de limpiar la red de calles, construir el grafo, asociar los puntos de origen y destino a nodos en el grafo y construir la matriz de costos de desplazamiento óptimo, a partir de lo cual calcula los indicadores de accesibilidad:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>conf_indicador <span class="ot">&lt;-</span> <span class="st">"IAV"</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ret <span class="ot">&lt;-</span> Accesibilidad<span class="sc">::</span><span class="fu">accesibilidad</span>(impedancias, iterador, conf_indicador, mz, equip, red)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>conf_indicador <span class="ot">&lt;-</span> <span class="st">"IAV"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ret <span class="ot">&lt;-</span> Accesibilidad<span class="sc">::</span><span class="fu">accesibilidad</span>(impedancias, iterador, conf_indicador, mz, equip, red)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Cleaning graph...
 Initial node ordering...
@@ -319,8 +370,9 @@ Calculo indicador
 [1] "Se agrego la accesibilidad de IAV"</code></pre>
 </div>
 </div>
+<p>El resultado se expresa sobre las manzanas de entrada, añadiendo una nueva columna con el valor del indicador:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ret)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ret)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Simple feature collection with 6 features and 17 fields
 Geometry type: POLYGON
@@ -350,8 +402,9 @@ Projected CRS: WGS 84 / UTM zone 19S
 6    58     21 0.8261619 POLYGON ((379984.1 7765040,...</code></pre>
 </div>
 </div>
+<p>Podemos revisar el resultado en el territorio:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(ret) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"IAV"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette=</span><span class="st">"RdYlGn"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(ret) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"IAV"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette=</span><span class="st">"RdYlGn"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="accesibilidad_files/figure-html/acc-viz-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -362,6 +415,11 @@ Projected CRS: WGS 84 / UTM zone 19S
 <p>Resultados e interpretación.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-geurs2004accessibility" class="csl-entry" role="listitem">
+Geurs, Karst T, and Bert Van Wee. 2004. <span>“Accessibility Evaluation of Land-Use and Transport Strategies: Review and Research Directions.”</span> <em>Journal of Transport Geography</em> 12 (2): 127–40.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
