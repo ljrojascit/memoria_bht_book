@@ -114,6 +114,8 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -289,10 +291,17 @@ div.csl-indent {
 </section>
 <section id="consolidación-de-indicador-compuesto" class="level3" data-number="6.3.3">
 <h3 data-number="6.3.3" class="anchored" data-anchor-id="consolidación-de-indicador-compuesto"><span class="header-section-number">6.3.3</span> Consolidación de Indicador Compuesto</h3>
-<p>Finalmente, una vez que</p>
+<p>Finalmente, una vez que se cuenta con las dimensiones consolidadas se procede a generar el indicador de bienestar. Este es un promedio ponderado de cada dimensión proporcional al número de indicadores en cada dimensión.</p>
 </section>
 <section id="análisis-de-cluster" class="level3" data-number="6.3.4">
 <h3 data-number="6.3.4" class="anchored" data-anchor-id="análisis-de-cluster"><span class="header-section-number">6.3.4</span> Análisis de Cluster</h3>
+<p>Con el indicador ya calculado, es posible realizar un análisis de cluster espacial. Esto se hace usando el Índice de Moran Local, el cual tiene la siguente expresión:</p>
+<p><span class="math display">\[
+I_i = c.z_i \sum_jw_{ij}z_j
+\]</span></p>
+<p>Donde <span class="math inline">\(I_i\)</span> representa el valor del índice en la locación <span class="math inline">\(i\)</span> , <span class="math inline">\(c.\)</span> es una constante, <span class="math inline">\(z_i\)</span> es el valor de la variable analizada en la locación <span class="math inline">\(i\)</span> , mientras que <span class="math inline">\(w_{ij}\)</span> es la relación de vecindad existente entre la locación <span class="math inline">\(i\)</span> y la locación <span class="math inline">\(j\)</span>.</p>
+<p>Al analizar este índice en los datos se obtiene una expresión de su variabilidad, y con esto una medida de la significancia estadística. La detección de cluster implica un proceso de identificar si el valor de la locación <span class="math inline">\(i\)</span> está sobre o bajo el promedio, y si los vecinos están sobre o bajo el promedio, evaluando si es significativa esta magnitud.</p>
+<p>El resultado de esto son locaciones de valores altos rodeados de valores altos, identificados como zonas de alto bienestar, zonas de valores bajos rodeados de valores bajos y valores medios. Este análisis permite identificar la población que cuenta con mayores oportunidades de bienestar y la población y el territorio donde es necesario generar acciones para mejorar las oportunidades de bienestar.</p>
 </section>
 </section>
 <section id="aplicación" class="level2" data-number="6.4">
@@ -316,23 +325,64 @@ div.csl-indent {
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(<span class="st">'data/json/dim_var.json'</span>)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">lapply</span>(vars, toupper)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Cargamos los datos de la ciudad:</p>
+<p>Con esto podemos cargar los datos de las manzanas de la ciudad, ya que cuentan con la información de indicadores calculados:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mzs <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/mz_vld.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mzs <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/mz_vld.rds"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mzs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,842
+Columns: 35
+$ ID_MANZ    &lt;chr&gt; "14101041005003", "14101041005002", "14101041001007", "1410…
+$ MANZ_EN    &lt;chr&gt; "URBANO", "URBANO", "URBANO", "URBANO", "URBANO", "URBANO",…
+$ NOM_COM    &lt;chr&gt; "VALDIVIA", "VALDIVIA", "VALDIVIA", "VALDIVIA", "VALDIVIA",…
+$ COD_COM    &lt;int&gt; 14101, 14101, 14101, 14101, 14101, 14101, 14101, 14101, 141…
+$ NOM_REG    &lt;chr&gt; "REGIÓN DE LOS RÍOS", "REGIÓN DE LOS RÍOS", "REGIÓN DE LOS …
+$ COD_REG    &lt;int&gt; 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14,…
+$ NOM_PROV   &lt;chr&gt; "VALDIVIA", "VALDIVIA", "VALDIVIA", "VALDIVIA", "VALDIVIA",…
+$ COD_PROV   &lt;int&gt; 141, 141, 141, 141, 141, 141, 141, 141, 141, 141, 141, 141,…
+$ ZONA       &lt;chr&gt; "14101041005", "14101041005", "14101041001", "14101041005",…
+$ ID_MANZCIT &lt;chr&gt; "14101041005003001", "14101041005002001", "1410104100100700…
+$ AREA       &lt;dbl&gt; 629538.019, 18760.191, 261662.458, 87593.359, 67409.232, 98…
+$ TOTAL_V    &lt;dbl&gt; 200, 18, 113, 18, 12, 117, 32, 36, 21, 68, 11, 18, 16, 24, …
+$ HOG_N      &lt;dbl&gt; 181, 18, 90, 17, 13, 107, 31, 34, 21, 63, 11, 16, 16, 18, 1…
+$ PERSONAS   &lt;dbl&gt; 610, 53, 234, 70, 36, 326, 96, 93, 50, 166, 41, 47, 59, 59,…
+$ E4A18      &lt;dbl&gt; 180, 17, 32, 15, 10, 70, 26, 17, 12, 31, 9, 10, 9, 14, 9, 1…
+$ E15A24     &lt;dbl&gt; 87, 6, 42, 16, 4, 33, 18, 15, 5, 25, 9, 5, 9, 4, 4, 7, 6, 5…
+$ IEJ        &lt;dbl&gt; 12.5, 12.9, 11.7, 16.5, 15.1, 15.2, 14.9, 15.1, 14.8, 14.1,…
+$ IRH        &lt;dbl&gt; 0.9171271, 0.8888889, 0.8666667, 0.8823529, 1.0000000, 0.90…
+$ IEM        &lt;dbl&gt; 0.9473684, 0.9629630, 0.9633028, 0.9642857, 0.9473684, 0.97…
+$ IPJ        &lt;dbl&gt; 0.9195402, 0.8333333, 0.8571429, 1.0000000, 1.0000000, 0.69…
+$ ISV        &lt;dbl&gt; 0.9636364, 0.9494949, 0.9839099, 1.0000000, 0.9242424, 0.96…
+$ IVI        &lt;dbl&gt; 0.8666667, 0.8518519, 0.9911504, 0.9814815, 1.0000000, 0.92…
+$ IATA       &lt;dbl&gt; 12.73768, 13.12594, 14.70082, 14.52768, 13.83234, 14.82930,…
+$ ICV        &lt;dbl&gt; 85.498924, 75.110745, 42.113563, 61.373270, 96.926633, 3.82…
+$ ICUL       &lt;dbl&gt; 0.03824028, 0.03840730, 0.16971080, 0.03342802, 0.03601819,…
+$ IAV        &lt;dbl&gt; 6.199992, 6.078348, 17.908603, 5.244341, 5.758565, 6.583388…
+$ ISAL       &lt;dbl&gt; 0.09752876, 0.10294934, 0.34112378, 0.08753293, 0.09292684,…
+$ IDEP       &lt;dbl&gt; 0.4406985, 0.5156391, 1.3661514, 0.3848369, 0.4149036, 0.84…
+$ ISER       &lt;dbl&gt; 0.7157770, 0.7172876, 2.0544744, 0.6498410, 0.6855541, 0.66…
+$ ISE        &lt;dbl&gt; 0.12599117, 0.14058786, 0.74424252, 0.09448714, 0.11115414,…
+$ IGPE       &lt;dbl&gt; 0.9466, 0.9141, 0.2755, 0.9790, 0.9182, 0.9042, 0.8685, 0.8…
+$ IGPR       &lt;dbl&gt; 0.9353, 0.8960, 0.1425, 0.9746, 0.8918, 0.8809, 0.8259, 0.8…
+$ ILPE       &lt;dbl&gt; 0.9600, 0.9362, 0.5936, 0.9838, 0.9302, 0.9256, 0.8892, 0.8…
+$ ILPR       &lt;dbl&gt; 0.9763, 0.9634, 0.7650, 0.9892, 0.9705, 0.9735, 0.9568, 0.9…
+$ geometry   &lt;POLYGON [°]&gt; POLYGON ((-73.21897 -39.788..., POLYGON ((-73.21784…</code></pre>
 </div>
-<p>Podemos visualizar el sector urbano, donde se aprecia que tenemos la ciudad de Valdivia y además se aprecia la zona costera de Niebla.</p>
+</div>
+<p>Al visualizar estas manzanas se distingue el sector urbano de Valdivia, además la zona costera de Niebla.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mzs) <span class="sc">+</span> <span class="fu">tm_borders</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mzs) <span class="sc">+</span> <span class="fu">tm_borders</span>() <span class="sc">+</span> <span class="fu">tm_layout</span>(<span class="at">title=</span><span class="st">"Valdivia: Manzanas Urbanas"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="consolidacion_files/figure-html/cons-viz-mzs-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>El proceso comienza por identificar aquellas manzanas cuyos valores poblacionales son cero. Esto es prerequisito para definir imputar valores de indicadores a partir sus vecinos. Esto se logra mediante la interpolación por vecinos cercanos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mz_imputado <span class="ot">&lt;-</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  mzs <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">makeNA</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">imputarIdw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identificar y crear valores NA y luego interpolar</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mz_imputado <span class="ot">&lt;-</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  mzs <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">makeNA</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">imputarIdw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "(ISV$|IVI$)"                         "(IRH$|ICUL$|IAV$|ISAL$|IDEP$|ISER$)"
 [3] "(ISE$)"                             
@@ -341,53 +391,76 @@ div.csl-indent {
 [1] "ISE"</code></pre>
 </div>
 </div>
-<p>A partir de esto se pueden consolidar las dimensiones.</p>
+<p>A partir de esto se pueden consolidar las dimensiones, lo que implica suavizar los indicadores de accesibilidad, normalizar y agregar.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mz_c_dimensiones <span class="ot">&lt;-</span> <span class="fu">consolidarDimensiones</span>(<span class="at">manzanas_c_indicador =</span>  mz_imputado)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mz_c_dimensiones <span class="ot">&lt;-</span> <span class="fu">consolidarDimensiones</span>(<span class="at">manzanas_c_indicador =</span>  mz_imputado)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Se pueden apreciar los resultados a continuación. La dimensión socioeconómicoa muestra un patrón de mejor condición en la periferia norte de la ciudad.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: soc</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: soc</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_c_dimensiones) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"dim_soc"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette=</span><span class="st">"Purples"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="consolidacion_files/figure-html/cns-viz-soc-1.png" class="img-fluid" width="672"></p>
 </div>
+</div>
+<p>Luego la dimensión ambiental muestra un patrón muy claro donde la periferia de la zona más densa y urbana de la ciudad tiene valores más altos de confort ambiental.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: ambiental</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: ambiental</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_c_dimensiones) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"dim_amb"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette=</span><span class="st">"RdYlGn"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="consolidacion_files/figure-html/cns-viz-amb-1.png" class="img-fluid" width="672"></p>
 </div>
+</div>
+<p>El patrón de seguridad muestra como los delitos se concentran en el centro de la ciudad.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: seguridad</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: seguridad</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_c_dimensiones) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"dim_seg"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette=</span><span class="st">"RdYlBu"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="consolidacion_files/figure-html/cns-viz-seg-1.png" class="img-fluid" width="672"></p>
 </div>
+</div>
+<p>Finalmente, el acceso a servicios se encuentra fuertemente concentrado en el centro de la ciudad.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: accesibilidad</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: accesibilidad</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_c_dimensiones) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"dim_acc"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette=</span><span class="st">"Blues"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="consolidacion_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
+</div>
+<p>Estos resultados permiten ilustrar cómo la densidad de población generalmente implica mayores servicios (ya que las decisiones de inversión se concentran donde existen mercados más desarrollados y la inversión pública sigue este patrón), pero al mismo tiempo presenta costos de aglomeración, con mayores niveles de inseguridad y menor confort ambiental. Además, los patrones socioeconómicos van mostrando las decisiones o faltas de decsisión de las personas y la segregación de los grupos sociales.</p>
 <p>Con las dimensiones creadas es posible calcular el indicador MBHT, donde cada dimensión recibe una ponderacion proporcional al número de indicadores que contiene:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calcula MBHT y normaliza</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_res <span class="ot">&lt;-</span> </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    mz_c_dimensiones <span class="sc">%&gt;%</span> </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename_all</span>(stringr<span class="sc">::</span>str_to_upper) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mbht_pondera_num_dims</span>(vars) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">MBHT_P_BRUTO =</span> MBHT_P) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">MBHT_P =</span> <span class="fu">minmax</span>(MBHT_P_BRUTO))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calcula MBHT y normaliza</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df_res <span class="ot">&lt;-</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    mz_c_dimensiones <span class="sc">%&gt;%</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename_all</span>(stringr<span class="sc">::</span>str_to_upper) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mbht_pondera_num_dims</span>(vars) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">MBHT_P_BRUTO =</span> MBHT_P) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">MBHT_P =</span> <span class="fu">minmax</span>(MBHT_P_BRUTO))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Ponderacion proporcional al numero de indicadores en cada dimension"</code></pre>
 </div>
 </div>
 <p>Con esto es posible calcular las zonas de oportunidad, donde se identifican clusters de valores altos y bajos del indicador de bienestar humano.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mz_zonas <span class="ot">&lt;-</span> <span class="fu">zonasIBT</span>(df_res, <span class="at">var_ibt =</span> <span class="st">"MBHT_P"</span>) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">TOB=</span>clusterM)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mz_zonas<span class="sc">$</span>TOB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
- Alto  Bajo Medio 
-  391   386  1065 </code></pre>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>mz_zonas <span class="ot">&lt;-</span> <span class="fu">zonasIBT</span>(df_res, <span class="at">var_ibt =</span> <span class="st">"MBHT_P"</span>) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">TOB=</span>clusterM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
+<p>El indicador consolidado muestra como se van relacionando las distintas dimensiones ya calculadas generando un patrón más complejo pero que permite destacar claramente la zona nor poniente de valdivia con un alto nivel de bienestar, siendo la zona sur la que concentra menores niveles de oportunidades.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_zonas) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"MBHT_P"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette =</span><span class="st">"RdYlGn"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="consolidacion_files/figure-html/cons-viz-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Al realizar el análisis de cluster se aprecia como Valdivia y Niebla muestran zonas de altas oportunidades de bienestar, sin embargo solo Valdivia muestra zonas donde el bienestar es bajo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_zonas) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"TOB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mz_zonas<span class="sc">$</span>TOB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Alto  Bajo Medio 
+  391   386  1065 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_zonas) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"TOB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="consolidacion_files/figure-html/cons-viz-zonas-1.png" class="img-fluid" width="672"></p>
 </div>
