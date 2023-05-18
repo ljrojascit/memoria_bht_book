@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -176,8 +210,16 @@ div.csl-indent {
    
   <ul>
   <li><a href="#resumen" id="toc-resumen" class="nav-link active" data-scroll-target="#resumen"><span class="header-section-number">6.1</span> Resumen</a></li>
-  <li><a href="#proceso" id="toc-proceso" class="nav-link" data-scroll-target="#proceso"><span class="header-section-number">6.2</span> Proceso</a></li>
-  <li><a href="#insumos" id="toc-insumos" class="nav-link" data-scroll-target="#insumos"><span class="header-section-number">6.3</span> Insumos</a></li>
+  <li><a href="#proceso" id="toc-proceso" class="nav-link" data-scroll-target="#proceso"><span class="header-section-number">6.2</span> Proceso</a>
+  <ul class="collapse">
+  <li><a href="#imputación-de-valores-por-vecinos" id="toc-imputación-de-valores-por-vecinos" class="nav-link" data-scroll-target="#imputación-de-valores-por-vecinos"><span class="header-section-number">6.2.1</span> Imputación de valores por vecinos</a></li>
+  <li><a href="#consolidacion-de-dimensiones" id="toc-consolidacion-de-dimensiones" class="nav-link" data-scroll-target="#consolidacion-de-dimensiones"><span class="header-section-number">6.2.2</span> Consolidacion de Dimensiones</a></li>
+  <li><a href="#consolidación-de-indicador-compuesto" id="toc-consolidación-de-indicador-compuesto" class="nav-link" data-scroll-target="#consolidación-de-indicador-compuesto"><span class="header-section-number">6.2.3</span> Consolidación de Indicador Compuesto</a></li>
+  </ul></li>
+  <li><a href="#insumos" id="toc-insumos" class="nav-link" data-scroll-target="#insumos"><span class="header-section-number">6.3</span> Insumos</a>
+  <ul class="collapse">
+  <li><a href="#manzanas-con-indicadores-calculados" id="toc-manzanas-con-indicadores-calculados" class="nav-link" data-scroll-target="#manzanas-con-indicadores-calculados"><span class="header-section-number">6.3.1</span> Manzanas con indicadores Calculados</a></li>
+  </ul></li>
   <li><a href="#aplicación" id="toc-aplicación" class="nav-link" data-scroll-target="#aplicación"><span class="header-section-number">6.4</span> Aplicación</a></li>
   <li><a href="#interpretacion" id="toc-interpretacion" class="nav-link" data-scroll-target="#interpretacion"><span class="header-section-number">6.5</span> Interpretacion</a></li>
   </ul>
@@ -211,12 +253,117 @@ div.csl-indent {
 <section id="proceso" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="proceso"><span class="header-section-number">6.2</span> Proceso</h2>
 <p>diagrama</p>
+<section id="imputación-de-valores-por-vecinos" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="imputación-de-valores-por-vecinos"><span class="header-section-number">6.2.1</span> Imputación de valores por vecinos</h3>
+</section>
+<section id="consolidacion-de-dimensiones" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="consolidacion-de-dimensiones"><span class="header-section-number">6.2.2</span> Consolidacion de Dimensiones</h3>
+<p>MPI</p>
+<p>Promedio Simple</p>
+</section>
+<section id="consolidación-de-indicador-compuesto" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="consolidación-de-indicador-compuesto"><span class="header-section-number">6.2.3</span> Consolidación de Indicador Compuesto</h3>
+</section>
 </section>
 <section id="insumos" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="insumos"><span class="header-section-number">6.3</span> Insumos</h2>
+<section id="manzanas-con-indicadores-calculados" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="manzanas-con-indicadores-calculados"><span class="header-section-number">6.3.1</span> Manzanas con indicadores Calculados</h3>
+</section>
 </section>
 <section id="aplicación" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="aplicación"><span class="header-section-number">6.4</span> Aplicación</h2>
+<p>Para demostrar los procesos relacionados a la consolidación del indicador final, trabajaremos con la ciudad de Valdivia.</p>
+<p>Comenzamos por configurar el entorno de trabajo, cargando librerías y funciones internas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"R/helpers.R"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"R/idw.R"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'R/01_imputacion.R'</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'R/02_dimensiones.R'</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'R/02_dimensiones_parcheMPI.R'</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'R/03_ibt.R'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'R/04_zonas.R'</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'R/funciones_2.R'</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"R/ponderacion_mbht.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Adicionalmente a esto es necesario cargar ciertos parámetros que facilitan el flujo de trabajo, vinculando nombres de variables con sus indicadores y poblaciones relavantes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># iteradores</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>iterador <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"data/excel/indice_accesibilidad_22.csv"</span>, <span class="at">col_types =</span>  readr<span class="sc">::</span><span class="fu">cols</span>())</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>iterador_soc <span class="ot">&lt;-</span>iterador <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">c</span>(abrev_ind, pob_rev))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(<span class="st">'data/json/dim_var.json'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">lapply</span>(vars, toupper)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Cargamos los datos de la ciudad:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mzs <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/mz_vld.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Podemos visualizar el sector urbano, donde se aprecia que tenemos la ciudad de Valdivia y además se aprecia la zona costera de Niebla.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mzs) <span class="sc">+</span> <span class="fu">tm_borders</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="consolidacion_files/figure-html/cons-viz-mzs-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>El proceso comienza por identificar aquellas manzanas cuyos valores poblacionales son cero. Esto es prerequisito para definir imputar valores de indicadores a partir sus vecinos. Esto se logra mediante la interpolación por vecinos cercanos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mz_imputado <span class="ot">&lt;-</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  mzs <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">makeNA</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">imputarIdw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "(ISV$|IVI$)"                         "(IRH$|ICUL$|IAV$|ISAL$|IDEP$|ISER$)"
+[3] "(ISE$)"                             
+[1] "ISV"
+[1] "IRH"
+[1] "ISE"</code></pre>
+</div>
+</div>
+<p>A partir de esto se pueden consolidar las dimensiones.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mz_c_dimensiones <span class="ot">&lt;-</span> <span class="fu">consolidarDimensiones</span>(<span class="at">manzanas_c_indicador =</span>  mz_imputado)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Con las dimensiones creadas es posible calcular el indicador MBHT, donde cada dimensión recibe una ponderacion proporcional al número de indicadores que contiene:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calcula MBHT y normaliza</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df_res <span class="ot">&lt;-</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    mz_c_dimensiones <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename_all</span>(stringr<span class="sc">::</span>str_to_upper) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mbht_pondera_num_dims</span>(vars) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">MBHT_P_BRUTO =</span> MBHT_P) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">MBHT_P =</span> <span class="fu">minmax</span>(MBHT_P_BRUTO))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Ponderacion proporcional al numero de indicadores en cada dimension"</code></pre>
+</div>
+</div>
+<p>Con esto es posible calcular las zonas de oportunidad, donde se identifican clusters de valores altos y bajos del indicador de bienestar humano.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mz_zonas <span class="ot">&lt;-</span> <span class="fu">zonasIBT</span>(df_res, <span class="at">var_ibt =</span> <span class="st">"MBHT_P"</span>) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">TOB=</span>clusterM)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mz_zonas<span class="sc">$</span>TOB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Alto  Bajo Medio 
+  391   386  1065 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_zonas) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"MBHT_P"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette =</span><span class="st">"RdYlGn"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="consolidacion_files/figure-html/cons-viz-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_zonas) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"TOB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="consolidacion_files/figure-html/cons-viz-zonas-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
 <section id="interpretacion" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="interpretacion"><span class="header-section-number">6.5</span> Interpretacion</h2>

@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -184,6 +218,7 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p><img src="img/01_accesibilidad.png" class="img-fluid"></p>
 <section id="resumen" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="resumen"><span class="header-section-number">5.1</span> Resumen</h2>
 <p>Literatura sobre accesibilidad, otras métricas (ciudad de 15 minutos).</p>
@@ -198,13 +233,129 @@ ul.task-list li input[type="checkbox"] {
 <section id="insumos" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="insumos"><span class="header-section-number">5.3</span> Insumos</h2>
 <p>Tipos de datos de línea: calles.</p>
+<p><img src="img/red-01.png" class="img-fluid"></p>
 <p>Tipo de dato: Grafos, rutas. Mejor ruta, asociado a un costo.</p>
+<p><img src="img/ej-ruta-iqq.jpeg" class="img-fluid"></p>
 <p>Fuentes externas: encuesta origen y destino, impedancias.</p>
+<p><img src="img/imp_caminata.png" class="img-fluid"></p>
 <p>Insumos: equipamientos (levantamiento), calles (limpieza), manzanas.</p>
+<p><img src="images/ind_cul_l.png" class="img-fluid"></p>
 </section>
 <section id="aplicación" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="aplicación"><span class="header-section-number">5.4</span> Aplicación</h2>
 <p>Caso de Equipamiento de Áreas Verdes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Accesibilidad)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Linking to GEOS 3.9.1, GDAL 3.3.2, PROJ 7.2.1; sf_use_s2() is TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tmap' was built under R version 4.2.3</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manzanas</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mz <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/mz_iqq.shp"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># equipamientos</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>equip <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/av_iqq.shp"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)<span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># red </span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>red <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/red.shp"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>impedancias <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">'data/impedancias.txt'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">separate</span>(tipo, <span class="fu">c</span>(<span class="st">"modo"</span>,<span class="st">"proposito"</span>), <span class="st">"_"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>iterador <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"data/indice_accesibilidad.csv"</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(itera_accesibilidad <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>conf_indicador <span class="ot">&lt;-</span> <span class="st">"IAV"</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ret <span class="ot">&lt;-</span> Accesibilidad<span class="sc">::</span><span class="fu">accesibilidad</span>(impedancias, iterador, conf_indicador, mz, equip, red)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cleaning graph...
+Initial node ordering...
+Contracting nodes...
+Cleaning graph...
+Initial node ordering...
+Contracting nodes...
+
+-----------LOCAL-----------
+Calculando matrices de tiempo
+Consolidando matrices distancia origen destino
+Aplica funcion sensibilidad de costo (impedancia)
+Calculando demanda potencial (cargas)
+Calculo indicador
+
+-----------METRO-----------
+Calculando matrices de distancia y tiempo
+Consolidando matrices distancia origen destino
+Aplica funcion sensibilidad de costo (impedancia)
+Calculando demanda potencial (cargas)
+Calculo indicador
+[1] "Los Resultados de Indicador SI Coinciden con lo Repartido"
+[1] "Check Pass-- Indicador: IAV"
+[1] "Las Manzanas con poblacion relevante cero no tienen indicador"
+[1] "Check Pass -- Indicador: IAV"
+[1] "Se agrego la accesibilidad de IAV"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ret)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 6 features and 17 fields
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: 379960.4 ymin: 7764928 xmax: 381960.7 ymax: 7765428
+Projected CRS: WGS 84 / UTM zone 19S
+        ID_MANZ MANZ_EN COD_REG COD_PROV COD_COM       ZONA       AREA
+1 1101021005003  URBANO       1       11    1101 1101021005 513023.198
+2 1101021005021  URBANO       1       11    1101 1101021005  36705.997
+3 1101021005016  URBANO       1       11    1101 1101021005   6125.433
+4 1101021005013  URBANO       1       11    1101 1101021005   8032.154
+5 1101021005015  URBANO       1       11    1101 1101021005   6420.489
+6 1101021005022  URBANO       1       11    1101 1101021005   4649.203
+             NOM_REG NOM_PROV NOM_COM       ID_MANZCIT TOTAL_V HOG_N PERSONAS
+1 REGIÓN DE TARAPACÁ  IQUIQUE IQUIQUE 1101021005003001       4     5       10
+2 REGIÓN DE TARAPACÁ  IQUIQUE IQUIQUE 1101021005021001     277   266      915
+3 REGIÓN DE TARAPACÁ  IQUIQUE IQUIQUE 1101021005016001       6     7       23
+4 REGIÓN DE TARAPACÁ  IQUIQUE IQUIQUE 1101021005013001      12    13       49
+5 REGIÓN DE TARAPACÁ  IQUIQUE IQUIQUE 1101021005015001      17    17       53
+6 REGIÓN DE TARAPACÁ  IQUIQUE IQUIQUE 1101021005022001      54    49      175
+  E4A18 E15A24       IAV                       geometry
+1     1      0 0.5088645 POLYGON ((381959.8 7765083,...
+2   280    105 0.8241874 POLYGON ((380236.6 7765250,...
+3     2      6 0.8147927 POLYGON ((380332.4 7765174,...
+4    23      7 0.8299646 POLYGON ((380492.1 7765127,...
+5     8     12 0.8416961 POLYGON ((380332.9 7765046,...
+6    58     21 0.8261619 POLYGON ((379984.1 7765040,...</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(ret) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"IAV"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette=</span><span class="st">"RdYlGn"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="accesibilidad_files/figure-html/acc-viz-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
 <section id="interpretacion" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="interpretacion"><span class="header-section-number">5.5</span> Interpretacion</h2>
