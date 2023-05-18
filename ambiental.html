@@ -186,7 +186,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./accesibilidad.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dimensión Accesbilidad</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dimensión Accesibilidad</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -231,7 +231,6 @@ div.csl-indent {
   <li><a href="#icv-1" id="toc-icv-1" class="nav-link" data-scroll-target="#icv-1"><span class="header-section-number">3.4.1</span> ICV</a></li>
   <li><a href="#iata-1" id="toc-iata-1" class="nav-link" data-scroll-target="#iata-1"><span class="header-section-number">3.4.2</span> IATA</a></li>
   </ul></li>
-  <li><a href="#interpretación" id="toc-interpretación" class="nav-link" data-scroll-target="#interpretación"><span class="header-section-number">3.5</span> Interpretación</a></li>
   </ul>
 </nav>
     </div>
@@ -611,7 +610,7 @@ IATA = TST_{ver} - TST_{inv}
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz amplitud</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(amplitud, <span class="at">main =</span> <span class="st">"Diferencia Temperatura Las Condes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ambiental_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<p><img src="ambiental_files/figure-html/amb-viz-diftemp-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Y luego asignar el promedio de diferencias a las manzanas correspondientes</p>
@@ -622,15 +621,11 @@ IATA = TST_{ver} - TST_{inv}
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">IATA =</span> <span class="fu">exact_extract</span>(amplitud, mzs, <span class="st">'mean'</span>, <span class="at">progress =</span> <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_comuna) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="st">"IATA"</span>, <span class="at">style =</span> <span class="st">"jenks"</span>) <span class="sc">+</span> <span class="fu">tm_layout</span>(<span class="at">title =</span> <span class="st">"Indicador de Amplitud Térmica (IATA) - Urbano"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_comuna) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="st">"IATA"</span>, <span class="at">style =</span> <span class="st">"jenks"</span>) <span class="sc">+</span> <span class="fu">tm_layout</span>(<span class="at">title =</span> <span class="st">"Indicador de Amplitud Térmica"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ambiental_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="ambiental_files/figure-html/amb-viz-iata-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
-</section>
-<section id="interpretación" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="interpretación"><span class="header-section-number">3.5</span> Interpretación</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
@@ -650,6 +645,7 @@ Teillet, P. M., B. Guindon, and D. G. Goodenough. 1982. <span>“On the <span>Sl
 VAN DE GRIEND, A. A., and M. OWE. 1993. <span>“On the Relationship Between Thermal Emissivity and the Normalized Difference Vegetation Index for Natural Surfaces.”</span> <em>International Journal of Remote Sensing</em> 14 (6): 1119–31. <a href="https://doi.org/10.1080/01431169308904400">https://doi.org/10.1080/01431169308904400</a>.
 </div>
 </div>
+</section>
 </section>
 
 </main> <!-- /main -->

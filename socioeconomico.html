@@ -184,7 +184,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./accesibilidad.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dimensión Accesbilidad</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dimensión Accesibilidad</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -216,7 +216,6 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#definir-entorno-de-trabajo" id="toc-definir-entorno-de-trabajo" class="nav-link" data-scroll-target="#definir-entorno-de-trabajo"><span class="header-section-number">2.4.1</span> Definir entorno de trabajo</a></li>
   </ul></li>
-  <li><a href="#interpretación" id="toc-interpretación" class="nav-link" data-scroll-target="#interpretación"><span class="header-section-number">2.5</span> Interpretación</a></li>
   </ul>
 </nav>
     </div>
@@ -520,26 +519,8 @@ $ geometry   &lt;POLYGON [m]&gt; POLYGON ((292811 6685815, 2..., POLYGON ((29305
 </div>
 </div>
 </section>
-<section id="consolidación-de-la-dimensión-socioeconómica" class="level4" data-number="2.4.1.7">
-<h4 data-number="2.4.1.7" class="anchored" data-anchor-id="consolidación-de-la-dimensión-socioeconómica"><span class="header-section-number">2.4.1.7</span> Consolidación de la Dimensión Socioeconómica</h4>
-<p>Finalmente, se seleccionan los indicadores calculados además de variables de identificación de las variables</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seleccion de las variables</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>soc <span class="ot">&lt;-</span> censo <span class="sc">%&gt;%</span> </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(ID_MANZ<span class="sc">:</span>PERSONAS, IEJ, IEM, IPJ, IRH, IVI, ISV)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Se puede visualizar esto de manera conjunta:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#comuna &lt;- soc %&gt;% filter(COD_COM == 4101 &amp; MANZ_EN == "URBANO")</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mapview(comuna, zcol = "IEJ") + mapview(comuna, zcol = "IEM")+</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#mapview(comuna, zcol = "IPJ") + mapview(comuna, zcol = "IRH")+</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#mapview(comuna, zcol = "IVI") + mapview(comuna, zcol = "ISV")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-</section>
-<section id="interpretación" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="interpretación"><span class="header-section-number">2.5</span> Interpretación</h2>
+<section id="section" class="level4" data-number="2.4.1.7">
+<h4 data-number="2.4.1.7" class="anchored" data-anchor-id="section"><span class="header-section-number">2.4.1.7</span> </h4>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
@@ -565,6 +546,8 @@ Sabatini, Francisco, Gonzalo C’aceres, and Jorge Cerda. 2001. <span>“Segrega
 Theodoritsi, L, and N Daliana. 2018. <span>“The Mental Health of Single-Parent Families in Relation to Psychological, Societal and Financial Parameters.”</span> <em>Single-Parenting in the 21st Century: Perceptions, Issues and Implications. Family Issues in the 21st Century. Hauppauge, NY: Nova Science Publishers</em>, 77–101.
 </div>
 </div>
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
