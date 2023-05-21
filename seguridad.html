@@ -245,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Finalmente el resultado a nivel de manzana se normaliza para que se exprese entre los valores de 0 a 1, y se invierte para que el mas alto valor implique la ausencia de ocurrencia de delitos.</p>
 <section id="proceso-de-kernel-de-densidad-puntos-a-raster." class="level3" data-number="4.3.1">
 <h3 data-number="4.3.1" class="anchored" data-anchor-id="proceso-de-kernel-de-densidad-puntos-a-raster."><span class="header-section-number">4.3.1</span> Proceso de Kernel de densidad, puntos a raster.</h3>
-<p>Para calcular el la densidad de kernel se crea un objeto de clase <code>ppp</code> que represneta un patron de puntos en un plano de dos dimensiones.</p>
+<p>Para calcular la densidad de kernel se crea un objeto de clase <code>ppp</code> que representa un patron de puntos en un plano de dos dimensiones.</p>
 <p>Para crear este objeto, necesitamos una ventana de trabajo que contará con las dimensiones del límite urbano más un margen de 500 metros. Además, el límite urbano se pasa a raster con un buffer también de 500 metros.</p>
 <p>Una vez hecho lo anterior, se calcula la densidad kernel con la función <code>density</code> del paquete <code>stats</code>. Conceptualmente, lo que hace esta función es calcular la densidad de puntos (delitos) por unidad de área.</p>
 <p>Se ajusta una superficie curva uniforme sobre cada punto, y en el centro, donde está el punto, el valor del raster es más alto, y a medida que nos alejamos del centro el valor del raster disminuye.</p>
@@ -254,12 +254,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="asignación-a-manzanas" class="level3" data-number="4.3.2">
 <h3 data-number="4.3.2" class="anchored" data-anchor-id="asignación-a-manzanas"><span class="header-section-number">4.3.2</span> Asignación a Manzanas</h3>
-<p>Para imputar los valores de los raster a las manzanas, se considera el valor que contiene el raster que está al centro de la mannzana (centroide).</p>
-<p>Una cosa importante a notar es que la densidad de kernel asigna un valor más alto cuando estamos en presencia de la máxima candidad de delitos por área.</p>
+<p>Para imputar los valores de los raster a las manzanas, se considera el valor que contiene el raster que está al centro de la manzana (centroide).</p>
+<p>Una cosa importante a notar es que la densidad de kernel asigna un valor más alto cuando estamos en presencia de la máxima cantidad de delitos por área.</p>
 </section>
 <section id="normalización-e-invertir." class="level3" data-number="4.3.3">
 <h3 data-number="4.3.3" class="anchored" data-anchor-id="normalización-e-invertir."><span class="header-section-number">4.3.3</span> Normalización e Invertir.</h3>
-<p>Al revés, el indicador ISEG asigna un mayor valor a las manzanas con mayor seguridad (menor cantidad de delitos) y un menor valor a las manzanas con menor seguridad (mayor cantidad de delitos).</p>
+<p>El indicador ISEG asigna un mayor valor a las manzanas con mayor seguridad (menor cantidad de delitos) y un menor valor a las manzanas con menor seguridad (mayor cantidad de delitos).</p>
 <p>Por lo que, una vez imputado el valor del centroide a cada manzana, se invierten los valores de la densidad kernel para lograr obtener la lectura del indicador ISEG, el cual al ser un índice normalizado contiene valores entre 0 y 1, donde 1 significa la mayor seguridad dentro de la muestra.</p>
 </section>
 </section>
