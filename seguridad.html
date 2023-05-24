@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -226,8 +245,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="resumen" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="resumen"><span class="header-section-number">4.1</span> Resumen</h2>
 <p>El indicador de seguridad (ISEG) es un índice normalizado que busca mostrar el nivel de seguridad de cada manzana, representando con 1 las manzanas que cuentan con el mayor nivel de seguridad y con 0 las de menor nivel de seguridad.</p>
-<p>Esto es relavante para el bienestar de las personas, entendiendo el efecto que ejerce la violencia en el desarrollo y el ejercicio de la libertad individual, además de su impacto en la confianza hacia otras personas, vecinos e instituciones. Limitando la eficacia y extensión de las redes de apoyo [@social2016metodologia; @socialNuevaMetodologiaMedicion2015]</p>
-<p>Operativamente este indicador se construye a partir de la densidad kernel de los delitos por cada territorio, lo que significa que para cada región se estima una función de densidad de probabilidad de los delitos. Esto representa una medida de concentración relativa de hechos delictuales. Una vez calculada la densidad, se pasa la información a raster y se le asigna a cada manzana el valor del raster que está en el centroide.</p>
+<p>Esto es relavante para el bienestar de las personas, entendiendo el efecto que ejerce la violencia en el desarrollo y el ejercicio de la libertad individual, además de su impacto en la confianza hacia otras personas, vecinos e instituciones. Limitando la eficacia y extensión de las redes de apoyo <span class="citation" data-cites="social2016metodologia socialNuevaMetodologiaMedicion2015">(<a href="references.html#ref-social2016metodologia" role="doc-biblioref">Social 2016</a>, <a href="references.html#ref-socialNuevaMetodologiaMedicion2015" role="doc-biblioref">2015</a>)</span></p>
+<p>Operativamente este indicador se construye a partir de la densidad kernel de la ocurrencia de delitos por cada territorio, lo que significa que para cada región se estima una función de densidad de probabilidad de los delitos. Esto representa una medida de <em>concentración relativa</em> de hechos delictuales. Una vez calculada la densidad, se pasa la información a raster y se le asigna a cada manzana el valor del raster que está en el centroide.</p>
 <p>El indicador de seguridad se calcula para 4 categorías de delitos: <strong>Leves personas</strong>, <strong>Graves personas</strong>, <strong>Leves propiedad</strong> y <strong>Graves propiedad</strong>.</p>
 </section>
 <section id="insumos" class="level2" data-number="4.2">
@@ -246,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="proceso-de-kernel-de-densidad-puntos-a-raster." class="level3" data-number="4.3.1">
 <h3 data-number="4.3.1" class="anchored" data-anchor-id="proceso-de-kernel-de-densidad-puntos-a-raster."><span class="header-section-number">4.3.1</span> Proceso de Kernel de densidad, puntos a raster.</h3>
 <p>Para calcular la densidad de kernel se crea un objeto de clase <code>ppp</code> que representa un patron de puntos en un plano de dos dimensiones.</p>
-<p>Para crear este objeto, necesitamos una ventana de trabajo que contará con las dimensiones del límite urbano más un margen de 500 metros. Además, el límite urbano se pasa a raster con un buffer también de 500 metros.</p>
+<p>Para crear este objeto, necesitamos una ventana de trabajo que contará con las dimensiones del límite urbano más un margen de 500 metros. Además, el límite urbano se pasa a raster con un buffer también de 500 metros. En la aplicación de ejemplo se demuestra este proceso en una comuna, por lo que a modo de ilustración se usan 100 metros en vez de 500.</p>
 <p>Una vez hecho lo anterior, se calcula la densidad kernel con la función <code>density</code> del paquete <code>stats</code>. Conceptualmente, lo que hace esta función es calcular la densidad de puntos (delitos) por unidad de área.</p>
 <p>Se ajusta una superficie curva uniforme sobre cada punto, y en el centro, donde está el punto, el valor del raster es más alto, y a medida que nos alejamos del centro el valor del raster disminuye.</p>
 <p>Luego, la densidad kernel que fue calculada en la ventana de trabajo se pasa a raster con la proyección UTM 19 sur WGS84.</p>
@@ -305,9 +324,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="seguridad_files/figure-html/seg-pts-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>A partir de esto generamos el kernel de densidad. Esto se consigue primero generando una ventana de obesrvación y transformando los puntos al tipo de objeto patrón de puntos representado por <code>ppp</code>:</p>
+<p>A partir de esto generamos el kernel de densidad. Esto se consigue primero generando una ventana de obesrvación y transformando los puntos al tipo de objeto patrón de puntos representado por <code>ppp</code>. Como se mencionó anteriormente, al ser una ilustración comunal del proceso, se trabaja con una resolución de 100 metros en vez de 500. En la aplicación oficial, se usa una resolución de 500 metros.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>grid_spacing <span class="ot">=</span> <span class="dv">100</span></span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>grid_spacing <span class="ot">=</span> <span class="dv">100</span> <span class="co"># aplicacion comunal, para aplicacion regional usar 500 metros</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ext <span class="ot">&lt;-</span> <span class="fu">extent</span>(violencia)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x_min <span class="ot">&lt;-</span> ext[<span class="dv">1</span>] <span class="sc">-</span> grid_spacing</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>x_max <span class="ot">&lt;-</span> ext[<span class="dv">2</span>] <span class="sc">+</span> grid_spacing</span>
@@ -369,6 +388,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-socialNuevaMetodologiaMedicion2015" class="csl-entry" role="listitem">
+Social, Observatorio. 2015. <span>“Nueva <span>Metodología</span> de <span>Medición</span> de La <span>Pobreza</span> Por <span>Ingresos</span> y <span>Multidimensional</span>.”</span> <span>Observatorio Social. Serie Docuementos Metodologicos N° 28</span>.
+</div>
+<div id="ref-social2016metodologia" class="csl-entry" role="listitem">
+———. 2016. <span>“Metodología de Medición de Pobreza Multidimensional Con Entorno y Redes.”</span> <em>Serie de Documentos Metodológicos Casen</em>, no. 32: 67.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

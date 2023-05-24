@@ -254,7 +254,7 @@ div.csl-indent {
 
 </header>
 
-<p><img src="img/02_ambiental.png" class="img-fluid"></p>
+<p><img src="img/02_ambiental.png" class="img-fluid" style="width:85.0%"></p>
 <section id="resumen" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="resumen"><span class="header-section-number">3.1</span> Resumen</h2>
 <p>La Dimensión Ambiental tiene por objetivo medir el confort ambiental en un determinado entorno, para lo cual se considera la amplitud térmica y cobertura vegetal de cada manzana urbana y rural. Los datos utilizados para su construcción son imágenes satelitales obtenidas a partir de las plataformas Landsat, Aqua y Terra.</p>
@@ -293,13 +293,13 @@ div.csl-indent {
 <section id="dem" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="dem"><span class="header-section-number">3.2.2</span> DEM</h3>
 <p>Junto con las imágenes satelitales, se necesita una cobertura que permita realizar las correcciones topográficas de las imágenes satelitales. El Modelo Digital de Elevación, o DEM en sus siglas en inglés, permite el cálculo de las coberturas de pendientes y orientación de laderas, necesarias para el proceso de corrección topográfica.</p>
-<p>El DEM utilizado en ese caso corresponde al generado por la plataforma ASTER GDEM del sensor MODIS, con una resolución de 30 metros, el cual tiene una cobertura global. En ese caso, se utiliza un DEM que cubre la totalidad de la región de Ñuble.</p>
+<p>El DEM utilizado en ese caso corresponde al generado por la plataforma <a href="https://asterweb.jpl.nasa.gov/gdem.asp">ASTER GDEM</a>, con una resolución de 30 metros, el cual tiene una cobertura global. En ese caso, se utiliza un DEM que cubre la totalidad de la región de Ñuble.</p>
 <p><img src="img/demñuble.jpg" class="img-fluid"><br>
 </p>
 </section>
 <section id="vapor-de-agua" class="level3" data-number="3.2.3">
 <h3 data-number="3.2.3" class="anchored" data-anchor-id="vapor-de-agua"><span class="header-section-number">3.2.3</span> Vapor de Agua</h3>
-<p>Para el cálculo de la temperatura superficial, es necesario también el producto de vapor de agua atmosférico del sensor MODIS, el cual se descarga desde la plataforma web LAADS DAAC de la NASA. Este insumo se descarga para la misma fecha de las imágenes satelitales, y deben coincidir espacialmente entre sí. A continuación se aprecia una de las imágenes de vapor de agua.</p>
+<p>Para el cálculo de la temperatura superficial, es necesario también el producto de vapor de agua atmosférico del sensor MODIS, el cual se descarga desde la plataforma web <a href="https://ladsweb.modaps.eosdis.nasa.gov/">LAADS DAAC</a> de la NASA. Este insumo se descarga para la misma fecha de las imágenes satelitales, y deben coincidir espacialmente entre sí. A continuación se aprecia una de las imágenes de vapor de agua.</p>
 <p><img src="img/water-ñuble.jpg" class="img-fluid"></p>
 <p>El Vapor de Agua de MODIS posee una resolución espectral de 1 kilómetro, y revisita un mismo punto de la superficie terrestre entre 3 a 4 veces por día.</p>
 </section>
@@ -388,7 +388,7 @@ L_{\lambda Corr} = L_\lambda \left[\frac{Cos(v)+C}{Cos(i)+C}\right]
 <li><p>El contenido de vapor de agua en la atmósfera</p></li>
 <li><p>Los centros de los rangos espectrales asociados a las longitudes de onda de las bandas térmicas consideradas</p></li>
 </ul>
-<p>Cuatro de estas magnitudes se obtuvieron a través del procesamiento directo de las bandas espectrales de cada imagen Landsat, mientras que el vapor de agua provino del sensor MODIS. La radiancia espectral de las bandas termales se obtuvo en la etapa de corrección de los insumos espaciales. Por su parte, los parámetros y el algoritmo para obtener la temperatura de brillo en el sensor (T_B) se obtuvieron del Programa Landsat (2002) y el sitio web de la USGS.</p>
+<p>Cuatro de estas magnitudes se obtuvieron a través del procesamiento directo de las bandas espectrales de cada imagen Landsat, mientras que el vapor de agua provino del sensor MODIS. La radiancia espectral de las bandas termales se obtuvo en la etapa de corrección de los insumos espaciales. Por su parte, los parámetros y el algoritmo para obtener la temperatura de brillo en el sensor (T_B) se obtuvieron del Programa Landsat (2002) y el sitio web de la <a href="https://www.usgs.gov/">USGS</a>.</p>
 <p>A su vez, la emisividad de la superficie (<span class="math inline">\(\epsilon_{sc}\)</span>) utilizada en el método monocanal, se estimó considerando el conocimiento a priori de la emisividad de algunas superficies y su relación estadística con algunos valores umbrales del logaritmo natural del NDVI. Para calcular la emisividad se usaron los valores umbrales del índice vegetacional, rangos propuestos por <span class="citation" data-cites="vandegriendRelationshipThermalEmissivity1993">(<a href="references.html#ref-vandegriendRelationshipThermalEmissivity1993" role="doc-biblioref">VAN DE GRIEND and OWE 1993</a>)</span>.</p>
 <p>La TST se obtuvo directamente en grados Celsius, utilizando el método monocanal de Jiménez (2003 y 2014). Las funciones de transferencia atmosférica <span class="math inline">\(\psi_1\)</span>, <span class="math inline">\(\psi_2\)</span>, <span class="math inline">\(\psi_3\)</span> , fueron obtenidas como función del vapor de agua atmosférico (w), según las expresiones y parámetros considerados para la banda 11:</p>
 <p><span class="math display">\[

@@ -251,17 +251,17 @@ div.csl-indent {
 <p>Existe numerosa literatura sobre el acceso a oportunidades en el territorio y las distintas métricas que es posible construir. Destaca si el trabajo de <span class="citation" data-cites="geurs2004accessibility">(<a href="references.html#ref-geurs2004accessibility" role="doc-biblioref">Geurs and Van Wee 2004</a>)</span> que clasifica las métricas de acuerdo al tratmiento de cuatro componentes clave: la ubicación de las oportunidades y la población, las restricciones individuales, el sistema de transporte, y las restricciones temporales.</p>
 <p>En este sentido el indicador calculado cae bajo la categoría de indicadores basados en locación, y respeta la ubicación de personas y oportunidades, incorpora las restricciones individuales mediante un parámetro de sensibilidad al costo de desplazarse que se deriva de la Encuesta de Origen y Destino, además de incorporar modos de transporte a pie y en vehículo mediante las calles de la ciudad. Esto se puede apreciar en la siguiente expresión:</p>
 <p><span class="math display">\[
-A_i = \sum_{j=1}^m D_j e^{-\beta c_{ij}}
+A_i = \sum_{j=1}^m O_j e^{-\beta c_{ij}}
 \]</span></p>
-<p>Donde <span class="math inline">\(A_i\)</span> es el indicador de accesibilidad, <span class="math inline">\(D_j\)</span> indica las oportunidades en el territorio y <span class="math inline">\(c_{ij}\)</span> el costo de desplazamiento.</p>
+<p>Donde <span class="math inline">\(A_i\)</span> es el indicador de accesibilidad, <span class="math inline">\(O_j\)</span> indica las oportunidades en el territorio y <span class="math inline">\(c_{ij}\)</span> el costo de desplazamiento. Los subíndices <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> representan los puntos de origen y destino, respectivamente.</p>
 <p>El listado de indicadores de accesibilidad de la dimensión es el siguiente:</p>
 <ul>
-<li><p>IAV: Accesibilidad a Áreas Verdes.</p></li>
-<li><p>ICUL: Accesibilidad a Cultura.</p></li>
-<li><p>ISER: Accesibilidad a Servicios Públicos.</p></li>
-<li><p>ISE: Accesibilidad a Educación.</p></li>
-<li><p>IDEP: Accesibilidad a Áreas Deportivas.</p></li>
-<li><p>ISAL: Accesibilidad a Equipamientos de Salud.</p></li>
+<li><p><strong>IAV</strong>: Accesibilidad a Áreas Verdes.</p></li>
+<li><p><strong>ICUL</strong>: Accesibilidad a Cultura.</p></li>
+<li><p><strong>ISER</strong>: Accesibilidad a Servicios Públicos.</p></li>
+<li><p><strong>ISE</strong>: Accesibilidad a Educación.</p></li>
+<li><p><strong>IDEP</strong>: Accesibilidad a Áreas Deportivas.</p></li>
+<li><p><strong>ISAL</strong>: Accesibilidad a Equipamientos de Salud.</p></li>
 </ul>
 <p>En particular los indicadores de accesibilidad a equipamientos (ICUL, IDEP, ISAL e IAV), representan en m2 /habitante, la relación de capacidad de cada equipamiento (superficie o matrículas escolares, por ejemplo), y la población que puede acceder a los mismos; en relación a la distancia y a la propensión de desplazamiento.</p>
 <p>Indicadores basados en locación</p>
@@ -302,10 +302,10 @@ A_i = \sum_{j=1}^m D_j e^{-\beta c_{ij}}
 </section>
 <section id="proceso" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="proceso"><span class="header-section-number">5.3</span> Proceso</h2>
-<p>El objetivo es calcular el indicador de oportunidades per cápita de la población, lo que puede expresarse siguiendo las siguientes fórmulas:</p>
-<p><span class="math display">\[ C_j = \sum_{i=1}^n P_i e^{-\beta c_{ij}} \]</span></p>
-<p><span class="math display">\[ A_i = \sum_{j=1}^m (D_j/C_j) e^{-\beta c_{ij}} \]</span></p>
-<p>Estas ilustran el proceso de cálculo, indicando que primero se calcula la población que realiza el viaje desde su residencia <span class="math inline">\(P_i\)</span> a la ubicación de las oportunidades, siendo sumadas en el destino <span class="math inline">\(C_j\)</span>. Este valor luego divide las oportunidades en el destino, para expresarlas en términos percápita <span class="math inline">\((D_j/C_j)\)</span> siendo este el valor repartido a los puntos de origen y expresado en <span class="math inline">\(A_i\)</span>.</p>
+<p>El objetivo es calcular el indicador de oportunidades <em>per cápita</em> de la población, lo que puede expresarse siguiendo las siguientes fórmulas que modifican ligeramente la primera formulación. Estas indican el proceso de asignación de cargas poblacionales a las oportunidades primero y luego calcular el cuociente de oportunidades:</p>
+<p><span class="math display">\[ L_j = \sum_{i=1}^n P_i e^{-\beta c_{ij}} \]</span></p>
+<p><span class="math display">\[ A_i = \sum_{j=1}^m (O_j/L_j) e^{-\beta c_{ij}} \]</span></p>
+<p>Estas ilustran el proceso de cálculo, indicando que primero se calcula la población que realiza el viaje desde su residencia <span class="math inline">\(P_i\)</span> a la ubicación de las oportunidades, siendo sumadas en el destino, con lo que se obtiene <span class="math inline">\(L_j\)</span> que representa las cargas poblacionales. Este valor luego divide las oportunidades en el destino, para expresarlas en términos percápita <span class="math inline">\((O_j/L_j)\)</span> siendo este el valor repartido a los puntos de origen y expresado en <span class="math inline">\(A_i\)</span>.</p>
 <p>Para esto el proceso considera los distintos insumos de entrada para procesarlos con el objetivo de calcular el elemento <span class="math inline">\(e^{\beta c_{ij}}\)</span> que se representa como una matriz de probabilidad de viajes. Esta última es el insumo clave que pondera la población para calcular las cargas y luego las oportunidades per-cápita para calcular el indicador.</p>
 <p><img src="images/diagrama-accesibilidad.PNG" class="img-fluid"></p>
 </section>
