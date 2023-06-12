@@ -268,6 +268,7 @@ div.csl-indent {
 <section id="insumos" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="insumos"><span class="header-section-number">3.2</span> Insumos</h2>
 <p>Para calcular los indicadores que componen esta dimensión es necesario el uso de imágenes satelitales. Estas se encuentran disponibles en plataformas de acceso público pero requieren de ciertos preprocesos de corrección antes de ser usadas para calcular índices, los cuales se explicarán en el próximo apartado.</p>
+<p>La resolución temporal de estas está sujeta a limitaciones de cobertura de nubes, que limita las imágenes disponibles en un período de tiempo. Fuera de esta limitante, en general estos datos son del último año calendario disponible al momento del cálculo del indicador.</p>
 <p>El proceso de datos satelitales se realiza mediante el uso del tipo de dato <strong>raster</strong>, el cual representa información en el territorio mediante celdas de tamaño uniforme de resolución fija, cada cual tiene asociado un vector de información particular. Este tipo de dato es complementario al dato de tipo polígono, siendo el dato raster una cuadradilla sobre la cual pueden representarse distintas divisiones administrativas mediante polígonos.</p>
 <p><img src="img/tst-ñuble.jpg" class="img-fluid"></p>
 <p>Como se mencionó, estos indicadores usan datos satelitales, los cuales se relacionan con la disciplina de <strong>percepción remota</strong> la cual entrega un amplio conjunto de conocimientos y tecnologías utilizadas para observación, análisis, la interpretación de fenómenos en el territorio. La percepción remota nos permite efectuar observaciones y mediciones de la superficie terrestre mediante dispositivos remotos instalados sobre plataformas como satélites, aviones y actualmente hasta en drones. Los sensores instalados en estas plataformas miden una gran variedad de datos como radiaciones electromagnéticas, espectro electromagnético, perturbaciones atmosféricas, firmas espectrales y captura de imágenes, entre otros.</p>
@@ -440,7 +441,7 @@ NDVI = \frac{NIR-RED}{NIR-RED}
 <section id="iata" class="level4" data-number="3.3.4.2">
 <h4 data-number="3.3.4.2" class="anchored" data-anchor-id="iata"><span class="header-section-number">3.3.4.2</span> IATA</h4>
 <p><img src="img/diagrama-ambiental-iata.PNG" class="img-fluid"></p>
-<p>El Indicador de Amplitud Térmica Anual (IATA) se refiere a la diferencia entre la Temperatura Superficial Terrestre (TST) máxima y mínima dentro de un año. La TST máxima corresponde a la época de verano, mientras que la TST mínima corresponde al invierno, y se calcula tal como se aprecia en la siguiente fórmula.</p>
+<p>El Indicador de Amplitud Térmica Anual (IATA) se refiere a la diferencia entre la Temperatura Superficial Terrestre (TST) máxima y mínima dentro de un año, por lo tanto su unidad de médida es en grados celcius. La TST máxima corresponde a la época de verano, mientras que la TST mínima corresponde al invierno, y se calcula tal como se aprecia en la siguiente fórmula.</p>
 <p><span class="math display">\[
 IATA = TST_{ver} - TST_{inv}
 \]</span></p>
@@ -461,116 +462,145 @@ IATA = TST_{ver} - TST_{inv}
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(exactextractr)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>crs_latlon <span class="ot">&lt;-</span> <span class="st">"+proj=longlat +datum=WGS84 +no_defs"</span><span class="co"># geográficas o elipsoidales</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>crs_utm <span class="ot">&lt;-</span> <span class="st">"+proj=utm +zone=19 +south +datum=WGS84 +units=m +no_defs"</span> <span class="co"># UTM o cartográficas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="st">"rgdal_show_exportToProj4_warnings"</span><span class="ot">=</span><span class="st">"none"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>crs_latlon <span class="ot">&lt;-</span> <span class="st">"+proj=longlat +datum=WGS84 +no_defs"</span><span class="co"># geográficas o elipsoidales</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>crs_utm <span class="ot">&lt;-</span> <span class="st">"+proj=utm +zone=19 +south +datum=WGS84 +units=m +no_defs"</span> <span class="co"># UTM o cartográficas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Con esto cargamos los datos necesarios para el proceso, la información satelital contenida en un archivo <code>.tif</code> y las manzanas de la comuna de las Condes:</p>
+<p>Con esto cargamos los datos necesarios para el proceso, la información satelital contenida en un archivo <code>.tif</code> y las manzanas de la comuna de las Condes, las cuales provienen del Censo de 2017 y en este caso fueron recortadas en un archivo <code>.rds</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>OLI <span class="ot">&lt;-</span> <span class="fu">brick</span>(<span class="st">"data/corte_rm_m.tif"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mzs <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/manzanas_lc.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># datos satelitales</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>OLI <span class="ot">&lt;-</span> <span class="fu">brick</span>(<span class="st">"data/corte_rm_m.tif"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Please note that rgdal will be retired during October 2023,
+plan transition to sf/stars/terra functions using GDAL and PROJ
+at your earliest convenience.
+See https://r-spatial.org/r/2023/05/15/evolution4.html and https://github.com/r-spatial/evolution
+rgdal: version: 1.6-7, (SVN revision 1203)
+Geospatial Data Abstraction Library extensions to R successfully loaded
+Loaded GDAL runtime: GDAL 3.6.2, released 2023/01/02
+Path to GDAL shared files: C:/Users/leonardo.rojas.k/AppData/Local/R/win-library/4.3/rgdal/gdal
+ GDAL does not use iconv for recoding strings.
+GDAL binary built with GEOS: TRUE 
+Loaded PROJ runtime: Rel. 9.2.0, March 1st, 2023, [PJ_VERSION: 920]
+Path to PROJ shared files: C:\Program Files\PostgreSQL\14\share\contrib\postgis-3.2\proj
+PROJ CDN enabled: FALSE
+Linking to sp version:1.6-1
+To mute warnings of possible GDAL/OSR exportToProj4() degradation,
+use options("rgdal_show_exportToProj4_warnings"="none") before loading sp or rgdal.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># polígono de manzanas censales</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mzs <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/manzanas_lc.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Podemos apreciar el contorno de las manzanas censales de la comuna a continuación:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mzs) <span class="sc">+</span> <span class="fu">tm_borders</span>() <span class="sc">+</span> <span class="fu">tm_layout</span>(<span class="at">title=</span><span class="st">"Manzanas Urbanas Las Condes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="ambiental_files/figure-html/amb-poly-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <p>Realizamos un preproceso inicial, rescatando el contorno de la comuna, asignando información de nombres al archivo de información satelital y generando un recorte del area de estudio comunal.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># nombre bandas</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(OLI) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"aerosol"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"red"</span>, <span class="st">"nir"</span>, <span class="st">"swir1"</span>, <span class="st">"swir2"</span>, <span class="st">"thermal"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># contorno comunal</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>comuna <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(mzs) <span class="sc">%&gt;%</span> <span class="fu">st_buffer</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">st_union</span>() <span class="sc">%&gt;%</span> <span class="fu">st_buffer</span>(<span class="sc">-</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">as_Spatial</span>()</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># recorte</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>comuna_img <span class="ot">&lt;-</span> <span class="fu">mask</span>(<span class="fu">crop</span>(OLI, <span class="fu">extent</span>(comuna), <span class="at">snap=</span><span class="st">"out"</span>), comuna)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># latlon a utm</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>comuna_img <span class="ot">&lt;-</span> <span class="fu">projectRaster</span>(comuna_img, <span class="at">crs =</span> crs_utm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># nombre bandas</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(OLI) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"aerosol"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"red"</span>, <span class="st">"nir"</span>, <span class="st">"swir1"</span>, <span class="st">"swir2"</span>, <span class="st">"thermal"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># contorno comunal</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>comuna <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(mzs) <span class="sc">%&gt;%</span> <span class="fu">st_buffer</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">st_union</span>() <span class="sc">%&gt;%</span> <span class="fu">st_buffer</span>(<span class="sc">-</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">as_Spatial</span>()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># recorte</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>comuna_img <span class="ot">&lt;-</span> <span class="fu">mask</span>(<span class="fu">crop</span>(OLI, <span class="fu">extent</span>(comuna), <span class="at">snap=</span><span class="st">"out"</span>), comuna)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># latlon a utm</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>comuna_img <span class="ot">&lt;-</span> <span class="fu">projectRaster</span>(comuna_img, <span class="at">crs =</span> crs_utm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Con esto podemos visualizar la información satelital de la comuna:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(comuna_img, <span class="at">r =</span> <span class="dv">4</span>, <span class="at">g =</span> <span class="dv">3</span>, <span class="at">b =</span> <span class="dv">2</span>, <span class="at">stretch =</span> <span class="st">"lin"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(comuna_img, <span class="at">r =</span> <span class="dv">4</span>, <span class="at">g =</span> <span class="dv">3</span>, <span class="at">b =</span> <span class="dv">2</span>, <span class="at">stretch =</span> <span class="st">"lin"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="ambiental_files/figure-html/amb-viz-LC-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>A partir de esto podemos calcular los índices que son la base de los indicadores: NDVI</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>NDVI <span class="ot">&lt;-</span> <span class="cf">function</span>(img, i, k) {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>   bi <span class="ot">&lt;-</span> img[[i]]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>   bk <span class="ot">&lt;-</span> img[[k]]</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>   vi <span class="ot">&lt;-</span> (bk <span class="sc">-</span> bi) <span class="sc">/</span> (bk <span class="sc">+</span> bi)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">return</span>(vi)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>NDVI_com <span class="ot">&lt;-</span> <span class="fu">NDVI</span>(comuna_img, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>NDVI_com_df <span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">as.data.frame</span>(NDVI_com, <span class="at">xy =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>NDVI <span class="ot">&lt;-</span> <span class="cf">function</span>(img, i, k) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>   bi <span class="ot">&lt;-</span> img[[i]]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>   bk <span class="ot">&lt;-</span> img[[k]]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>   vi <span class="ot">&lt;-</span> (bk <span class="sc">-</span> bi) <span class="sc">/</span> (bk <span class="sc">+</span> bi)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">return</span>(vi)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>NDVI_com <span class="ot">&lt;-</span> <span class="fu">NDVI</span>(comuna_img, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>NDVI_com_df <span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">as.data.frame</span>(NDVI_com, <span class="at">xy =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Este resultado puede visualizarse para revisar su pertinencia:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pal_ndvi<span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"gray20"</span>, <span class="st">"yellow"</span>, <span class="st">"green"</span>,<span class="st">"springgreen4"</span>))( <span class="dv">200</span> )</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> NDVI_com_df , </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">fill =</span> layer)) <span class="sc">+</span> </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name =</span> <span class="st">"NDVI"</span>, <span class="at">colors =</span> pal_ndvi)<span class="sc">+</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()<span class="sc">+</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">paste0</span>(<span class="st">"NDVI de Las Condes"</span>) ) <span class="sc">+</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"gray80"</span>), </span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"gray80"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pal_ndvi<span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"gray20"</span>, <span class="st">"yellow"</span>, <span class="st">"green"</span>,<span class="st">"springgreen4"</span>))( <span class="dv">200</span> )</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> NDVI_com_df , </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">fill =</span> layer)) <span class="sc">+</span> </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name =</span> <span class="st">"NDVI"</span>, <span class="at">colors =</span> pal_ndvi)<span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()<span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">paste0</span>(<span class="st">"NDVI de Las Condes"</span>) ) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"gray80"</span>), </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"gray80"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="ambiental_files/figure-html/amb-viz-ndvi-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Ahora es necesario definir un umbral a partir del cual se considera un pixel como cubierto de vegetación. Para esto examinamos la distribución empírica de los valores del índice normalizado:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(NDVI_com, <span class="at">col=</span><span class="st">"springgreen4"</span>, <span class="at">main=</span><span class="st">"Histograma NDVI"</span>, <span class="at">ylab=</span><span class="st">"Número de Pixeles"</span>, <span class="at">xlab=</span><span class="st">"valor NDVI"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(NDVI_com, <span class="at">col=</span><span class="st">"springgreen4"</span>, <span class="at">main=</span><span class="st">"Histograma NDVI"</span>, <span class="at">ylab=</span><span class="st">"Número de Pixeles"</span>, <span class="at">xlab=</span><span class="st">"valor NDVI"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="ambiental_files/figure-html/amb-hist-ndvi-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Con esto podemos definir el umbral de corte en 0.3, lo que permite descartar vegetación no frondoza en el territorio.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#función para definir umbral</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>corte_eq_may <span class="ot">&lt;-</span> <span class="cf">function</span>(value) {</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(x) {</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(x <span class="sc">&gt;=</span> value, <span class="dv">1</span>, <span class="cn">NA</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>vegetacion <span class="ot">&lt;-</span> <span class="fu">calc</span>(NDVI_com, <span class="at">fun =</span> <span class="fu">corte_eq_may</span>(<span class="at">value =</span> <span class="fl">0.30</span>))</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>vegetacion_df <span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">as.data.frame</span>(vegetacion, <span class="at">xy =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#función para definir umbral</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>corte_eq_may <span class="ot">&lt;-</span> <span class="cf">function</span>(value) {</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(x) {</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(x <span class="sc">&gt;=</span> value, <span class="dv">1</span>, <span class="cn">NA</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>vegetacion <span class="ot">&lt;-</span> <span class="fu">calc</span>(NDVI_com, <span class="at">fun =</span> <span class="fu">corte_eq_may</span>(<span class="at">value =</span> <span class="fl">0.30</span>))</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>vegetacion_df <span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">as.data.frame</span>(vegetacion, <span class="at">xy =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>El resultado de este corte puede revisarse gráficamente:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(comuna), <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span><span class="st">"orange"</span>, </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">alpha=</span><span class="fl">0.8</span>,  <span class="at">size=</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> vegetacion_df , </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, </span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">fill =</span> layer)) <span class="sc">+</span> </span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name =</span> <span class="st">"Veg"</span>, <span class="at">colors =</span> <span class="st">"springgreen4"</span>)<span class="sc">+</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Vegetación Las Condes"</span>) <span class="sc">+</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span><span class="st">""</span>)<span class="sc">+</span> </span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"gray80"</span>), </span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"gray80"</span>),</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(comuna), <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span><span class="st">"orange"</span>, </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">alpha=</span><span class="fl">0.8</span>,  <span class="at">size=</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> vegetacion_df , </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">fill =</span> layer)) <span class="sc">+</span> </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name =</span> <span class="st">"Veg"</span>, <span class="at">colors =</span> <span class="st">"springgreen4"</span>)<span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Vegetación Las Condes"</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span><span class="st">""</span>)<span class="sc">+</span> </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"gray80"</span>), </span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"gray80"</span>),</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="ambiental_files/figure-html/amb-viz-veg-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>A partir de esto es posible contar los pixeles dentro de cada manzana que están cubiertos por vegetación, y así calcular el indicador de Cobertura Vegetal (ICV):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mz_comuna  <span class="ot">&lt;-</span> mzs <span class="sc">%&gt;%</span> <span class="fu">st_as_sf</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">AREA=</span> <span class="fu">as.numeric</span>(<span class="fu">st_area</span>(.))) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pix_veg =</span> <span class="fu">exact_extract</span>(vegetacion,<span class="at">y =</span> ., <span class="st">'sum'</span>, <span class="at">progress =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">area_veg =</span> pix_veg <span class="sc">*</span> <span class="dv">30</span> <span class="sc">*</span> <span class="dv">30</span>) <span class="sc">%&gt;%</span> <span class="co"># resolución espacial landsat (30*30)</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ICV =</span> <span class="fu">round</span>((area_veg <span class="sc">/</span>AREA)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mz_comuna  <span class="ot">&lt;-</span> mzs <span class="sc">%&gt;%</span> <span class="fu">st_as_sf</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">AREA=</span> <span class="fu">as.numeric</span>(<span class="fu">st_area</span>(.))) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pix_veg =</span> <span class="fu">exact_extract</span>(vegetacion,<span class="at">y =</span> ., <span class="st">'sum'</span>, <span class="at">progress =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">area_veg =</span> pix_veg <span class="sc">*</span> <span class="dv">30</span> <span class="sc">*</span> <span class="dv">30</span>) <span class="sc">%&gt;%</span> <span class="co"># resolución espacial landsat (30*30)</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ICV =</span> <span class="fu">round</span>((area_veg <span class="sc">/</span>AREA)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Con esto podemos visualizar el resultado del indicador ICV:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> mz_comuna, <span class="fu">aes</span>(<span class="at">fill =</span> ICV), <span class="at">color =</span><span class="st">"gray70"</span>, </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">alpha=</span><span class="fl">0.8</span>,  <span class="at">size=</span> <span class="fl">0.1</span>)<span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette=</span> <span class="st">"Greens"</span>, <span class="at">direction =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Indicador de Cobertura Vegetal (ICV) - Urbano"</span>) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"gray80"</span>), </span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"gray80"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> mz_comuna, <span class="fu">aes</span>(<span class="at">fill =</span> ICV), <span class="at">color =</span><span class="st">"gray70"</span>, </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">alpha=</span><span class="fl">0.8</span>,  <span class="at">size=</span> <span class="fl">0.1</span>)<span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette=</span> <span class="st">"Greens"</span>, <span class="at">direction =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Indicador de Cobertura Vegetal (ICV) - Urbano"</span>) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"gray80"</span>), </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"gray80"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="ambiental_files/figure-html/amb-viz-res-icv-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -580,48 +610,49 @@ IATA = TST_{ver} - TST_{inv}
 <h3 data-number="3.4.2" class="anchored" data-anchor-id="iata-1"><span class="header-section-number">3.4.2</span> IATA</h3>
 <p>Para ilustrar el proceso de trabajo de el indicador de amplitud térmica comenzamos por cargar las imágenes raster con la información de temperatura superficial para invierno y verano:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>tst_inv <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="st">"data/tst_inv_R13.tif"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>tst_ver <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="st">"data/tst_ver_R13.tif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>tst_inv <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="st">"data/tst_inv_R13.tif"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>tst_ver <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="st">"data/tst_ver_R13.tif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Luego preprocesamos estos datos, generando recortes comunales de la información a trabajar:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># contorno manzanas</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>comuna <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(mzs) <span class="sc">%&gt;%</span> <span class="fu">st_buffer</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">st_union</span>() <span class="sc">%&gt;%</span> <span class="fu">st_buffer</span>(<span class="sc">-</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">as_Spatial</span>()</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># contonro invierno y verano (respetar crs)</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>comuna_inv <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(<span class="fu">st_as_sf</span>(comuna), <span class="at">crs =</span> <span class="fu">crs</span>(tst_inv))</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>comuna_ver <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(<span class="fu">st_as_sf</span>(comuna), <span class="at">crs =</span> <span class="fu">crs</span>(tst_ver))</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># recorte</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>comuna_inv <span class="ot">&lt;-</span> <span class="fu">mask</span>(<span class="fu">crop</span>(tst_inv, <span class="fu">extent</span>(comuna_inv), <span class="at">snap=</span><span class="st">"out"</span>), comuna_inv)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>comuna_ver <span class="ot">&lt;-</span> <span class="fu">mask</span>(<span class="fu">crop</span>(tst_ver, <span class="fu">extent</span>(comuna_ver), <span class="at">snap=</span><span class="st">"out"</span>), comuna_ver)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># reproyectar a utm</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>comuna_inv <span class="ot">&lt;-</span> <span class="fu">projectRaster</span>(comuna_inv, <span class="at">crs =</span> crs_utm)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>comuna_ver <span class="ot">&lt;-</span> <span class="fu">projectRaster</span>(comuna_ver, <span class="at">crs =</span> crs_utm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># contorno manzanas</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>comuna <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(mzs) <span class="sc">%&gt;%</span> <span class="fu">st_buffer</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">st_union</span>() <span class="sc">%&gt;%</span> <span class="fu">st_buffer</span>(<span class="sc">-</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">as_Spatial</span>()</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># contonro invierno y verano (respetar crs)</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>comuna_inv <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(<span class="fu">st_as_sf</span>(comuna), <span class="at">crs =</span> <span class="fu">crs</span>(tst_inv))</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>comuna_ver <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(<span class="fu">st_as_sf</span>(comuna), <span class="at">crs =</span> <span class="fu">crs</span>(tst_ver))</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># recorte</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>comuna_inv <span class="ot">&lt;-</span> <span class="fu">mask</span>(<span class="fu">crop</span>(tst_inv, <span class="fu">extent</span>(comuna_inv), <span class="at">snap=</span><span class="st">"out"</span>), comuna_inv)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>comuna_ver <span class="ot">&lt;-</span> <span class="fu">mask</span>(<span class="fu">crop</span>(tst_ver, <span class="fu">extent</span>(comuna_ver), <span class="at">snap=</span><span class="st">"out"</span>), comuna_ver)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># reproyectar a utm</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>comuna_inv <span class="ot">&lt;-</span> <span class="fu">projectRaster</span>(comuna_inv, <span class="at">crs =</span> crs_utm)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>comuna_ver <span class="ot">&lt;-</span> <span class="fu">projectRaster</span>(comuna_ver, <span class="at">crs =</span> crs_utm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Con esto podemos calcular la diferencia de temperaturas entre invierno y verano:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>comuna_ver <span class="ot">&lt;-</span> <span class="fu">resample</span>(comuna_ver,</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">raster</span>(<span class="fu">extent</span>(comuna_inv),</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">nrow =</span> <span class="fu">nrow</span>(comuna_inv),</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ncol =</span> <span class="fu">ncol</span>(comuna_inv),</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">crs =</span> crs_utm))</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>amplitud <span class="ot">&lt;-</span> <span class="fu">overlay</span>(comuna_inv, comuna_ver,  <span class="at">fun =</span> <span class="cf">function</span>(x, y) {y <span class="sc">-</span> x})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>comuna_ver <span class="ot">&lt;-</span> <span class="fu">resample</span>(comuna_ver,</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">raster</span>(<span class="fu">extent</span>(comuna_inv),</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">nrow =</span> <span class="fu">nrow</span>(comuna_inv),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ncol =</span> <span class="fu">ncol</span>(comuna_inv),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">crs =</span> crs_utm))</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>amplitud <span class="ot">&lt;-</span> <span class="fu">overlay</span>(comuna_inv, comuna_ver,  <span class="at">fun =</span> <span class="cf">function</span>(x, y) {y <span class="sc">-</span> x})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz amplitud</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(amplitud, <span class="at">main =</span> <span class="st">"Diferencia Temperatura Las Condes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz amplitud</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(amplitud, <span class="at">main =</span> <span class="st">"Diferencia Temperatura Las Condes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="ambiental_files/figure-html/amb-viz-diftemp-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Y luego asignar el promedio de diferencias a las manzanas correspondientes</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>mz_comuna  <span class="ot">&lt;-</span> </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  mzs <span class="sc">%&gt;%</span> <span class="fu">st_as_sf</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(crs_utm) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">IATA =</span> <span class="fu">exact_extract</span>(amplitud, mzs, <span class="st">'mean'</span>, <span class="at">progress =</span> <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mz_comuna  <span class="ot">&lt;-</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  mzs <span class="sc">%&gt;%</span> <span class="fu">st_as_sf</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(crs_utm) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">IATA =</span> <span class="fu">exact_extract</span>(amplitud, mzs, <span class="st">'mean'</span>, <span class="at">progress =</span> <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>El siguiente gráfico muestra las diferencias de temperatura en grados entre la temperatura superficial de verano e invierno en la comuna de las Condes:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_comuna) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="st">"IATA"</span>, <span class="at">style =</span> <span class="st">"jenks"</span>) <span class="sc">+</span> <span class="fu">tm_layout</span>(<span class="at">title =</span> <span class="st">"Indicador de Amplitud Térmica"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_comuna) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="st">"IATA"</span>, <span class="at">style =</span> <span class="st">"jenks"</span>) <span class="sc">+</span> <span class="fu">tm_layout</span>(<span class="at">title =</span> <span class="st">"Indicador de Amplitud Térmica"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="ambiental_files/figure-html/amb-viz-iata-1.png" class="img-fluid" width="672"></p>
 </div>

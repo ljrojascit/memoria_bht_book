@@ -258,6 +258,7 @@ div.csl-indent {
 <h2 data-number="2.2" class="anchored" data-anchor-id="insumos"><span class="header-section-number">2.2</span> Insumos</h2>
 <p>El proceso de cálculo de estos indicadores considera como insumo los datos del último censo disponible, en este caso el <strong>Censo de 2017</strong> realizado por el Instituto Nacional de Estadísticas (INE).</p>
 <p>Este levantamiento exhaustivo de los hogares, viviendas y personas residentes en el país entrega información en tablas llamadas <strong>Microdatos</strong> como en agregaciones espaciales, resumidas en polígonos censales en una estructura anidada de acuerdo a la división político administrativa del país.</p>
+<p>Que los insumos disponibles sean del año 2017 es aspecto importante a considerar, ya que la naturaleza dinámica de elementos como el desempleo o la participación juvenil, puede llevar a desajustes con datos más actuales a niveles de agregación regional.</p>
 </section>
 <section id="proceso" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="proceso"><span class="header-section-number">2.3</span> Proceso</h2>
@@ -280,7 +281,9 @@ div.csl-indent {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(knitr)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="st">"rgdal_show_exportToProj4_warnings"</span><span class="ot">=</span><span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A partir de esto se cargan datos de ejemplo, en este caso corresponden a la información censal a nivel de manzanas para la región de Coquimbo:</p>
 <div class="cell">
@@ -489,12 +492,13 @@ $ geometry   &lt;POLYGON [m]&gt; POLYGON ((292811 6685815, 2..., POLYGON ((29305
 </section>
 <section id="indicador-de-de-suficiencia-de-la-vivienda-isv" class="level4" data-number="2.4.1.6">
 <h4 data-number="2.4.1.6" class="anchored" data-anchor-id="indicador-de-de-suficiencia-de-la-vivienda-isv"><span class="header-section-number">2.4.1.6</span> Indicador de de Suficiencia de la Vivienda (ISV)</h4>
-<p>El indicador de Suficiencia de Viviendas se construyó inicialmente como un indicador de hacinamiento. Se realizó a partir de 2 variables que indican el número de viviendas que se encuentran en situación de hacinamiento y el número de viviendas que se encuentran en situación de hacinamiento severo. El indicador corresponde a la suma de 2 veces las viviendas en situación de hacinamiento severo con las viviendas en situación de hacinamiento normal, dividido por el total de viviendas.</p>
+<p>El indicador de Suficiencia de Viviendas se construyó inicialmente como un indicador de hacinamiento. Siguiendo las metodologías usadas en Chile <span class="citation" data-cites="celadeDeficitHabitacionalDatos1996 munoz2008requerimientos">(<a href="references.html#ref-celadeDeficitHabitacionalDatos1996" role="doc-biblioref">CELADE 1996</a>; <a href="references.html#ref-munoz2008requerimientos" role="doc-biblioref">Muñoz 2008</a>)</span> se construyó a partir de 2 variables que indican el número de viviendas que se encuentran en situación de hacinamiento y el número de viviendas que se encuentran en situación de hacinamiento severo.</p>
+<p>Siguiendo una lógica de ponderación por gravedad del hecho, el indicador corresponde a la suma de 2 veces las viviendas en situación de hacinamiento severo con las viviendas en situación de hacinamiento normal, dividido por el total de viviendas.</p>
 <p>Luego, el indicador se normalizó con su inverso aditivo, para asegurar que el valor máximo, sea lo más deseable y el 0 lo menos deseable. Con esto se obtuvo el indicador de suficiencia de viviendas.</p>
 <p>El calculo de este indicar implica diferenciar las viviendas en situación de hacinamiento y hacinamiento severo, lo que se operacionaliza en las siguientes variables:</p>
 <ul>
 <li><p><strong>NIV_HAC2</strong>: &gt;= 2.5 personas por habitación</p></li>
-<li><p><strong>NIV_HAC3</strong>: &gt;= 5 personas por habitación</p></li>
+<li><p><strong>NIV_HAC3</strong>: &gt;= 5 personas por habitación <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo</span></span>
@@ -527,11 +531,17 @@ Agostini, Claudio A., Daniel Hojman, Alonso Rom’an, and Luis Valenzuela. 2016.
 <div id="ref-amatoSingleparentHouseholdsMortality2017" class="csl-entry" role="listitem">
 Amato, Paul R., and Sarah E. Patterson. 2017. <span>“Single-Parent Households and Mortality Among Children and Youth.”</span> <em>Social Science Research</em> 63 (March): 253–62. <a href="https://doi.org/10.1016/j.ssresearch.2016.09.017">https://doi.org/10.1016/j.ssresearch.2016.09.017</a>.
 </div>
+<div id="ref-celadeDeficitHabitacionalDatos1996" class="csl-entry" role="listitem">
+CELADE. 1996. <span>“Déficit habitacional y datos censales sociodemográficos: una metodología,”</span> December. <a href="https://repositorio.cepal.org/handle/11362/9781">https://repositorio.cepal.org/handle/11362/9781</a>.
+</div>
 <div id="ref-ministeriodedesarrollosocialInformeDesarrolloSocial2019" class="csl-entry" role="listitem">
 de Desarrollo Social, Ministerio. 2019. <span>“Informe <span>Desarrollo Social</span> 2019.”</span> <span>Miniestario de Desarrollo Social</span>. <a href="https://www.desarrollosocialyfamilia.gob.cl/storage/docs/Informe_de_Desarrollo_Social_2019.pdf">https://www.desarrollosocialyfamilia.gob.cl/storage/docs/Informe_de_Desarrollo_Social_2019.pdf</a>.
 </div>
 <div id="ref-duriancikChildrenSingleparentHouseholds2019" class="csl-entry" role="listitem">
 Duriancik, David M, and Courtney R Goff. 2019. <span>“Children of Single-Parent Households Are at a Higher Risk of Obesity: <span>A</span> Systematic Review.”</span> <em>Journal of Child Health Care</em> 23 (3): 358–69. <a href="https://doi.org/10.1177/1367493519852463">https://doi.org/10.1177/1367493519852463</a>.
+</div>
+<div id="ref-munoz2008requerimientos" class="csl-entry" role="listitem">
+Muñoz, Claudia. 2008. <span>“Requerimientos de Vivienda: <span>Comparación</span> Metodologías Utilizadas Por Mideplan.”</span> <em>Gobierno de Chile. Ministerio de Planificación. Departamento de Estudios. División Social. Documento</em>, no. 11. <a href="https://www.desarrollosocialyfamilia.gob.cl/btca/txtcompleto/mideplan/11_requerimvivienda.pdf">https://www.desarrollosocialyfamilia.gob.cl/btca/txtcompleto/mideplan/11_requerimvivienda.pdf</a>.
 </div>
 <div id="ref-ruiz-tagleEstudioSegregacionResidencial2014" class="csl-entry" role="listitem">
 Ruiz-Tagle, Javier, and Ernesto L’opez M. 2014. <span>“El Estudio de La Segregación Residencial En <span>Santiago</span> de <span>Chile</span>: Revisión Crítica de Algunos Problemas Metodológicos y Conceptuales.”</span> <em>EURE (Santiago)</em> 40 (119): 25–48. <a href="https://doi.org/10.4067/S0250-71612014000100002">https://doi.org/10.4067/S0250-71612014000100002</a>.
@@ -545,6 +555,12 @@ Theodoritsi, L, and N Daliana. 2018. <span>“The Mental Health of Single-Parent
 </div>
 </section>
 </section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Según la <a href="https://datasocial.ministeriodesarrollosocial.gob.cl/fichaIndicador/649/1">Ficha del Indicador de Hacinamiento del Observatorio Social del Ministerio de Desarrollo Social</a>, existe también el hacinamiento alto, entre 2,5 y 3,5, que se omitió en este análisis por simplicidad.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
