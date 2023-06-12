@@ -114,9 +114,6 @@ div.csl-indent {
   }
 }</script>
 
-<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
@@ -330,441 +327,29 @@ I_i = c.z_i \sum_jw_{ij}z_j
 </div>
 <p>Por ejemplo, el elemento <code>iterador</code> resume el nombre, abreviaturas, población relevante y unidad de medida, entre otros elementos, de cada indicador:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>iterador <span class="sc">%&gt;%</span> kableExtra<span class="sc">::</span><span class="fu">kbl</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">nombre</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">abrev_insumo</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">abrev_ind</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">nombre_grafico</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">pob_rev</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">proposito</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">oportunidad</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">unidad</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">achurado</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">archivo</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">colores</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">itera_grafico</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">itera_accesibilidad</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Cultura</td>
-<td style="text-align: left;">icul</td>
-<td style="text-align: left;">icul</td>
-<td style="text-align: left;">Indicador de Accesibilidad a Equipamentos Culturales</td>
-<td style="text-align: left;">personas</td>
-<td style="text-align: left;">libre</td>
-<td style="text-align: left;">area</td>
-<td style="text-align: left;">m² por Habitante</td>
-<td style="text-align: left;">SI</td>
-<td style="text-align: left;">carto_acc</td>
-<td style="text-align: left;">#A7A394,#DECFB4,#FABC6B,#E69545,#B35F0B</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Area Verdes</td>
-<td style="text-align: left;">iav</td>
-<td style="text-align: left;">iav</td>
-<td style="text-align: left;">Indicador de Accesibilidad a Áreas Verdes</td>
-<td style="text-align: left;">personas</td>
-<td style="text-align: left;">libre</td>
-<td style="text-align: left;">area</td>
-<td style="text-align: left;">m² por Habitante</td>
-<td style="text-align: left;">SI</td>
-<td style="text-align: left;">carto_acc</td>
-<td style="text-align: left;">#A7A394,#CFCAB6,#9AB586,#5C8944,#3E5C2E</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Salud</td>
-<td style="text-align: left;">isal</td>
-<td style="text-align: left;">isal</td>
-<td style="text-align: left;">Indicador de Accesibilidad a Equipamentos de Salud</td>
-<td style="text-align: left;">personas</td>
-<td style="text-align: left;">hacer</td>
-<td style="text-align: left;">area</td>
-<td style="text-align: left;">m² por Habitante</td>
-<td style="text-align: left;">SI</td>
-<td style="text-align: left;">carto_acc</td>
-<td style="text-align: left;">#A7A394,#D9BDAF,#E38264,#D44D35,#C40A0A</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Deportes</td>
-<td style="text-align: left;">idep</td>
-<td style="text-align: left;">idep</td>
-<td style="text-align: left;">Indicador de Accesibilidad a Equipamentos Deportivos</td>
-<td style="text-align: left;">personas</td>
-<td style="text-align: left;">libre</td>
-<td style="text-align: left;">area</td>
-<td style="text-align: left;">m² por Habitante</td>
-<td style="text-align: left;">SI</td>
-<td style="text-align: left;">carto_acc</td>
-<td style="text-align: left;">#A7A394,#BACBCC,#7FBCC7,#5995AB,#446B87</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Servicios Publicos</td>
-<td style="text-align: left;">iser</td>
-<td style="text-align: left;">iser</td>
-<td style="text-align: left;">Indicador de Accesibilidad a Servicios Públicos</td>
-<td style="text-align: left;">personas</td>
-<td style="text-align: left;">hacer</td>
-<td style="text-align: left;">area</td>
-<td style="text-align: left;">Servicios públicos cada 1.000 habitantes</td>
-<td style="text-align: left;">SI</td>
-<td style="text-align: left;">carto_acc</td>
-<td style="text-align: left;">#A7A394,#C7BFCD,#AE91BF,#8A6A9C,#623973</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Educacion</td>
-<td style="text-align: left;">ise</td>
-<td style="text-align: left;">ise</td>
-<td style="text-align: left;">Indicador de Accesibilidad a Servicios de Educación</td>
-<td style="text-align: left;">e4a18</td>
-<td style="text-align: left;">hacer</td>
-<td style="text-align: left;">matriculas</td>
-<td style="text-align: left;">Matrículas por niño(a)</td>
-<td style="text-align: left;">SI</td>
-<td style="text-align: left;">carto_acc</td>
-<td style="text-align: left;">#A80000,#E64C00,#F5A37A,#9CBAD6,#6699CC</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Cobertura Vegetal</td>
-<td style="text-align: left;">icv</td>
-<td style="text-align: left;">ICV</td>
-<td style="text-align: left;">Indicador de Cobertura Vegetal</td>
-<td style="text-align: left;">AREA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">% Cobertura Vegetal</td>
-<td style="text-align: left;">NO</td>
-<td style="text-align: left;">carto_amb</td>
-<td style="text-align: left;">#C9C6A9,#9EAC8E,#76A882,#4A8744,#226633</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Amplitud Termica</td>
-<td style="text-align: left;">iata</td>
-<td style="text-align: left;">IATA</td>
-<td style="text-align: left;">Indicador de Amplitud Térmica</td>
-<td style="text-align: left;">AREA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">°C</td>
-<td style="text-align: left;">NO</td>
-<td style="text-align: left;">carto_amb</td>
-<td style="text-align: left;">#FFFF00,#F5CC00,#E69900,#F56200,#FF0000</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">iej</td>
-<td style="text-align: left;">IEJ</td>
-<td style="text-align: left;">Indicador de Escolaridad de Jefe de Hogar</td>
-<td style="text-align: left;">personas</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Años de Escolaridad</td>
-<td style="text-align: left;">SI</td>
-<td style="text-align: left;">carto_soc</td>
-<td style="text-align: left;">#B26E35,#DDA795,#C6C6C6,#A8CFDB,#47A4B8</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">irh</td>
-<td style="text-align: left;">IRH</td>
-<td style="text-align: left;">Indicador de Resiliencia de Hogares</td>
-<td style="text-align: left;">personas</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Valor Indicador</td>
-<td style="text-align: left;">SI</td>
-<td style="text-align: left;">carto_soc</td>
-<td style="text-align: left;">#A7A394,#C6C6C6,#D07664,#CE6352,#D44623</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">iem</td>
-<td style="text-align: left;">IEM</td>
-<td style="text-align: left;">Indicador de Empleo</td>
-<td style="text-align: left;">personas</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Valor Indicador</td>
-<td style="text-align: left;">SI</td>
-<td style="text-align: left;">carto_soc</td>
-<td style="text-align: left;">#A7A394,#C6C6C6,#CC6276,#D44859,#CF3043</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">ipj</td>
-<td style="text-align: left;">IPJ</td>
-<td style="text-align: left;">Indicador de Participación Juvenil en Empleo y Estudio</td>
-<td style="text-align: left;">personas</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Valor Indicador</td>
-<td style="text-align: left;">SI</td>
-<td style="text-align: left;">carto_soc</td>
-<td style="text-align: left;">#A7A394,#C6C6C6,#B27487,#AF5871,#B33854</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">isv</td>
-<td style="text-align: left;">ISV</td>
-<td style="text-align: left;">Indicador de Suficiencia de Viviendas</td>
-<td style="text-align: left;">personas</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Valor Indicador</td>
-<td style="text-align: left;">SI</td>
-<td style="text-align: left;">carto_soc</td>
-<td style="text-align: left;">#A7A394,#C6C6C6,#D891B8,#CE6AA1,#C75281</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">ivi</td>
-<td style="text-align: left;">IVI</td>
-<td style="text-align: left;">Indicador de Calidad de la Vivienda</td>
-<td style="text-align: left;">personas</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Valor Indicador</td>
-<td style="text-align: left;">SI</td>
-<td style="text-align: left;">carto_soc</td>
-<td style="text-align: left;">#A7A394,#C6C6C6,#A0708D,#9C5A80,#A63C6E</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">lvs_prs</td>
-<td style="text-align: left;">ILPE</td>
-<td style="text-align: left;">Indicador ante Delitos Leves contra las Personas</td>
-<td style="text-align: left;">AREA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Nivel de Seguridad</td>
-<td style="text-align: left;">NO</td>
-<td style="text-align: left;">carto_seg</td>
-<td style="text-align: left;">#EADCE8,#D6A8CE,#A760A3,#974794,#821F82</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">lvs_prp</td>
-<td style="text-align: left;">ILPR</td>
-<td style="text-align: left;">Indicador ante Delitos Leves contra la Propiedad</td>
-<td style="text-align: left;">AREA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Nivel de Seguridad</td>
-<td style="text-align: left;">NO</td>
-<td style="text-align: left;">carto_seg</td>
-<td style="text-align: left;">#EADCE8,#D6A8CE,#A760A3,#974794,#821F82</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">grvs_prs</td>
-<td style="text-align: left;">IGPE</td>
-<td style="text-align: left;">Indicador ante Delitos Graves contra las Personas</td>
-<td style="text-align: left;">AREA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Nivel de Seguridad</td>
-<td style="text-align: left;">NO</td>
-<td style="text-align: left;">carto_seg</td>
-<td style="text-align: left;">#EADCE8,#D6A8CE,#A760A3,#974794,#821F82</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">grvs_prp</td>
-<td style="text-align: left;">IGPR</td>
-<td style="text-align: left;">Indicador ante Delitos Graves contra la Propiedad</td>
-<td style="text-align: left;">AREA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Nivel de Seguridad</td>
-<td style="text-align: left;">NO</td>
-<td style="text-align: left;">carto_seg</td>
-<td style="text-align: left;">#EADCE8,#D6A8CE,#A760A3,#974794,#821F82</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">ibt</td>
-<td style="text-align: left;">ibt</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">personas</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">#c3d4db,#a7bfc9,#8dabba,#7697ab,#5f8299,#4c6f8a,#3b5d7a,#2b4a69,#1e3a59,#142b4a</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">dim_acc</td>
-<td style="text-align: left;">dim_acc</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">personas</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">#E8F6F3,#D0ECE7,#A2D9CE,#73C6B6,#45B39D,#16A085,#138D75,#117A65,#0E6655,#0B5345</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">dim_seg</td>
-<td style="text-align: left;">dim_seg</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">personas</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">#EADCE8,#DFBAD9,#D6A8CE,#C185B9,#A760A3,#9A4C98,#974794,#90398D,#821F82,#652368</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">dim_soc</td>
-<td style="text-align: left;">dim_soc</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">personas</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">#D9CCE2,#C1B1D1,#B2A1CE,#A78BC0,#9473B1,#835EA4,#74539A,#61448C,#4C3275,#3A224D</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">dim_amb</td>
-<td style="text-align: left;">dim_amb</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">personas</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">#FEF5E7,#FDEBD0,#FAD7A0,#F8C471,#F5B041,#F39C13,#D68910,#B9770E,#9C640C,#7E5109</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Educación Superior</td>
-<td style="text-align: left;">ises</td>
-<td style="text-align: left;">ises</td>
-<td style="text-align: left;">Indicador de Accesibilidad a Servicios de Educación Superior</td>
-<td style="text-align: left;">e18a25</td>
-<td style="text-align: left;">hacer</td>
-<td style="text-align: left;">matriculas</td>
-<td style="text-align: left;">Matrículas por niño(a)</td>
-<td style="text-align: left;">SI</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">#A80000,#E64C00,#F5A37A,#9CBAD6,#6699CC</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Cohesion Social</td>
-<td style="text-align: left;">ics</td>
-<td style="text-align: left;">ics</td>
-<td style="text-align: left;">Indicador de Accesibilidad a Servicios Públicos</td>
-<td style="text-align: left;">personas</td>
-<td style="text-align: left;">hacer</td>
-<td style="text-align: left;">area</td>
-<td style="text-align: left;">Servicios públicos cada 1.000 habitantes</td>
-<td style="text-align: left;">SI</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">#A7A394,#C7BFCD,#AE91BF,#8A6A9C,#623973</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Distancia transporte publico rural</td>
-<td style="text-align: left;">itpr</td>
-<td style="text-align: left;">ITPR</td>
-<td style="text-align: left;">Indicador de Cobertura Vegetal</td>
-<td style="text-align: left;">AREA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">% Cobertura Vegetal</td>
-<td style="text-align: left;">NO</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">#C9C6A9,#9EAC8E,#76A882,#4A8744,#226633</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Closeness</td>
-<td style="text-align: left;">icc</td>
-<td style="text-align: left;">ICC</td>
-<td style="text-align: left;">Indicador de Amplitud Térmica</td>
-<td style="text-align: left;">AREA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">°C</td>
-<td style="text-align: left;">NO</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">#FFFF00,#F5CC00,#E69900,#F56200,#FF0000</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-</tr>
-</tbody>
-</table>
-
-
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>iterador</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 27 × 13
+   nombre    abrev_insumo abrev_ind nombre_grafico pob_rev proposito oportunidad
+   &lt;chr&gt;     &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;      
+ 1 Cultura   icul         icul      Indicador de … person… libre     area       
+ 2 Area Ver… iav          iav       Indicador de … person… libre     area       
+ 3 Salud     isal         isal      Indicador de … person… hacer     area       
+ 4 Deportes  idep         idep      Indicador de … person… libre     area       
+ 5 Servicio… iser         iser      Indicador de … person… hacer     area       
+ 6 Educacion ise          ise       Indicador de … e4a18   hacer     matriculas 
+ 7 Cobertur… icv          ICV       Indicador de … AREA    &lt;NA&gt;      &lt;NA&gt;       
+ 8 Amplitud… iata         IATA      Indicador de … AREA    &lt;NA&gt;      &lt;NA&gt;       
+ 9 &lt;NA&gt;      iej          IEJ       Indicador de … person… &lt;NA&gt;      &lt;NA&gt;       
+10 &lt;NA&gt;      irh          IRH       Indicador de … person… &lt;NA&gt;      &lt;NA&gt;       
+# ℹ 17 more rows
+# ℹ 6 more variables: unidad &lt;chr&gt;, achurado &lt;chr&gt;, archivo &lt;chr&gt;,
+#   colores &lt;chr&gt;, itera_grafico &lt;dbl&gt;, itera_accesibilidad &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>Por otro lado, <code>iterador_soc</code> resume la población relevante de cada indicador:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>iterador_soc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>iterador_soc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 27 × 2
    abrev_ind pob_rev 
@@ -784,7 +369,7 @@ I_i = c.z_i \sum_jw_{ij}z_j
 </div>
 <p>Por último, <code>vars</code> es un diccionario, guardado con la extensión <code>json</code> que resume el listado de indicadores por dimensión:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>vars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>vars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$acc
 [1] "ICUL" "IAV"  "ISAL" "IDEP" "ISER" "ISE" 
@@ -801,8 +386,8 @@ $soc
 </div>
 <p>Con esto podemos cargar los datos de las manzanas de la ciudad, ya que cuentan con la información de indicadores calculados. Estos datos de entrada al proceso muestran los indicadores en su unidad de medida original. Por ejemplo <code>IEJ</code> está expresado en años promedio por jefe de hogar, o <code>IATA</code> en diferencia de grados celcius.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mzs <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/mz_vld.rds"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mzs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mzs <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/mz_vld.rds"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mzs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 1,842
 Columns: 35
@@ -845,18 +430,18 @@ $ geometry   &lt;POLYGON [°]&gt; POLYGON ((-73.21897 -39.788..., POLYGON ((-73.
 </div>
 <p>Al visualizar estas manzanas se distingue el sector urbano de Valdivia, además la zona costera de Niebla.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mzs) <span class="sc">+</span> <span class="fu">tm_borders</span>() <span class="sc">+</span> <span class="fu">tm_layout</span>(<span class="at">title=</span><span class="st">"Valdivia: Manzanas Urbanas"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mzs) <span class="sc">+</span> <span class="fu">tm_borders</span>() <span class="sc">+</span> <span class="fu">tm_layout</span>(<span class="at">title=</span><span class="st">"Valdivia: Manzanas Urbanas"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="consolidacion_files/figure-html/cons-viz-mzs-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>El proceso comienza por identificar aquellas manzanas cuyos valores poblacionales son cero, lo que implica indefinición de valores en indicadores poblacionales (accesibilidad o socioeconómicos). Esto es prerequisito para imputar valores de indicadores a partir sus vecinos. Esto se logra mediante la interpolación por vecinos cercanos. El código indica los grupos de indicadores que comparten ocurrencia de valores indefinidos (o <code>NA</code>):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identificar y crear valores NA y luego interpolar</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mz_imputado <span class="ot">&lt;-</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  mzs <span class="sc">%&gt;%</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">makeNA</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">imputarIdw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identificar y crear valores NA y luego interpolar</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>mz_imputado <span class="ot">&lt;-</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  mzs <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">makeNA</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">imputarIdw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "(ISV$|IVI$)"                         "(IRH$|ICUL$|IAV$|ISAL$|IDEP$|ISER$)"
 [3] "(ISE$)"                             
@@ -867,40 +452,40 @@ $ geometry   &lt;POLYGON [°]&gt; POLYGON ((-73.21897 -39.788..., POLYGON ((-73.
 </div>
 <p>Una vez que se cuenta con informaciones válidas sin datos perdidos en todas las observaciones, se procede a consolidar las dimensiones. Este proceso implica suavizar los indicadores de accesibilidad (dada su naturaleza propensa a outliers y el rendimiento decreciente de bienestar del acceso a servicios). Además de esto, se normalizan los indicadores para que se expresen en la misma escala, entre 0 y 1. Además, se agregan los indicadores pertenecientes a cada dimensión.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mz_c_dimensiones <span class="ot">&lt;-</span> <span class="fu">consolidarDimensiones</span>(<span class="at">manzanas_c_indicador =</span>  mz_imputado)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mz_c_dimensiones <span class="ot">&lt;-</span> <span class="fu">consolidarDimensiones</span>(<span class="at">manzanas_c_indicador =</span>  mz_imputado)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>El detalle de este proceso se puede encontrar a continuación. Tanto la dimensión socioeconómica como accesibilidad son el resultado de promediar sus componentes normalizados (y suavizados en accesibilidad). Mientras que la dimensión de seguridad le da el doble de relevancia a los delitos graves, y la dimensión ambiental requiere normalizar y además invertir los valores de amplitud térmica (cosa de que la menor amplitud sea asociada positivamente al bienestar). Está última dimensión se agrega por MPI, por lo que se castiga además sus desviaciones estandar.</p>
 <p>Se pueden apreciar los resultados a continuación. La dimensión socioeconómica muestra un patrón de mejor condición en la periferia norte de la ciudad.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: soc</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_c_dimensiones) <span class="sc">+</span> </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(<span class="st">"dim_soc"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette=</span>grDevices<span class="sc">::</span><span class="fu">hcl.colors</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">palette =</span>  <span class="st">"TealGrn"</span>))<span class="sc">+</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">title=</span><span class="st">"Dimensión de Socioeconómica"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: soc</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_c_dimensiones) <span class="sc">+</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(<span class="st">"dim_soc"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette=</span>grDevices<span class="sc">::</span><span class="fu">hcl.colors</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">palette =</span>  <span class="st">"TealGrn"</span>))<span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">title=</span><span class="st">"Dimensión de Socioeconómica"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="consolidacion_files/figure-html/cns-viz-soc-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Luego la dimensión ambiental muestra un patrón muy claro donde la periferia de la zona más densa y urbana de la ciudad tiene valores más altos de confort ambiental.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: ambiental</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_c_dimensiones) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"dim_amb"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette=</span><span class="st">"RdYlGn"</span>)<span class="sc">+</span> <span class="fu">tm_layout</span>(<span class="at">title=</span><span class="st">"Dimensión Ambiental"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: ambiental</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_c_dimensiones) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"dim_amb"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette=</span><span class="st">"RdYlGn"</span>)<span class="sc">+</span> <span class="fu">tm_layout</span>(<span class="at">title=</span><span class="st">"Dimensión Ambiental"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="consolidacion_files/figure-html/cns-viz-amb-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>El patrón de seguridad muestra como los delitos se concentran en el centro de la ciudad.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: seguridad</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_c_dimensiones) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"dim_seg"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette=</span><span class="st">"RdYlBu"</span>)<span class="sc">+</span> <span class="fu">tm_layout</span>(<span class="at">title=</span><span class="st">"Dimensión de Seguridad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: seguridad</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_c_dimensiones) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"dim_seg"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette=</span><span class="st">"RdYlBu"</span>)<span class="sc">+</span> <span class="fu">tm_layout</span>(<span class="at">title=</span><span class="st">"Dimensión de Seguridad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="consolidacion_files/figure-html/cns-viz-seg-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Finalmente, el acceso a servicios se encuentra fuertemente concentrado en el centro de la ciudad.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: accesibilidad</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_c_dimensiones) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"dim_acc"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette=</span><span class="st">"Blues"</span>) <span class="sc">+</span> <span class="fu">tm_layout</span>(<span class="at">title=</span><span class="st">"Dimensión de Accesibilidad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: accesibilidad</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_c_dimensiones) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"dim_acc"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette=</span><span class="st">"Blues"</span>) <span class="sc">+</span> <span class="fu">tm_layout</span>(<span class="at">title=</span><span class="st">"Dimensión de Accesibilidad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="consolidacion_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -908,13 +493,13 @@ $ geometry   &lt;POLYGON [°]&gt; POLYGON ((-73.21897 -39.788..., POLYGON ((-73.
 <p>Estos resultados permiten ilustrar cómo la densidad de población generalmente implica mayores servicios (ya que las decisiones de inversión se concentran donde existen mercados más desarrollados y la inversión pública sigue este patrón), pero al mismo tiempo presenta costos de aglomeración, con mayores niveles de inseguridad y menor confort ambiental. Además, los patrones socioeconómicos van mostrando las decisiones o faltas de decsisión de las personas y la segregación de los grupos sociales.</p>
 <p>Con las dimensiones creadas es posible calcular el indicador MBHT, donde cada dimensión recibe una ponderacion proporcional al número de indicadores que contiene:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calcula MBHT y normaliza</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df_res <span class="ot">&lt;-</span> </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    mz_c_dimensiones <span class="sc">%&gt;%</span> </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename_all</span>(stringr<span class="sc">::</span>str_to_upper) <span class="sc">%&gt;%</span> <span class="co"># asegurarse que variables esten en mayusculas</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mbht_pondera_num_dims</span>(vars) <span class="sc">%&gt;%</span> <span class="co"># pondera de acuerdo a numero de indicadores por dimension</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">MBHT_P_BRUTO =</span> MBHT_P) <span class="sc">%&gt;%</span> <span class="co"># renombrar </span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">MBHT_P =</span> <span class="fu">minmax</span>(MBHT_P_BRUTO)) <span class="co"># normalizar</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calcula MBHT y normaliza</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df_res <span class="ot">&lt;-</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    mz_c_dimensiones <span class="sc">%&gt;%</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename_all</span>(stringr<span class="sc">::</span>str_to_upper) <span class="sc">%&gt;%</span> <span class="co"># asegurarse que variables esten en mayusculas</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mbht_pondera_num_dims</span>(vars) <span class="sc">%&gt;%</span> <span class="co"># pondera de acuerdo a numero de indicadores por dimension</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">MBHT_P_BRUTO =</span> MBHT_P) <span class="sc">%&gt;%</span> <span class="co"># renombrar </span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">MBHT_P =</span> <span class="fu">minmax</span>(MBHT_P_BRUTO)) <span class="co"># normalizar</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Ponderacion proporcional al numero de indicadores en cada dimension"</code></pre>
 </div>
@@ -922,13 +507,13 @@ $ geometry   &lt;POLYGON [°]&gt; POLYGON ((-73.21897 -39.788..., POLYGON ((-73.
 <p>El detalle de la funcion <code>mbht_pondera_num_dims()</code> puede encontrarse a continuación. Esta utiliza el diccionario <code>vars</code> para ponderar cada dimensión de acuerdo al número de indicadores que contiene.</p>
 <p>Se aprecia como la dimensión de accesibilidad al contar con 6 indicadores de un total de 18 pondera un 33,3%, similar que la dimensión socioeconómica. Siendo la dimensión seguridad al contar con 4 indicadores de 18, pondera un 22,2% y la dimensión ambiental al contar con dos indicadores pondera un 11,1%.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># demostracion uso de diccionaro para derivar ponderadores</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>dic_vars <span class="ot">=</span> vars <span class="co"># diccionario</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>num_ind_dims <span class="ot">=</span> <span class="fu">lapply</span>(dic_vars, length) <span class="co"># numero de indicadores por dimension</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>total_ind <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">unlist</span>(num_ind_dims)) <span class="co"># total de indicadores </span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>pond_dims <span class="ot">=</span> <span class="fu">lapply</span>(num_ind_dims, <span class="cf">function</span>(x) x<span class="sc">/</span>total_ind) <span class="co"># proporcion de indicadores </span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ponderacion final:</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>pond_dims</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># demostracion uso de diccionaro para derivar ponderadores</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>dic_vars <span class="ot">=</span> vars <span class="co"># diccionario</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>num_ind_dims <span class="ot">=</span> <span class="fu">lapply</span>(dic_vars, length) <span class="co"># numero de indicadores por dimension</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>total_ind <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">unlist</span>(num_ind_dims)) <span class="co"># total de indicadores </span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>pond_dims <span class="ot">=</span> <span class="fu">lapply</span>(num_ind_dims, <span class="cf">function</span>(x) x<span class="sc">/</span>total_ind) <span class="co"># proporcion de indicadores </span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ponderacion final:</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>pond_dims</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$acc
 [1] 0.3333333
@@ -945,33 +530,33 @@ $soc
 </div>
 <p>Con esto es posible calcular las zonas de oportunidad, donde se identifican clusters de valores altos y bajos del indicador de bienestar humano.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>mz_zonas <span class="ot">&lt;-</span> <span class="fu">zonasIBT</span>(df_res, <span class="at">var_ibt =</span> <span class="st">"MBHT_P"</span>) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">TOB=</span>clusterM)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>mz_zonas<span class="sc">$</span>TOB <span class="ot">&lt;-</span> <span class="fu">factor</span>(mz_zonas<span class="sc">$</span>TOB, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Bajo"</span>, <span class="st">"Medio"</span>, <span class="st">"Alto"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>mz_zonas <span class="ot">&lt;-</span> <span class="fu">zonasIBT</span>(df_res, <span class="at">var_ibt =</span> <span class="st">"MBHT_P"</span>) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">TOB=</span>clusterM)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>mz_zonas<span class="sc">$</span>TOB <span class="ot">&lt;-</span> <span class="fu">factor</span>(mz_zonas<span class="sc">$</span>TOB, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Bajo"</span>, <span class="st">"Medio"</span>, <span class="st">"Alto"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>El indicador consolidado muestra cómo se van relacionando las distintas dimensiones ya calculadas generando un patrón más complejo pero que permite destacar claramente la zona norponiente de Valdivia con un alto nivel de bienestar, siendo la zona sur la que concentra menores niveles de oportunidades.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_zonas) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"MBHT_P"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette =</span><span class="st">"RdYlGn"</span>) <span class="sc">+</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">title=</span><span class="st">"Indicador Compuesto Bienestar"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_zonas) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"MBHT_P"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette =</span><span class="st">"RdYlGn"</span>) <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">title=</span><span class="st">"Indicador Compuesto Bienestar"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="consolidacion_files/figure-html/cons-viz-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Al realizar el análisis de cluster se aprecia como Valdivia y Niebla muestran zonas de altas oportunidades de bienestar, sin embargo solo Valdivia muestra zonas donde el bienestar es bajo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">factor</span>(mz_zonas<span class="sc">$</span>TOB, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Bajo"</span>, <span class="st">"Medio"</span>, <span class="st">"Alto"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">factor</span>(mz_zonas<span class="sc">$</span>TOB, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Bajo"</span>, <span class="st">"Medio"</span>, <span class="st">"Alto"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Bajo Medio  Alto 
   386  1065   391 </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mz_zonas<span class="sc">$</span>TOB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mz_zonas<span class="sc">$</span>TOB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  Bajo Medio  Alto 
   386  1065   391 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_zonas) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"TOB"</span>, <span class="at">palette =</span> <span class="st">"Purples"</span>) <span class="sc">+</span> <span class="fu">tm_layout</span>(<span class="at">title=</span><span class="st">"Territorios de Oportunidad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_zonas) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"TOB"</span>, <span class="at">palette =</span> <span class="st">"Purples"</span>) <span class="sc">+</span> <span class="fu">tm_layout</span>(<span class="at">title=</span><span class="st">"Territorios de Oportunidad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="consolidacion_files/figure-html/cons-viz-zonas-1.png" class="img-fluid" width="672"></p>
 </div>
