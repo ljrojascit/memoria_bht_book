@@ -114,6 +114,9 @@ div.csl-indent {
   }
 }</script>
 
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
@@ -212,7 +215,10 @@ div.csl-indent {
    
   <ul>
   <li><a href="#resumen" id="toc-resumen" class="nav-link active" data-scroll-target="#resumen"><span class="header-section-number">6.1</span> Resumen</a></li>
-  <li><a href="#insumos" id="toc-insumos" class="nav-link" data-scroll-target="#insumos"><span class="header-section-number">6.2</span> Insumos</a></li>
+  <li><a href="#insumos" id="toc-insumos" class="nav-link" data-scroll-target="#insumos"><span class="header-section-number">6.2</span> Insumos</a>
+  <ul class="collapse">
+  <li><a href="#listado-de-dimensiones-y-variables" id="toc-listado-de-dimensiones-y-variables" class="nav-link" data-scroll-target="#listado-de-dimensiones-y-variables"><span class="header-section-number">6.2.1</span> Listado de Dimensiones y Variables</a></li>
+  </ul></li>
   <li><a href="#proceso" id="toc-proceso" class="nav-link" data-scroll-target="#proceso"><span class="header-section-number">6.3</span> Proceso</a>
   <ul class="collapse">
   <li><a href="#imputación-de-valores-por-vecinos" id="toc-imputación-de-valores-por-vecinos" class="nav-link" data-scroll-target="#imputación-de-valores-por-vecinos"><span class="header-section-number">6.3.1</span> Imputación de valores por vecinos</a></li>
@@ -261,6 +267,174 @@ div.csl-indent {
 <li><p>Dimensión Seguridad</p></li>
 <li><p>Dimensión Accesibilidad</p></li>
 </ul>
+<section id="listado-de-dimensiones-y-variables" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="listado-de-dimensiones-y-variables"><span class="header-section-number">6.2.1</span> Listado de Dimensiones y Variables</h3>
+<p>A continuación se presenta un resumen de las variables que componen la Matriz de Bienestar Humano Territorial (MBHT), indicando la dimensión a la que pertecen, el tipo de dato, los valores que presentan y la fuente con la temporalidad relevante.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Dimension</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Indicador</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Nombre Indicador</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Tipo de Dato</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Valores</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Fuente y Temporalidad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SOCIOECONÓMICA</td>
+<td style="text-align: left;">IEJ</td>
+<td style="text-align: left;">Indicador Escolaridad de Jefe de Hogar</td>
+<td style="text-align: left;">DOUBLE</td>
+<td style="text-align: left;">Entre 0 y 21</td>
+<td style="text-align: left;">Calculado en base a último censo (INE 2017)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SOCIOECONÓMICA</td>
+<td style="text-align: left;">IRH</td>
+<td style="text-align: left;">Indicador de Resiliencia de Hogares</td>
+<td style="text-align: left;">DOUBLE</td>
+<td style="text-align: left;">valor entre 0 y 1</td>
+<td style="text-align: left;">Calculado en base a último censo (INE 2017)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SOCIOECONÓMICA</td>
+<td style="text-align: left;">IEM</td>
+<td style="text-align: left;">Indicador de Empleo</td>
+<td style="text-align: left;">DOUBLE</td>
+<td style="text-align: left;">valor entre 0 y 1</td>
+<td style="text-align: left;">Calculado en base a último censo (INE 2017)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SOCIOECONÓMICA</td>
+<td style="text-align: left;">IPJ</td>
+<td style="text-align: left;">Indicador de Participación Juvenil en Empleo y Estudio</td>
+<td style="text-align: left;">DOUBLE</td>
+<td style="text-align: left;">valor entre 0 y 1</td>
+<td style="text-align: left;">Calculado en base a último censo (INE 2017)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SOCIOECONÓMICA</td>
+<td style="text-align: left;">ISV</td>
+<td style="text-align: left;">Indicador de Suficiencia de Viviendas</td>
+<td style="text-align: left;">DOUBLE</td>
+<td style="text-align: left;">valor entre 0 y 1</td>
+<td style="text-align: left;">Calculado en base a último censo (INE 2017)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SOCIOECONÓMICA</td>
+<td style="text-align: left;">IVI</td>
+<td style="text-align: left;">Indicador de Calidad de la Vivienda</td>
+<td style="text-align: left;">DOUBLE</td>
+<td style="text-align: left;">valor entre 0 y 1</td>
+<td style="text-align: left;">Calculado en base a último censo (INE 2017)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SEGURIDAD</td>
+<td style="text-align: left;">IGPE</td>
+<td style="text-align: left;">Indicador de Delitos Grave Personas</td>
+<td style="text-align: left;">DOUBLE</td>
+<td style="text-align: left;">valor entre 0 y 1</td>
+<td style="text-align: left;">Datos de delitos de 2021</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SEGURIDAD</td>
+<td style="text-align: left;">IGPR</td>
+<td style="text-align: left;">Indicador de Delitos Graves Propiedad</td>
+<td style="text-align: left;">DOUBLE</td>
+<td style="text-align: left;">valor entre 0 y 1</td>
+<td style="text-align: left;">Datos de delitos de 2021</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SEGURIDAD</td>
+<td style="text-align: left;">ILPE</td>
+<td style="text-align: left;">Indicador de Delitos Leves Personas</td>
+<td style="text-align: left;">DOUBLE</td>
+<td style="text-align: left;">valor entre 0 y 1</td>
+<td style="text-align: left;">Datos de delitos de 2021</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SEGURIDAD</td>
+<td style="text-align: left;">ILPR</td>
+<td style="text-align: left;">Indicador de Delitos Leves Propiedad</td>
+<td style="text-align: left;">DOUBLE</td>
+<td style="text-align: left;">valor entre 0 y 1</td>
+<td style="text-align: left;">Datos de delitos de 2021</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AMBIENTAL</td>
+<td style="text-align: left;">IATA</td>
+<td style="text-align: left;">Indicador de Amplitud Térmica</td>
+<td style="text-align: left;">DOUBLE</td>
+<td style="text-align: left;">Mayor a 0</td>
+<td style="text-align: left;">Datos satelitales del territorio nacional de 2021</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AMBIENTAL</td>
+<td style="text-align: left;">ICV</td>
+<td style="text-align: left;">Indicador de Cobertura Vegetal</td>
+<td style="text-align: left;">DOUBLE</td>
+<td style="text-align: left;">entre 0 y 100</td>
+<td style="text-align: left;">Datos satelitales del territorio nacional de 2021</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ACCESIBILIDAD</td>
+<td style="text-align: left;">ICUL</td>
+<td style="text-align: left;">Accesibilidad a Cultura</td>
+<td style="text-align: left;">DOUBLE</td>
+<td style="text-align: left;">Mayor a 0</td>
+<td style="text-align: left;">Levantamiento de Información CIT 2021</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ACCESIBILIDAD</td>
+<td style="text-align: left;">IAV</td>
+<td style="text-align: left;">Accesibilidad a Áreas Verdes</td>
+<td style="text-align: left;">DOUBLE</td>
+<td style="text-align: left;">Mayor a 0</td>
+<td style="text-align: left;">Levantamiento de Información CIT 2021</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ACCESIBILIDAD</td>
+<td style="text-align: left;">ISAL</td>
+<td style="text-align: left;">Accesiblidad a Salud</td>
+<td style="text-align: left;">DOUBLE</td>
+<td style="text-align: left;">Mayor a 0</td>
+<td style="text-align: left;">Levantamiento de Información CIT 2021</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ACCESIBILIDAD</td>
+<td style="text-align: left;">IDEP</td>
+<td style="text-align: left;">Accesibilidad a Deportes</td>
+<td style="text-align: left;">DOUBLE</td>
+<td style="text-align: left;">Mayor a 0</td>
+<td style="text-align: left;">Levantamiento de Información CIT 2021</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ACCESIBILIDAD</td>
+<td style="text-align: left;">ISER</td>
+<td style="text-align: left;">Accesibilidad a Servicios Públicos</td>
+<td style="text-align: left;">DOUBLE</td>
+<td style="text-align: left;">Mayor a 0</td>
+<td style="text-align: left;">Levantamiento de Información CIT 2021</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ACCESIBILIDAD</td>
+<td style="text-align: left;">ISE</td>
+<td style="text-align: left;">Accesibilidad a Servicios de Educación</td>
+<td style="text-align: left;">DOUBLE</td>
+<td style="text-align: left;">Mayor a 0</td>
+<td style="text-align: left;">Levantamiento de Información CIT 2021</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
 </section>
 <section id="proceso" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="proceso"><span class="header-section-number">6.3</span> Proceso</h2>
@@ -626,7 +800,7 @@ $ geometry   &lt;POLYGON [°]&gt; POLYGON ((-73.21897 -39.788..., POLYGON ((-73.
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># viz dimensiones: accesibilidad</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(mz_c_dimensiones) <span class="sc">+</span> <span class="fu">tm_fill</span>(<span class="st">"dim_acc"</span>, <span class="at">style=</span><span class="st">"jenks"</span>, <span class="at">palette=</span><span class="st">"Blues"</span>) <span class="sc">+</span> <span class="fu">tm_layout</span>(<span class="at">title=</span><span class="st">"Dimensión de Accesibilidad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="consolidacion_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<p><img src="consolidacion_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Estos resultados permiten ilustrar cómo la densidad de población generalmente implica mayores servicios (ya que las decisiones de inversión se concentran donde existen mercados más desarrollados y la inversión pública sigue este patrón), pero al mismo tiempo presenta costos de aglomeración, con mayores niveles de inseguridad y menor confort ambiental. Además, los patrones socioeconómicos van mostrando las decisiones o faltas de decsisión de las personas y la segregación de los grupos sociales.</p>

@@ -253,7 +253,7 @@ div.csl-indent {
 <p><span class="math display">\[
 A_i = \sum_{j=1}^m O_j e^{-\beta c_{ij}}
 \]</span></p>
-<p>Donde <span class="math inline">\(A_i\)</span> es el indicador de accesibilidad, <span class="math inline">\(O_j\)</span> indica las oportunidades en el territorio y <span class="math inline">\(c_{ij}\)</span> el costo de desplazamiento. Los subíndices <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> representan los puntos de origen y destino, respectivamente.</p>
+<p>Donde <span class="math inline">\(A_i\)</span> indica el indicador de accesibilidad en la locación <span class="math inline">\(i\)</span> (manzanas con población), siendo <span class="math inline">\(D_j\)</span> la oportunidad presente en el equipamiento <span class="math inline">\(j\)</span>, además <span class="math inline">\(c_{ij}\)</span> indica el costo de desplazamiento entre la locación <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span>, esta última ponderada exponencialmente por un parámetro <span class="math inline">\(\beta\)</span> que indica la dispocición de viaje o descuento por costo de desplazamiento en tiempo o distancia. La expresión muestra como el indicador de accesibilidad es la suma de oportunidades ponderadas por el costo de desplazamiento a estas.</p>
 <p>El listado de indicadores de accesibilidad de la dimensión es el siguiente:</p>
 <ul>
 <li><p><strong>IAV</strong>: Accesibilidad a Áreas Verdes.</p></li>
@@ -264,8 +264,6 @@ A_i = \sum_{j=1}^m O_j e^{-\beta c_{ij}}
 <li><p><strong>ISAL</strong>: Accesibilidad a Equipamientos de Salud.</p></li>
 </ul>
 <p>En particular los indicadores de accesibilidad a equipamientos (ICUL, IDEP, ISAL e IAV), representan en m2 /habitante, la relación de capacidad de cada equipamiento (superficie o matrículas escolares, por ejemplo), y la población que puede acceder a los mismos; en relación a la distancia y a la propensión de desplazamiento.</p>
-<p>Indicadores basados en locación</p>
-<p>Donde <span class="math inline">\(A_i\)</span> indica el indicador de accesibilidad en la locación <span class="math inline">\(i\)</span> (manzanas con población), siendo <span class="math inline">\(D_j\)</span> la oportunidad presente en el equipamiento <span class="math inline">\(j\)</span>, además <span class="math inline">\(c_{ij}\)</span> indica el costo de desplazamiento entre la locación <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span>, esta última ponderada exponencialmente por un parámetro <span class="math inline">\(\beta\)</span> que indica la dispocición de viaje o descuento por costo de desplazamiento en tiempo o distancia. La expresión muestra como el indicador de accesibilidad es la suma de oportunidades ponderadas por el costo de desplazamiento a estas.</p>
 </section>
 <section id="insumos" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="insumos"><span class="header-section-number">5.2</span> Insumos</h2>
@@ -296,8 +294,20 @@ A_i = \sum_{j=1}^m O_j e^{-\beta c_{ij}}
 </section>
 <section id="información-encuesta-origen-y-destino" class="level3" data-number="5.2.4">
 <h3 data-number="5.2.4" class="anchored" data-anchor-id="información-encuesta-origen-y-destino"><span class="header-section-number">5.2.4</span> Información Encuesta Origen y Destino</h3>
-<p>Finalmente, usando los datos de la Encuesta de Origen y Destino (EOD) se calcula el parámetro de sensibilidad al costo de desplazamiento <span class="math inline">\(\beta\)</span>, este indica el nivel de decaimiento exponencial en la probabilidad de hacer un viaje a medida que aumenta el costo de desplazamiento la probabilidad de realizar el viaje disminuye. La imagen a continuación indica como se comporta este parámetro, siendo el eje y el que indica la probabilidad de realizar el viaje (entre 0 y 1) y el eje x indicando el costo en tiempo. Se aprecia que existe un tramo de costo donde el viaje se realizar con probabilidad 1, en este caso en viajes de menos de 5 minutos. Luego, la probabilidad decae exponencialmente siguiendo el parámetro <span class="math inline">\(\beta\)</span>. Esta curva es una aproximación empírica de la consolidación de viajes registrados en la EOD, en modo caminata para un propósito libre.</p>
+<p>Finalmente, usando los datos de la Encuesta de Origen y Destino (EOD) se calcula el parámetro de sensibilidad al costo de desplazamiento <span class="math inline">\(\beta\)</span>, este indica el nivel de decaimiento exponencial en la probabilidad de hacer un viaje a medida que aumenta el costo de desplazamiento la probabilidad de realizar el viaje disminuye.</p>
+<p>La imagen a continuación indica como se comporta este parámetro, siendo el eje y el que indica la probabilidad de realizar el viaje (entre 0 y 1) y el eje x indicando el costo en tiempo. Se aprecia que existe un tramo de costo donde el viaje se realizar con probabilidad 1, en este caso en viajes de menos de 5 minutos. Luego, la probabilidad decae exponencialmente siguiendo el parámetro <span class="math inline">\(\beta\)</span>. Esta curva es una aproximación empírica de la consolidación de viajes registrados en la EOD, en modo caminata para un propósito libre.</p>
 <p><img src="img/imp_caminata.png" class="img-fluid"></p>
+<p>El proceso de cálculo de este parámetro involucra:</p>
+<ol type="1">
+<li><p>Consolidar las bases de datos de las encuestas de Origen y Destino disponibles para las distintas ciudades del país ponderadas por la población de estas.</p></li>
+<li><p>Clasificar todos los tiempos de viajes en intervalos de 5 minutos.</p></li>
+<li><p>Determinar el peak de viajes en 5 minutos para el caso de desplazamientos a pie</p></li>
+<li><p>Asignar probabilidad 1 al peak de 5 minutos.</p></li>
+<li><p>Modelar el decaimiento exponencial mediante una regresión lineal</p></li>
+<li><p>El parámetro beta se registra en una tabla de parámetros</p></li>
+<li><p>Se calculan betas diferenciados para los viajes de ocio (proposito “libre”) y para los viajes de destinos obligatorios (propósito “quehacer”).</p></li>
+<li><p>Se registra la proporción de viajes que se realizan a pie y en transporte motorizado para cada propósito.</p></li>
+</ol>
 </section>
 </section>
 <section id="proceso" class="level2" data-number="5.3">
